@@ -33,7 +33,8 @@ new_document = {
 }
 
 try:
-    result = collection.insert_one(new_document)  # Inserta un nuevo documento
+    result = collection.insert_one(new_document)  
+    print (result)# Inserta un nuevo documento
     print("Documento insertado con ID:", result.inserted_id)
 except Exception as e:
     print("Error al insertar documento:", e)
