@@ -28532,4 +28532,4 @@ FLz;SbS`jtP)h{{00000t^uwAhlBtC4ci(3000
 
 
 if __name__ == "__main__":
-    main()
+    main()python get-pip.py
