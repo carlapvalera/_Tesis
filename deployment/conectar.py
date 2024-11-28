@@ -10,9 +10,30 @@ try:
 except Exception as e:
     print("Error al conectar a MongoDB:", e)
 
-# Seleccionar una base de datos
-db = client['nombre_de_tu_base_de_datos']  # Cambia esto por el nombre real de tu base de datos
+# Seleccionar la base de datos 'nest'
+db = client['nest']
 
-# Imprimir los nombres de las colecciones en la base de datos
-collections = db.list_collection_names()
-print("Colecciones en la base de datos:", collections)
+# Seleccionar la colección 'LLM'
+collection = db['LLM']
+
+# Ejemplo: Obtener todos los documentos de la colección 'LLM'
+try:
+    documents = collection.find()  # Obtiene todos los documentos
+    for doc in documents:
+        print(doc)  # Imprime cada documento
+except Exception as e:
+    print("Error al obtener documentos:", e)
+
+# Ejemplo: Insertar un nuevo documento en la colección 'LLM'
+new_document = {
+    "pregunta": "¿Cuál es la capital de Francia?",
+    "respuesta": "París",
+    "detalle_archivo": "N/A",
+    "voto": 0
+}
+
+try:
+    result = collection.insert_one(new_document)  # Inserta un nuevo documento
+    print("Documento insertado con ID:", result.inserted_id)
+except Exception as e:
+    print("Error al insertar documento:", e)
