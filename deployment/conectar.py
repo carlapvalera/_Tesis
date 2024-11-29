@@ -38,3 +38,19 @@ try:
     print("Documento insertado con ID:", result.inserted_id)
 except Exception as e:
     print("Error al insertar documento:", e)
+
+
+# Ejemplo: Eliminar un documento específico (por ejemplo, donde la pregunta sea "¿Cuál es la capital de Francia?")
+try:
+    result = collection.delete_one({"pregunta": "¿Cuál es la capital de Francia?"})
+    print(f"Documentos eliminados: {result.deleted_count}")  # Muestra cuántos documentos fueron eliminados
+except Exception as e:
+    print("Error al eliminar el documento:", e)
+
+
+# Ejemplo: Eliminar todos los documentos de la colección 'LLM'
+try:
+    result = collection.delete_many({})  # Elimina todos los documentos
+    print(f"Documentos eliminados: {result.deleted_count}")  # Muestra cuántos documentos fueron eliminados
+except Exception as e:
+    print("Error al vaciar la colección:", e)
