@@ -1,0 +1,73 @@
+project:
+  type: book
+
+editor:
+  render-on-save: true
+
+book:
+  title: "How to Train your Chatbot"
+  subtitle: A practical handbook on using LLMs to build all sorts of cool stuff
+  author:
+    - name: Alejandro Piad Morffis
+      email: apiad@apiad.net
+  sidebar:
+    tools:
+      - icon: book
+        href: https://store.apiad.net/l/chatbots
+  page-footer:
+    left: "Copyright 2024 - The Authors"
+    right:
+      - icon: book
+        href: https://store.apiad.net/l/chatbots
+  reader-mode: true
+  chapters:
+    - index.qmd
+    - part: part1/index.qmd
+      chapters:
+        - part1/intro.qmd
+        - part1/training.qmd
+        - part1/capabilities.qmd
+        - part1/limitations.qmd
+    - part: part2/index.qmd
+      chapters:
+        - part2/prompting.qmd
+        - part2/rag.qmd
+        - part2/functions.qmd
+        - part2/code.qmd
+        - part2/agents.qmd
+        - part2/finetune.qmd
+    - part: part3/index.qmd
+      chapters:
+        - part3/01_chatbot.qmd
+        - part3/02_pdfbot.qmd
+        - part3/03_search.qmd
+        - part3/04_shoping.qmd
+        - part3/05_analyst.qmd
+        - part3/06_cli.qmd
+        - part3/07_writer.qmd
+        - part3/08_coder.qmd
+        - part3/09_planner.qmd
+        - part3/10_feeder.qmd
+        - part3/11_journal.qmd
+        - part3/12_graph.qmd
+        - part3/13_research.qmd
+        - part3/14_dnd.qmd
+        - part3/15_storyteller.qmd
+    - conclusion.qmd
+
+number-depth: 0
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    theme: cosmo
+    highlight-style: pygments
+  pdf:
+    documentclass: scrbook
+    classoption: [openany,oneside]
+    highlight-style: pygments
+  epub:
+    toc: true
+    toc-depth: 2

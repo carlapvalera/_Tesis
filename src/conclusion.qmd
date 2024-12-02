@@ -1,0 +1,21 @@
+# The Future of Language Modeling {.unnumbered}
+
+As for the future of LLMs, there are several trends we can anticipate. First, we'll keep scaling up our models as there's still untapped potential in our compute and data. Building bigger models and training them on more data for longer periods will yield still better results. However, there will come a point when scaling models ceases to be effective due to diminishing returns or running out of natural linguistic data.
+
+Training on synthetic data alone poses challenges, as it can lead to odd and incoherent model behavior. While there are ways to mitigate this, fresh human data is ideal. As we continue scaling models, we'll need better training algorithms that require less data but maintain efficiency.
+
+Another trend is the separation between large foundational models trained on vast amounts of data and smaller, more specialized models. These smaller models can be easily fine-tuned for specific tasks, offering performance similar to GPT-4 with a fraction of the size when adjusted with the right data and algorithm.
+
+Lastly, we'll see increased integration between models and other computational methods. Combining GPT with systems like Python code or Wolfram Alpha demonstrates the potential of these hybrid approaches.
+
+Formal computational languages enable precise, non-statistical calculations, providing formal guarantees of correctness. A significant trend will be using language models as interfaces for these systems, such as in code generation. Language models will be integrated into various applications wherever it makes sense, and often where it won’t too.
+
+However, traditional user interfaces will still play a role in tasks requiring fine control, like adjusting the volume of an audio track or the contrast of an image. Replacing such controls with language isn't practical, you cannot just say “increase the volume by 0,76 db”, it’s too cumbersome. Yet, for applications with discrete interfaces involving buttons and checkboxes, we'll likely see an increasing shift towards a linguistic layer that translates user input into commands.
+
+This is linked to the improvement of language models for code generation. As these models become better at understanding language and translating it into programming code, integration into diverse applications becomes easier.
+
+Another development is multi-modality, where text, images, and sounds are combined for simultaneous reasoning. By embedding various qualities into a shared space, language can be grounded in multiple types of experiences. This allows for better context understanding through not only words but also visuals and audio inputs.
+
+In summary, we can easily predict a couple of decades of continued improvement in LLMs and an increased level of integration of this technology into almost everything from coffee machines to rockets. However, we still don’t know where the next big wall is, and what we will need to overcome it. There are many who believe LLMs can scale up to AGI, but others---including myself---are skeptics, and we think there are still fundamental discoveries to be made in Artificial Intelligence.
+
+And that’s the fun part, right?

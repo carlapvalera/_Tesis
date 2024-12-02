@@ -1,0 +1,115 @@
+# Code generation {#sec-code}
+
+Function calling is one step towards enabling LLMs to interact with external systems, by giving them more flexibility in choosing which operations to perform---i.e., which methods to call---based on the conversation context. But, in the end, function calling still limits how much the model can do. It is restricted to the set of preprogrammed functionalities we give it access to.
+
+This may be exactly what you want, because it gives you total control over the action space of the LLM. However, for some of the most complex tasks, it may be too hard to come up with a flexible enough API.
+
+Suppose you're making a data analysis bot, that will read a CSV file and answer questions about it. You can ask it to group, filter, or otherwise process the data in a myriad of ways. You could conceivably come up with a set of functions that cover your entire question space, but you would end up coding something that resembles the `pandas` API. What you actually want, is for your chatbot to write and run `pandas` code!
+
+Enter code generation. Instead of coming up with a very flexible and broad set of API functions, simply let your bot write Python code (or any other programming language) and run it. If the model is sufficiently well trained in code generation, it can often solve a majority of the low-level coding tasks that you would end up encapsulating anyway.
+
+There are many flavors to code generation, ranging in complexity from single instructions to fully working applications. There is also the question of how that code gets used. One option is to execute immediately, maybe even transparently to the user, to obtain a response. In this case, the result from running the code is what matters, rather than the code itself. On the other hand, you might want the code as the end result, maybe to copy and paste it somewhere else.
+
+In this chapter, we will explore the most interesting use cases for code generation, and some tips and strategies to get the most out of language model that can code.
+
+## How code generation works
+
+In the simplest case, you can think of code generation as a subset instance of text generation. If your model is trained on mixed natural language and code input, and/or fine-tuned with coding instructions, it will naturally learn to answer to some prompts with actual code. For example, you can train an LLM on programming contests, where the input is a problem statement, and the output is the code of the solution in some programming language.
+
+It is at least somewhat surprising that vanilla LLMs, trained on code, can learn to write code at all. The reason to be skeptic is that programming languages have very strict syntax rules which make it hard, at least in principle, for a purely statistical language model to produce something that is just parseable code, not to mention semantically correct. Failing to produce a single semicolon in the exact location can make incorrect an otherwise perfect piece of code. Yet, LLMs learn to code, almost without additional effort.
+
+In fact, most general-purpose models now available have at least some general capabilities for code generation, if only because they are trained of vast datasets that contain, among the many types of text modalities, lots and lots of code. And even if you don't want an LLM explicitely for code generation, training on code and text (rather than just text) has shown to improve the general reasoning capabilities of a model, even for text-only tasks! But although you can get reasonably good code generation almost for free, the best coding LLMs are fine-tuned on precise text-and-code datasets.
+
+There are many reasons to prefer a model fine-tuned for coding to a general one. The simplest argument is that, contrary to natural language, highly plausible code can still be incorrect. Fine-tuning a model specifically on code reinforces the syntax rules and makes it much less likely to generate almost-correct but still syntactically wrong code.
+
+In the same vein, since programming languages are much more rigid in terms of syntax than natural language, fine-tuning can make a smaller model as good or even better than larger, general models, if focused on a specific language. Likewise, even if your general LLM can code Python, it may not know the specific framework you're interested in, or code with the exact style you want.
+
+## Code generation use cases
+
+In this section we'll look at code generation from a high-level perspective, to understand what are the most interesting use cases it unlocks. We won't go in-depth into technical details of how to make these use cases work in practice, as we will have plenty of time in Part 3 to see concrete examples in action.
+
+### Code completion
+
+The simplest use case for code generation is straightforward code completion. This can be as simple as asking ChatGPT the code to solve a concrete problem without any additional context. However, this use case becomes much more interesting when you can provide the LLM with relevant context (existing code, class hierarchies, function declarations, etc.) and have it produce code that fits right into an existing codebase.
+
+Code completion, at its core, is just a particular form of text completion, with all the quirks and caveats. The same prompt can produce different results, and slightly different prompts can vary widely in the quality of the output. All prompt techniques we've discussed so far apply: format your prompt carefully, be precise, don't overshare, use examples whenever possible (no negative examples, please), and overall be intentional and cognizant of all usual gotchas.
+
+### Code maintainance
+
+Code maintainance is an slightly more advanced form of code completion, in which we ask the model not code to support new functionality, but rather to modify existing code (or add to the existing code) to improve its quality, maintainability, clarity, etc. A typical example is automatic refactoring: asking the model to, e.g., extract some functionality into its own function, or otherwise abstract or encapsulate relevant fragments of code.
+
+This process can be enhanced with the use of prompt templates for common tasks, including generating boilerplate code or running typical refactors like splitting methods, encapsulating functionality, or changing style from, e.g., a recursive implementation to an iterative one.
+
+Another form of code maintainance is adding unit tests. A careful explanation of the relevant functional requisites, in natural language, might be enough to have a model generate reasonably good unit tests for the most common use cases.
+
+### Translation and explanation
+
+The previous use cases are mostly examples of language to code generation. On the other hand, we can have code to code and code to language generation.
+
+The first case is useful for code translation. A simple example is to translate code in one programming language to another, perhaps because you found the solution to your problem online but it's not in the right programming language. But you can also translate between two versions of the same language, say, from Python 2 to Python 3, to update an implementation. Or translate between different frameworks, or different implementation styles.
+
+The second case is useful for automatically adding comments to existing code, or otherwise generate explanations in any level of detail. As usual, the accuracy of the explanation is subject to how powerful the model is, and how complex the code. In general, it is impossible to understand what a given code will do without executing it, but you can get pretty far at least in the most common scenarios.
+
+### Using external tools
+
+Now we get into the domain of code as means to an end rather than the end in itself. You can use code generation to interface with external tools that either don't have a high-level functional API or that, by their nature, are code based.
+
+An example of the former is using any of the myriad utilities in your terminal, via Bash scripts. If you want your LLM to be capable of, e.g., creating files, making commits, downloading stuff, compressing and moving things around, etc., it is very likely that a reasonably good LLM can generate a Bash one-liner or small script to work these tasks out.
+
+In the latter case, you may want to interface with tools that are code-based, such as SQL databases, or any number of special-purpose computing engines, from Wolfram Alpha to a SAT solver or an in-house tool. If the language used by that tool is not mainstream---meaning, the LLM won't be trained on it---you'll need to fine-tune on it.
+
+And finally, you can interface with programming frameworks that have, e.g., a Python-based API. Again, unless the framework is very well-known---e.g., sklearn---you may need to fine-tune your model to teach it how to use that concrete API. But in many cases the model might generalize from its basic Python knowledge to specific APIs with a small set of carefully curated k-shot examples.
+
+### Enhanced reasoning
+
+As we've seen in @sec-limitations, LLMs are lousy at mathematical and logical reasoning. This is rather surprising at first, because computers are supposed to be precise mathematical machines. However, when you understand how LLMs reason, you realize they don't have any explicit mechanism for even the simplest mathematical operations. But you know what does? Python! (and any other programming language).
+
+Code generation is the most effective way to enhance the mathematical skills of LLMs. Instead of having the model directly answer questions involving mathematical operations, make it generate a short code expression that computes the right formula, run it, and feed the result back to the LLM. This way you can "teach" an LLM to solve complex mathematical problems by doing the same we humans do: using the right tool.
+
+But the possibilites go far beyond simple (or fairly involved) mathematical operations. You can pair an LLM with any of the many specialized inference engines the AI community has invented over the decades. Make your LLM generate Prolog code and voilá, you have a general purpose logic reasoning engine from natural language, or make it generate SymPy expressions and you have a symbolic reasoner.
+
+But this is no silver bullet, of course. Your LLM can simply fail to generate the right code. So even if you have the perfect computing engine that solves the right problem, getting a language model to generate semantically correct code for that engine is an open problem, and one which is ultimately unsolvable according to basic computatibility theory.
+
+However, for many practical cases, given enough examples for k-shot or a small fine-tuning process, you can get an LLM to learn how to solve interesting problems reasonably well. And this is an active area of research, so we can only expect these capabilities to improve in the near future.
+
+## Prompting tips for code generation
+
+In many common cases, you can make an LLM write code simply by asking. A prompt like "Generate a Python function to find the third maximum element from a list" will work almost flawlessly in any sufficiently capable language model you can find today. And this works fine for many use cases where the code is all you need. At least is no worst than searching for a similar snippet of code online.
+
+However, there are several drawbacks with this KISS approach. First, most LLMs you'll find online are fine-tuned for chat, so they are... chatty. Instead of the raw code, they might answer with something like "Sure, here is a function in Python to do ...." and then the code. This makes it hard to integrate them with external tools that need just the code, because then you have to parse the response.
+
+In many cases, you can get away by adding an explicit instruction like "Please answer just with the source code", but still, some models may refuse. And even if they comply, different models output code in different formats. Some will enclose the code in markdown-style code block annotations while other models might indent the code. It depends heavily on their training data.
+
+Another problem you may face is when asking for one-liners, i.e., single instructions or expressions that you want to evaluate with, e.g., the `eval` function in Python. If you ask for a single `pandas` expression to, say, group and filter a dataset, the model may sometimes produce a propper expression---e.g., `df.groupby(...).agg(...)`---and other times an instruction---e.g., `df = df.groupby(...)`. You may work around these issues by doing some checking and post-processing of the response, like removing anything before the last `=` sign, but this is a very brittle approach.
+
+In these cases, some of our well-known prompt techniques also apply. Be very intentional with the prompt and provide positive examples of the exact response format you expect. While none of this will 100% guarantee you'll get a response in the format you need, when paired with a try-and-repeat strategy, you can often get away with the performance you need. For example, if the model makes a mistake 10% of the time, you'll need to redo one in ten queries on average, which is not that terrible all things considered.
+
+In many cases, when retrying the same code generation task, it helps including in the prompt the previous answer and the error. This can often be automated simply by trying to run the code, capturing any exceptions, and feeding the model back with the exception message asking it to try and fix it.
+
+Finally, with some tricks, we can force the LLM to produce syntactically-correct code---even if not guaranteed to be semantically valid. The trick is to restrict the sampling step to only select among the tokens that would be syntactically valid.
+
+Some open-source LLM inference engines, like llama.cpp, support passing a formal grammar that defines the syntax of the programming language. During sampling, the engine will select among the top-k tokens only those that are valid according to the production rules of the grammar. This can be done efficiently with a linearly bound automaton that can be constructed automatically from the formal grammar definition. While this is a relatively novel and, arguably, rather advanced feature, some commercial APIs, like <fireworks.ai> are starting to support it.
+
+## Limitations and caveats
+
+Needless to say, code generation is full of subtle and not-so-subtle problems. For starters, some hallucinations are going to happen, and this might result in several different types of problems. The simplest case is getting code that is not syntactically-correct, that is, code that doesn't parse. If this is your main problem, then you're lucky because this is simple to check. Just run a linter for your target language and retry if you find any syntax errors.
+
+A more complicated issue is when your model generates syntactically-correct code that throws an exception. This is still not so terrible because you can run the code and check for exceptions. However, running code generated by an LLM is a bad idea if you don't have some guardrails in place. For all you know, the code may have an instruction to wipe out your hard drive. So you must **always run LLM-generated code in a sandboxed environment**. This is especially true when you're running code generated by a user-facing LLM. Someone *will* hack that LLM to generate some system-breaking instruction.
+
+The third level of problem is when your LLM generates code that runs without exceptions but doesn't do the right thing. This is, in general, impossible to detect beforehand. However, depending on your specific use case, you may be able to check the result is what you expect, and even roll-back any potential side effects if that isn't the case. For example, you can have your code work on a copy of the relevant data, and check for any unexpected changes before merging that data back.
+
+This is, however, the most important open problem in program synthesis from natural language, and one that, I believe, will require a new paradigm that goes beyond statistical language modeling to fully solve it.
+
+Grammar-restricted output is is one of the most effective ways to make code generation more robust. Still, this process is ad-hoc, not baked into the training process. Thus, it is entirely possible for the LLM to get stuck simply because it doesn't give a high probability to any valid tokens. If the LLM wouldn't naturally produce, at least with some non-trivial probability, the right response, there is no ad-hoc filtering mechanism that can force it to generate correct code.
+
+This means adequate prompting and possibly fine-tuning for specific domains will remain relevant strategies in the near term.
+
+## Conclusions
+
+Code generation is one of the most surprising (weakly) emergent capabilities in the current language modeling paradigm. The fact that pure statistical correlations between tokens give rise to something that can mostly code---granted, at the level of maybe a 2nd year CS college student, in the best of cases---is something I wouldn't expect to be possible even three years ago. On the other hand, strong code generation is one of the most powerful and versatile capabilities in language models. It opens the door for a myriad of integrations with existing and newly created tools.
+
+A general-purpose language model paired with a general-purpose code interpreter is one step closer to AGI, there is no doubt. If Turing is right---and would you bet he isn't?---, any problem that can be solved with an effective, repeatable, systematic method, can be solved with any of the modern general-purpose programming languages. An LLM that can code at the level of the best human programmers would, almost by definition, have a general intelligence.
+
+The only gap that needs bridging is getting the model to produce the right code. But this might well be the hardest problem in computer science. We know that it is, in general, impossible to know what a program will do without running it. But this doesn't mean machines are necessarily any less capable than humans in principle. Who says our brains aren't just very powerful machines?
+
+But all of that is hypothetical. In the meantime, even with the many limitations of modern LLMs, code generation is one of the most useful tools you have at your disposal to build practical, useful applications using language models. We will spend a lot of time in Part 3 playing around with different strategies to turn LLMs into effective coders.

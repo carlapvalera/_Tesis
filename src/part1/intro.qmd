@@ -1,0 +1,62 @@
+# What is a language model?
+
+In the context of machine learning, language modeling means guessing how probably is a given sentence. For example, "the sun rises in the east and sets in the west" is a common sentence with a very high probability. But a sentence with random words that don't mean anything has a low probability of ever been uttered by anyone.
+
+Language modeling can be tricky because it's hard to say how likely a sentence is to “exist”. What does it even mean? In machine learning, we use a group of texts called a corpus to help with this. Instead of the abstract, ontological question, we might ask something much more straightforward: How likely is it for this sentence to appear in all the written text on the internet?
+
+However, if we only looked at sentences that already exist on the internet, language modeling wouldn't be very useful. We'd just say a sentence is either there or not, probability 0 or 1. So instead, we can think about it in statistical frequentist terms like this: If the internet was made and erased many times, how often would this sentence show up?
+
+To answer this question, we can think about if a word is likely to come after a group of words in a sentence. For example, "The sun rises in the east and sets in the..." What word would most likely come next? We want our language model to be able to guess that word.
+
+Thus, we need to know how likely a word is to appear after a group of words. If we can do that, we can find the best word to complete the sentence. We keep doing this over and over again to create sentences, conversations, and even full books.
+
+Now, let's talk about the most common way to make this language modeling program work in practice. It's called statistical language modeling. We start with lots of text and learn how words connect with each other.
+In simple words, a context is a group of words around a specific word in a sentence. For example, in the sentence "the sun rises in the east and sets in the west," the word "east" is in the context of "the sun rises and sets." If we look at many sentences, we can find words that are often in the same context. This helps us understand which words are related to each other.
+
+For example, if we see "the capital of France is Paris" and "the capital of the United States is Washington," we can learn that Paris and France, as well as Washington and the United States, are related. They all have the same relationship: being the capital of a country. We might not know what to call this relationship, but we know it's the same type.
+
+Statistical language modeling is making a model that can guess how often a word appears in a certain context using lots of data. This doesn't necessarily mean it truly understands the words' meanings. But if we use enough data, it starts to look like the model can indeed capture some of the semantics. Whether this means the model really understands language is another discussion. But at least it looks like it knows some meanings in different contexts.
+
+## The simplest language model: n-grams
+
+We've been building statistical language models since the early days of AI. The n-gram model is one of the simplest ones, storing the probability of each n-gram's occurrence. An n-gram is a collection of n words that appear together in common sentences. For example, in a 2-gram model, we count how many times pairs of words appear together in a large corpus, creating a table showing their frequency.
+
+As we increase the n-grams to 3, 4, or 5, the table becomes extremely large. Before the internet revolution, Google built a massive n-gram model from the entire internet with up to 5-grams. However, since the combination of all 5 words in English is huge, we only store probabilities for the most common combinations, compressing the table and storing only the larger numbers. This makes our statistical language model an approximation of language.
+
+This simple model counts words in a strict context when they're within a specific window size together. It's very explicit, as each n-gram has its probability or frequency recorded. To compress this model further, we use *embeddings* – representing discrete objects in continuous space. For instance, words can be represented as vectors in a 300-dimensional space.
+
+## Word embeddings
+
+Embeddings aim to transform semantic properties from the original space into numerical properties of the embedding space. In the case of words, we want those that occur together in context to map to similar vectors and cluster in the embedding space where they're often used together.
+
+Word2Vec, in 2011, was the first massively successful use of embeddings. They trained a large embedding model using statistics from text all over the internet and discovered an amazing property: directions in the embedding space can encode semantic properties.
+
+For instance, if you go from `France` to `Paris`, the same vector needed to add to the word `France` to reach `Paris` is similar to the vector needed to add to the word `United States` to reach `Washington`. This showed that the semantic property `is-capital-of` was encoded as a specific direction in this space. Many other semantic properties were found encoded this way too.
+
+This was an early example of how encoding words in a dense vector space can capture some of their semantics.
+
+## Contextual word embeddings
+
+The issue with Word2Vec is its assignment of a unique vector to each word, regardless of context. As words have different meanings in different contexts, many attempts were made to create contextual embeddings instead of static ones. The most successful attempt is the transformer architecture, with BERT being the first example. The first transformer paper revolutionized natural language processing (NLP) in artificial intelligence, providing a single tool to tackle various NLP problems.
+
+The transformer generates a text representation or embedding that considers the entire content of a sentence, for example, or even a larger fragment of text. This means each word's embedding changes according to its context. Additionally, a global embedding for an entire sentence or paragraph can be computed. Why does this matter? It connects to our previous discussion on vector representations and neural networks.
+
+Neural networks are among the most powerful machine learning paradigms we have. By using a single representation, we can find embeddings for text, images, audio, categories, and programming code. This enables machine learning across multiple domains using a consistent approach.
+
+With neural networks, you can transform images to text, text to image, text to code or audio, etc. The first idea of the transformer was to take a large chunk of text, obtain an embedding, and then use a specific neural network for tasks like text classification or translation. However, sequence-to-sequence architectures were developed, allowing neural networks to receive a chunk of text, embed it into a real-value vector, and generate a completely different chunk of text.
+
+For example, in translation, you can encode a sentence in English with a transformer that embeds it into a real-value vector and then decode it in another transformer that “speaks” French. The real-value vector in the middle represents the meaning of the text independent of language. So you can have different encoders and decoders for various languages and translate any language pair.
+
+One cool aspect is that you can train on pairs of languages like English-Spanish and German-French and then translate from English to French without ever training on that specific pair. This is due to the internal representation used by all languages. The sequence-to-sequence transformer is a fundamental piece behind technologies like ChatGPT. The next step is training it on massive amounts of text and teaching it to generate similar text.
+
+## Large Language Models
+
+Large language models are the latest development in statistical language modeling, evolving from N-Gram models, embeddings, and transformers. These advanced architectures can compute contextual embeddings for extensive text contexts, thanks to innovations that efficiently accommodate thousdands of words in memory. This capacity has increased continuously, with the first version of ChatGPT holding something like 4000 words, and recently Google Gemini's claim to hold over 1 million words in the context.
+
+A significant change is the scale of data these models are trained on. BERT was trained on a vast dataset for its time, but it pales in comparison to GPT-2, 3, and 4. Large language models learn from a massive amount of internet text, including technical texts, books, Wikipedia articles, blog posts, social media, news, and more. This exposure to diverse text styles and content allows them to understand various mainstream languages.
+
+Large language models, like GPT-2, generate text by predicting the next word in a sentence or paragraph, just like all previous language models. But when you combine the massive scale of the data and computational resources put into making these beasts of language models, and some clever tricks on top, they become something completely beyond what anyone thought possible.
+
+GPT-2 was a huge leap forward in terms of coherent text generation. Given an initial prompt--say, the introductory paragraph of a fictional story--the model would generate token after token creating a mostly coherent story full with fictional characters and a plot. After a while it would start to diverge, of course, but for short fragments of text, this was already mindblowing.
+
+However, it is with GPT-3 that things really exploded. with GPT-3's size, emerging capabilities like "in-context learning" appear. And this is where our story really begins.

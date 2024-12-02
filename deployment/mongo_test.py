@@ -1,24 +1,11 @@
+# test_mongodb.py
+
 import json
 import uuid
 from pymongo import MongoClient, errors
 
-# Crear una conexión al servidor de MongoDB
-client = MongoClient('localhost', 27017)
-
-# Probar la conexión
-try:
-    client.admin.command('ping')  # Esto envía un comando ping para verificar la conexión
-    print("Conexión exitosa a MongoDB")
-except Exception as e:
-    print("Error al conectar a MongoDB:", e)
-
-# Seleccionar la base de datos 'nest'
-db = client['nest']
-
-# Seleccionar la colección 'LLM'
-collection = db['LLM']
-
-def insert_chat(question, answer, file_detail):
+# Funciones de MongoDB (puedes importar desde tu archivo original si están en otro archivo)
+def insert_chat(collection, question, answer, file_detail):
     """Inserta un nuevo chat en la colección 'LLM'."""
     session_id = str(uuid.uuid1())
     try:
@@ -34,7 +21,7 @@ def insert_chat(question, answer, file_detail):
         print("Error al insertar chat:", e)
         return None
 
-def update_vote_by_session_id(vote, session_id):
+def update_vote_by_session_id(collection, vote, session_id):
     """Actualiza el voto para un chat dado su session_id en la colección 'LLM'."""
     try:
         res = collection.update_one(
@@ -49,13 +36,13 @@ def update_vote_by_session_id(vote, session_id):
 def get_random_wtq():
     """Obtiene un documento aleatorio de la colección 'wtq'."""
     try:
-        res = list(collection.aggregate([{ '$sample': { 'size': 1 } }]))
+        res = list(db.wtq.aggregate([{ '$sample': { 'size': 1 } }]))
         return res[0] if res else None  # Retorna None si no hay resultados
     except errors.PyMongoError as e:
         print("Error al obtener documento aleatorio de wtq:", e)
         return None
 
-def get_random_table_op():
+def get_random_table_op(db):
     """Obtiene un documento aleatorio de la colección 'table_op'."""
     try:
         res = list(db.table_op.aggregate([{ '$sample': { 'size': 1 } }]))
@@ -64,7 +51,7 @@ def get_random_table_op():
         print("Error al obtener documento aleatorio de table_op:", e)
         return None
 
-def get_random_table_merge():
+def get_random_table_merge(db):
     """Obtiene un documento aleatorio de la colección 'table_merge'."""
     try:
         res = list(db.table_merge.aggregate([{ '$sample': { 'size': 1 } }]))
@@ -72,12 +59,6 @@ def get_random_table_merge():
     except errors.PyMongoError as e:
         print("Error al obtener documento aleatorio de table_merge:", e)
         return None
-    
-
-
-
-
-
 
 def test_mongodb_functions():
     # Crear una conexión al servidor de MongoDB
@@ -99,7 +80,7 @@ def test_mongodb_functions():
 
     # Probar la inserción de un nuevo chat
     print("Probando inserción de chat...")
-    session_id = insert_chat("¿Cuál es la capital de Francia?", "París", "Archivo de ejemplo")
+    session_id = insert_chat(collection, "¿Cuál es la capital de Francia?", "París", "Archivo de ejemplo")
     if session_id:
         print(f"Chat insertado con session_id: {session_id}")
     else:
@@ -108,7 +89,7 @@ def test_mongodb_functions():
     # Probar la actualización del voto
     print("\nProbando actualización de voto...")
     if session_id:
-        updated_count = update_vote_by_session_id( 5, session_id)
+        updated_count = update_vote_by_session_id(collection, 5, session_id)
         if updated_count is not None:
             print(f"Voto actualizado. Documentos modificados: {updated_count}")
         else:
@@ -116,7 +97,7 @@ def test_mongodb_functions():
 
     # Probar la obtención de un documento aleatorio de 'wtq'
     print("\nProbando obtención aleatoria de documento de 'wtq'...")
-    random_wtq = get_random_wtq()
+    random_wtq = get_random_wtq(db)
     if random_wtq:
         print("Documento aleatorio obtenido de 'wtq':", random_wtq)
     else:
@@ -124,16 +105,10 @@ def test_mongodb_functions():
 
     # Probar la obtención de un documento aleatorio de 'table_op'
     print("\nProbando obtención aleatoria de documento de 'table_op'...")
-    random_table_op = get_random_table_op()
+    random_table_op = get_random_table_op(db)
     if random_table_op:
         print("Documento aleatorio obtenido de 'table_op':", random_table_op)
     else:
         print("No se pudo obtener documento aleatorio de 'table_op'.")
 
     # Probar la obtención de un documento aleatorio de 'table_merge'
-
-
-
-# Ejecutar las pruebas
-if __name__ == "__main__":
-    test_mongodb_functions()

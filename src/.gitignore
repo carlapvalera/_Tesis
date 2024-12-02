@@ -1,0 +1,7 @@
+/.quarto/
+_book*
+*_files/
+.jupyter_cache
+site_libs
+*.html
+_freeze/

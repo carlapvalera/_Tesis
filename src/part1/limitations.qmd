@@ -1,0 +1,101 @@
+# The limits of language models {#sec-limitations}
+
+In this chapter we will examine what are the main implications of how LLMs work, and what inherent limitations this entails. We'll touch upon four main types of issues.
+
+First, we will look at reasoning skills, and argue why LLMs lack the capability to perform open-ended reasoning to arbitrary levels of complexity. Next, we'll discuss the many issues that arise from the limited context size, including limitations for long-term and precise recall. Then, we'll talk about biases and misrepresentation issues arising from both the training data and the way these models are fine-tuned. Finally, we'll look at the most insidious problem in statistical language modeling, hallucinations, and argue why eliminating them completely might require a new paradigm altogether.
+
+But before that deep dive, let's go back to how LLMs learn and contrast it with how humans learn. This comparison will give us some insights into the reasons for the limitations of LLMs.
+
+## How do LLMs learn?
+
+Regarding the differences between how large language models and humans learn language, a few key points stand out. First, the scale is vastly different---large models require billions of training examples to generate grammatically correct sentences, while human children need far fewer. This has sparked debate in linguistics about nature versus nurture in language acquisition. Is there a pre-programmed structure in the brain for learning grammar, or is it all learned during childhood? Although I'm not an expert in linguistics, we know that machine learning models with built-in biases for specific problems can learn more easily and with less data. It makes sense that there might be similar architectural designs in the human brain.
+
+However, we also know that backpropagation, the learning algorithm used in large language models, is biologically impossible. The neural networks in our brains function differently than those in artificial models. This fundamental difference in learning algorithms could impact how much these models truly understand.
+
+Another important distinction is symbolic grounding. When humans learn language, they not only learn relationships between words but also connections to real-world objects. Current LLMs lack this grounding, which could affect their understanding of language.
+
+Symbols, like the sound of cats or the word "cat" in a text, connect to real-life anchors, such as an actual cat. Grounding is crucial in language acquisition because children first learn concepts they experience daily, like mom, dad, food, and home. Only later do they make connections with abstract ideas like ethical values or metacognition, that can't be directly tied to experiences.
+
+So, humans learn language while interacting with the real world. Language is grounded in physical experiences and other sensory inputs like images, touch, sound, and taste. This contrasts with large language models that only learn correlations between words without grounding their meaning in experience.
+
+For example, when you say "the apple is red" to a large language model, it recognizes this as a likely true sentence due to context. However, for a human, the same phrase connects the abstract symbols with experiences of what an apple looks like, tastes like, and feels like. This shows that language models reason differently than humans when it comes to real-world concepts.
+
+One could argue that humans can reason about purely symbolic things, like math. Even though numbers might be grounded in physical notions of quantity, abstract fields of math involve humans reasoning by manipulating symbols and learning correlations between them. In this sense, there may be a case for language models to be able to reason similarly in certain contexts.
+
+In summary, reasoning in LLMs, in its current limited form, involves understanding how words, sentences, and contexts relate and appear together. This provides a certain level of linguistic comprehension. However, this level of understanding differs greatly from that of humans or even animals with primitive intelligence.
+
+## Reasoning {#sec-reasoning}
+
+::: {.callout-note}
+This section is under construction.
+:::
+
+## Context
+
+::: {.callout-note}
+This section is under construction.
+:::
+
+## Biases
+
+::: {.callout-note}
+This section is under construction.
+:::
+
+## Hallucinations {#sec-hallucinations}
+
+The term "hallucination" in the context of AI refers to the phenomenon where a large language model (LLM) or other generative AI system produces outputs that appear plausible and coherent, but do not accurately reflect reality or the intended purpose of the system. These hallucinations manifest as the generation of false, inaccurate, or nonsensical information the AI system presents with confidence, as if it were factual.
+
+First, a caveat. Unlike human hallucinations, which involve perceiving things that are not real, AI hallucinations are associated with the model producing unjustified responses or beliefs, rather than perceptual experiences. The name "hallucination" is therefore imperfect, and it often leads to mistakes as people tend to antropomorphize these models and make erroneous assumptions about how they work and the causes of these failures.
+
+However, we will stick to this name in this article because it is the prevalent nomenclature used everywhere people talk about AI. Just keep in mind we're talking about something completely different to what the term "hallucination" means in general.
+
+### Real-World Implications of AI Hallucinations
+
+The occurrence of hallucinations in AI systems, and particularly in large language models (LLMs), can have significant consequences, especially in high-stakes applications such as healthcare, finance, or public safety. For example, a healthcare AI model that incorrectly identifies a malignant skin lession as benign can doom a patient. On the other hand, identifying a benign skin lesion as malignant could lead to unnecessary medical interventions, also causing harm to the patient. Similarly, in the financial sector, hallucinated outputs from an AI system could result in poor investment decisions with potentially devastating economic impacts.
+
+However, even in low-stakes applications, the insidious nature of hallucinations make then a fundamental barrier to the widespread adoption of AI. For example, imagine you're using an LLM to generate summaries from audio transcripts of a meeting, extracting relevant talking points and actionable items. If the model tends to hallucinate once in a while, either failing to extract one key item, or worse, producing an spurious item, it will be virtually impossible for anyone to detect that without manually revising the transcript, thus rendering the whole application of AI in this domain useless.
+
+For this reason, one of the key challenges in addressing the real-world implications of language model hallucinations is the difficulty in effectively communicating the limitations of these systems to end-users. LLMs are trained to produce fluent, coherent outputs that can appear plausible, even when they are factually incorrect. If the end-users of an AI system are not sufficiently informed to review the output of the system with a critical eye, they may never spot any hallucinations. This leads to a chain of mistakes as the errors from the AI system propagate upstream through the layers of decision makers in an organization. Ultimately, you could be making a very bad decision that seems entirely plausible given all the available information because the source of the error --an AI hallucination-- is impossible to detect.
+
+Thus, the development and deployment of LLMs with hallucination capabilities raises important ethical considerations. There is a need for responsible AI development practices that prioritize transparency, accountability, and the mitigation of potential harms. This includes establishing clear guidelines for testing and validating LLMs before real-world use, as well as implementing robust monitoring and oversight mechanisms to identify and address hallucinations as they arise.
+
+Crucially, there are absolutely zero generative AI systems today that can guarantee they don't hallucinate. This tech is simply unreliable in fundamental ways, so every actor in this domain, from developers to users, must be aware there will be hallucinations in your system, and you must have guardrails in place to deal with the output of unreliable AIs. And this is so perverse because we are used to software just working. Whenever software doesn't do what it should, that's a bug. But hallucinations are not a bug of AI, at least in the current paradigm. As we will see in the next section, they are an inherent feature of the way generative models work.
+
+### Why Hallucinations Happen?
+
+There are many superficial reasons for hallucinations, from data and modelling problems, to issues with prompting. However, the underlying cause of all hallucinations, at least in large language models, is that the current language modeling paradigm used in these systems is, by design, a hallucination machine. Let's unpack that.
+
+As we saw in @sec-capabilities, generative AI models, including LLMs, rely on capturing statistical patterns in their training data to generate outputs. Rather than storing explicit factual claims, LLMs implicitly encode information as statistical correlations between words and phrases. This means the models do not have a clear, well-defined understanding of what is true or false, they can just generate plausibly sounding text.
+
+The reason this mostly works, is because generating plausibly sounding text has a high probabilty of reproducing something that is true, provided you trained on mostly truthful data. But large language models (LLMs) are trained on vast corpora of text data from the internet, which contains inaccuracies, biases, and even fabricated information. So these models have "seen" many true sentences and thus picked up correlations between words that tend to generate true sentences, but they've also seen many variants of the same sentences which are slightly or even entirely wrong.
+
+So one of the primary reasons for the occurrence of hallucinations is the lack of grounding in authoritative knowledge sources. Without a strong foundation in verified, factual knowledge, the models struggle to distinguish truth from falsehood, leading to the generation of hallucinated outputs. But this is far from the only problem. Even if you only train on factual information---assuming there would be enough of such high-quality data to begin with---the statistical nature of language models make them susceptible to hallucinate.
+
+Suppose your model has only seen truthful sentences, and learned the correlations between words in these sentences. Imagine there are two very similar sentences, both factually true, that differ in just a couple of words --maybe a date and a name, for example "Person A was born in year X" and "Person B was born in year Y". Given the way these models work, the probability of generating a mixed-up sentence like "Person B was born in year X" is only slightly smaller than generating either of the original sentences.
+
+What's going on here is that the statistical model implicitely assumes that small changes in the input (the sequence of words) lead to small changes in the output (the probability of generating a sentence). In more technical terms, the statistical model assumes a smooth distribution, which is necessary because the amount of data the model needs to encode is orders of magnitude bigger than the memory (i.e., number of parameters) in the model. Thus, the models has to compress the training corpus, and compression implies loosing some of the information.
+
+In other words, statistical language models inherently assume that sentences very similar to what they have seen in the training data are also plausible sentences. They encode a smooth representation of language, and that's fine, as long as you don't equate plausible with factual. See, these models weren't designed with factuality in mind. They were originally designed for tasks like translation, where plausibility and coherence are all that matters. It's only when you turn them into answering machines that you run into a problem.
+
+The problem is there is nothing smooth about facts. A sentence is eithre factual or not, there are no degrees of truthfulness ---for the most part; let's not get dragged into epistemological discussions here. But LLMs cannot, by design, define a strict frontier between true and false sentences. All the frontiers are fuzzy, so there is no clear cutoff point where you can say, if a sentence has less than X value of perplexity then it is false. And even if you could define such a threshold, it would different for all sentences.
+
+You may ask why can't we avoid using this "smooth" representation altogether. The reason is that you want to generate sentences that are not in the training set. This means you need to somehow guess that some sentences you have never seen are also plausible, and guessing means you have to make some assumptions. The smooth hypothesis is very reasonable ---and computationally convenient, as these models are trained with gradient descent, which requieres smoothness in the loss function--- again, as long as you don't care about factuality.  If you don't compress the training data in this smooth, lossy way, you will simply I can't wait for you to start training your own chatbot and building exciting applications with LLMs!not be able to generate novel sentences at all.
+
+In summary, this is the underlying reason why the current paradigm of generative AI will always hallucinate, no matter how good is your data and how ellaborated are your training procedures or guardrails. The statistical language modeling paradigm, at its core, is a hallucination machine. It is concocting plausibly-sounding sentences by mixing and matching words that is has seen together in similar contexts in the training set. It has no inherent notion of whether a given sentence is true or false. All it can tell is that it looks like sentences that appear in the training set.
+
+Now, a silver-lining could be this idea that even if some false sentences will unavoidably be generated, we can train the system to minimize their ocurrence by showing it lots and lots of high quality data. That is, can we push the probability of a hallucination to a sufficiently low value that, in practice, almost never happens? Recent research suggests that if there is a sentence that can be generated at all, no matter how low its base probability, then there is a prompt that will generate it with almost 100% certainty. This means that if we introduce malicious actors into our equation, we can never be sure our system can't be jailbroken.
+
+### Mitigating Hallucinations in AI
+
+So far we've argued that hallucinations are inherently impossible to eliminate completely. But this doesn't mean we can't do anything about it in practice. I want to end this article with a short summary of mitigation approaches that are being used today by researchers and developers.
+
+One key strategy is to incorporate external knowledge bases and fact-checking systems into the AI models. By grounding the models in authoritative, verified information sources, the risk of generating fabricated or inaccurate outputs can be reduced.
+
+Researchers are also exploring ways to develop more robust model architectures and training paradigms that are less susceptible to hallucinations. This may involve techniques like increasing model complexity, incorporating explicit reasoning capabilities, or using specialized training data and loss functions.
+
+Enhancing the transparency and interpretability of AI models is also crucial for addressing hallucinations. By making the models' decision-making processes more transparent, it becomes easier to identify and rectify the underlying causes of hallucinations.
+
+Alongside these technical approaches, the development of standardized benchmarks and test sets for hallucination assessment is crucial. This will enable researchers and developers to quantify the prevalence and severity of hallucinations, as well as compare the performance of different models in this regard. Thus, if you can't completely eliminate the problem, at least you can quantify it and make informed decisions about where and when it is safe enough to deploy a generative model.
+
+Finally, addressing the challenge of hallucinations in AI requires an interdisciplinary approach, involving collaboration between AI researchers, domain experts, and authorities in fields like scientific reasoning, legal argumentation, and other relevant disciplines. By fostering cross-disciplinary knowledge sharing and research, the understanding and mitigation of hallucinations can be further advanced.

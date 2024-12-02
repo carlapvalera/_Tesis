@@ -1,0 +1,11 @@
+# Techniques
+
+In this part we will explore the different techniques you can use to integrate LLMs into general applications, and unlock their most impressive capabilities. We will begin with an introducion to prompt engineering in @sec-prompting. Here, we will learn how to format our request (also called "prompt") to the LLM to maximize its utility.
+
+Then, we will explore augmentation techniques, which allow extending the capabilities of an LLM in several ways without retraining the models. We can extend the breadth of their knowledge by providing relevant context taken from external knowledge sources, or allowing them to directly query specialized search engines or APIs. Second, we can extend their reasoning and problem-solving capabilities by integrating them with other tools that perform specific tasks, or letting them generate and run specialized code. Finally, we can give LLMs a full agentic behavior and let them decide how and when to interact with an environment, receive information, and take actions.
+
+Finally, we will look at fine-tunning: the process to modify an LLM's weights to incorporate new knowledge or develop new skills. We will understand when fine-tuning is useful or necessary, and how to select the appropriate fine-tuning method according to our budget and the complexity of the task we tackle.
+
+::: {.callout-note}
+This part is under construction.
+:::
