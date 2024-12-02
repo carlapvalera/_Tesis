@@ -17,7 +17,7 @@ client = openai.OpenAI(
 )
 
 class Result(BaseModel):
-    winner: str
+    code : str
 
 chat_completion = client.chat.completions.create(
     model="accounts/fireworks/models/llama-v3p1-8b-instruct",
@@ -25,7 +25,7 @@ chat_completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "Who won the US presidential election in 2012? Reply just in one JSON.",
+            "content": "supon q tengo una tabla de personas y susu eddades dame el codigo a ejecutar q el resultado sea la cantidad de personas mayor de 30",
         },
     ],
 )
