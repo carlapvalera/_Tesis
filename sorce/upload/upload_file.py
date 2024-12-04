@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 import pdfplumber
+from ..database.conection import insert_file_data
+
 
 # Carpeta donde se guardarán los archivos subidos
 UPLOAD_FOLDER = 'uploads'
@@ -30,29 +32,57 @@ def extract_text_from_pdf(file_path):
     return text
 
 def process_uploaded_file(uploaded_file):
-    """Procesa el archivo subido según su tipo."""
+    """Procesa el archivo subido según su tipo y guarda en la base de datos."""
     file_path = save_uploaded_file(uploaded_file)
 
     if uploaded_file.name.endswith('.csv'):
         data = read_csv(file_path)
-        return {"type": "csv", "data": data}
+        # Guardar en la base de datos
+        file_id = insert_file_data(
+            name=uploaded_file.name,
+            file_type='csv',
+            description='Archivo CSV subido.',
+            content=data.to_string(),  # Convierte el DataFrame a string para almacenar
+            embedding=[]
+        )
+        return {"type": "csv", "data": data, "file_id": file_id}
 
     elif uploaded_file.name.endswith('.xlsx') or uploaded_file.name.endswith('.xls'):
         data = read_excel(file_path)
-        return {"type": "excel", "data": data}
+        # Guardar en la base de datos
+        file_id = insert_file_data(
+            name=uploaded_file.name,
+            file_type='excel',
+            description='Archivo Excel subido.',
+            content=data.to_string(),  # Convierte el DataFrame a string para almacenar
+            embedding=[]
+        )
+        return {"type": "excel", "data": data, "file_id": file_id}
 
     elif uploaded_file.name.endswith('.pdf'):
         full_text = extract_text_from_pdf(file_path)
-        return {"type": "pdf", "text": full_text}
+        # Guardar en la base de datos
+        file_id = insert_file_data(
+            name=uploaded_file.name,
+            file_type='pdf',
+            description='Archivo PDF subido.',
+            content=full_text,
+            embedding=[]
+        )
+        return {"type": "pdf", "text": full_text, "file_id": file_id}
 
     else:
         raise ValueError("Unsupported file type.")
 
+
+# list de la carpeta de upload
 def list_uploaded_files():
     """Lista los archivos existentes en la carpeta de uploads."""
     return os.listdir(UPLOAD_FOLDER)
 
 
+
+# borar de la carpeta de upload
 
 def delete_file(file_name):
     """Borra un archivo específico de la carpeta de uploads."""
