@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import pdfplumber
-from ..database.conection import insert_file_data
+from conection import insert_file_data
 
 
 # Carpeta donde se guardarán los archivos subidos
@@ -116,29 +116,44 @@ def delete_all_files():
 
 
 
-# Ejemplo de uso
-if __name__ == "__main__":
-    # Aquí puedes simular la subida de un archivo para pruebas
-    # uploaded_file = ... (proporcionar un objeto similar al que recibirías en Streamlit)
-    
-    # Procesar el archivo subido (ejemplo)
-    # result = process_uploaded_file(uploaded_file)
-    
-    # Listar archivos existentes
+
+
+
+
+
+
+
+
+
+
+from conection import insert_file_data  # Asegúrate de que esta ruta sea correcta
+
+
+
+import streamlit as st
+
+# Interfaz de usuario con Streamlit
+st.title("Gestor de Archivos")
+
+# Subida de archivos
+uploaded_file = st.file_uploader("Sube un archivo (CSV, Excel o PDF)", type=['csv', 'xlsx', 'xls', 'pdf'])
+
+if uploaded_file is not None:
+    result = process_uploaded_file(uploaded_file)
+    st.success(f"Archivo procesado: {result['type']} con ID: {result['file_id']}")
+
+# Listar archivos existentes
+if st.button("Listar Archivos Subidos"):
     existing_files = list_uploaded_files()
-    print("Archivos existentes:", existing_files)
+    st.write("Archivos existentes:", existing_files)
 
-    # Procesar un archivo subido (simulación)
-    # uploaded_file = ... (proporcionar un objeto similar al que recibirías en Streamlit)
+# Borrar un archivo específico
+file_to_delete = st.selectbox("Selecciona un archivo para borrar", options=list_uploaded_files())
+if st.button("Borrar Archivo"):
+    delete_message = delete_file(file_to_delete)
+    st.success(delete_message)
 
-    # Borrar un archivo específico
-    result_delete = delete_file("2404.18681v1.pdf")
-    print(result_delete)
-
-    # Borrar todos los archivos
-    result_delete_all = delete_all_files()
-    print(result_delete_all)
-
-    # Listar archivos existentes
-    existing_files = list_uploaded_files()
-    print("Archivos existentes:", existing_files)
+# Borrar todos los archivos
+if st.button("Borrar Todos los Archivos"):
+    delete_message_all = delete_all_files()
+    st.success(delete_message_all)
