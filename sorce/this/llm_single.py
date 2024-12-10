@@ -42,8 +42,8 @@ messages = [
     {
         "role": "user",
         "content": (
-            "¿Cuántos trabajadores  mayores de 30 años? "
-            "Por favor, devuelve solo los nombres de las tablas necesarias."
+            "¿Cuántos trabajadores  mayores de 30 años? y dime quien es el presidente d españa"
+            "Por favor, devuelve solo los nombres de las tablas necesarias. y el codigo sql"
         )
     },
 ]
