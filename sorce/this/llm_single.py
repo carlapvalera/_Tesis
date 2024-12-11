@@ -43,7 +43,7 @@ messages = [
         "role": "user",
         "content": (
             "¿Cuántos trabajadores son mayores de 30 años? y dime quién es el presidente de España. "
-            "Por favor, devuelve solo los nombres de las tablas necesarias y el código SQL."
+            "Por favor, solo devuelveme el código para mongo db."
         )
     },
 ]
