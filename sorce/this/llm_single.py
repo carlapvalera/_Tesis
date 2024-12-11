@@ -42,8 +42,8 @@ messages = [
     {
         "role": "user",
         "content": (
-            "¿Cuántos trabajadores  mayores de 30 años? y dime quien es el presidente d españa"
-            "Por favor, devuelve solo los nombres de las tablas necesarias. y el codigo sql"
+            "¿Cuántos trabajadores son mayores de 30 años? y dime quién es el presidente de España. "
+            "Por favor, devuelve solo los nombres de las tablas necesarias y el código SQL."
         )
     },
 ]
@@ -61,26 +61,15 @@ try:
 
     # Si el LLM devuelve una consulta SQL:
     if response.startswith("SELECT"):
+        # Modificar la consulta para usar los nombres de los DataFrames
+        sql_query = response.replace("trabajadores_edad", "df_edades").replace("trabajadores_posicion", "df_posiciones")
+        
         # Ejecutar la consulta usando pandasql
-        result = psql.sqldf(response)
+        result = psql.sqldf(sql_query)
         
         # Mostrar el resultado
         print("\nResultado de la consulta:")
         print(result)
-    
-    # Si el LLM devuelve que necesita hacer un merge o single
-    elif response.lower() == 'single':
-        table_name = 'trabajadores_edad'  # Este debería ser el nombre devuelto por el modelo
-
-        # Verificar que la tabla existe en el diccionario
-        if table_name in dataframes:
-            # Filtrar los datos según las condiciones necesarias
-            df = dataframes[table_name]
-            filtered_df = df[df['edad'] > 30]  # Filtrando trabajadores mayores de 30 años
-
-            # Mostrar el resultado filtrado
-            print("\nDatos filtrados:")
-            print(filtered_df)
     
 except Exception as e:
     print(f"Ocurrió un error: {str(e)}")
