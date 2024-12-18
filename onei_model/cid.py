@@ -1,40 +1,94 @@
-import re
 from typing import Dict
 
-def default_cid_map() -> Dict[int, str]:
-    cid_map = {
-        34: "?",
-        97: "~",
-        108: "ä",
-        129: "ü",
-        180: '"',
-        181: '"',
-        183: "'",
-        203: "í",
-        207: "ó",
+class Cid:
+    def __init__(self):
+        # Inicializar el atributo _cid como un diccionario vacío
+        self._cid: Dict[int, str] = self._default_cid_map()
 
-    }
-    for i, char in enumerate("abcdefghijklmnopqrstuvwxyz"):
-        cid_map[68 + i] = char
-    for i, char in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
-        cid_map[36 + i] = char
-    for i, char in enumerate(" !\"#$%&'()*+,-./0123456789:"):
-        cid_map[3 + i] = char
-    return cid_map
+    @property
+    def cid(self):
+        return self._cid 
 
-def remove_cids(text: str) -> str:
-    """Elimina todas las ocurrencias de (cid:<número> del texto."""
-    return re.sub(r"\(cid:\d+\)", "", text)
+    def set_cid(self, clave: int, valor: str):
+        """Agregar un nuevo par clave-valor al diccionario."""
+        self._cid[clave] = valor
 
-def replace_cids(text: str, cid_map: Dict[int, str]) -> str:
-    """Reemplaza las ocurrencias de (cid:<número> en el texto con su correspondiente carácter."""
-    def _replace_cid(m: re.Match) -> str:
-        cid = int(m.group(1))
-        if cid in cid_map:
-            return cid_map[cid]
-        return m.group()  # Si no se encuentra el CID, devolverlo sin cambios
+    def get_cid(self, clave: int) -> str:
+        """Obtener el valor asociado a la clave dada."""
+        return self._cid.get(clave, "Clave no encontrada")
 
-    return re.sub(r"\(cid:(\d+)\)", _replace_cid, text)
+    def print_cids(self):
+        """Mostrar todos los pares clave-valor en el diccionario."""
+        for clave, valor in self._cid.items():
+            print(f"{clave}: {valor}")
+
+    def _default_cid_map(self) -> Dict[int, str]:
+        cid_map = {
+            34: "?",
+            97: "~",
+            108: "ä",
+            129: "ü",
+            180: '"',
+            181: '"',
+            183: "'",
+            203: "í",
+            207: "ó",
+        }
+        for i, char in enumerate("abcdefghijklmnopqrstuvwxyz"):
+            cid_map[68 + i] = char
+        for i, char in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+            cid_map[36 + i] = char
+        for i, char in enumerate(" !\"#$%&'()*+,-./0123456789:"):
+            cid_map[3 + i] = char
+        return cid_map
+
+# Ejemplo de uso y test
+if __name__ == "__main__":
+    # Crear una instancia de Cid
+    cid_instance = Cid()
+    
+    # Imprimir los CIDs por defecto
+    print("Contenido del diccionario _cid:")
+    cid_instance.print_cids()
+
+    # Probar agregar un nuevo CID
+    print("\nAgregando un nuevo CID:")
+    cid_instance.set_cid(999, "nuevo")
+    
+    # Verificar que se ha agregado correctamente
+    print("Valor para la clave 999:", cid_instance.get_cid(999))  # Salida: nuevo
+
+    # Probar obtener un CID que no existe
+    print("Valor para la clave 1000:", cid_instance.get_cid(1000))  # Salida: Clave no encontrada
+
+    # Mostrar todos los CIDs después de agregar uno nuevo
+    print("\nContenido del diccionario _cid después de agregar:")
+    cid_instance.print_cids()
+
+
+def to_acctual_characters(text: str):
+    ret = ""
+    for number in text.replace("(cid:", ";").replace(")", "")[1:].split(";"):
+        # Verificar si cleaned_number es un número
+        if not number.replace("\n", "").isdigit():
+            continue  # Si no es un número, continuar con la 
+
+        if int(number.replace("\n", "")) in lang:
+            ret = ret + lang[int(number.replace("\n", ""))]
+        else:
+            ret = ret + "(cid:" + number.replace("\n", "") + ")"
+        if "\n" in number:
+            ret = ret + "\n"
+    return ret
+
+
+for page_layout in extract_pages("C:\\blabla\\_Tesis\\01-territorio.pdf"):
+    for element in page_layout:
+        if isinstance(element, LTTextContainer):
+            print(to_acctual_characters(element.get_text()))
+
+
+
 
 # Ejemplo de uso
 if __name__ == "__main__":
