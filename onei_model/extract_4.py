@@ -19,3 +19,4 @@ with open('texto_extraido_ocr.txt', 'w', encoding='utf-8') as f:
     f.write("\n".join(texto_completo))
 
 print("Texto extraído usando OCR y guardado.")
+print ( texto_completo)
