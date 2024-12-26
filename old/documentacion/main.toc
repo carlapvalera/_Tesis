@@ -1,0 +1,6 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {spanish}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{chapter1}{2}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Marco Teórico}{3}{}%

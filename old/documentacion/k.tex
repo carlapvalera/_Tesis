@@ -1,0 +1,31 @@
+\documentclass[12pt]{report} % O puedes usar book
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex} % Para manejar las referencias
+\addbibresource{Bibliography.bib} % Cargar el archivo .bib
+
+\title{Título de la Tesis}
+\author{Carla Sunami Pérez Valera}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents % Generar el índice
+
+% Incluir capítulos
+\chapter*{Introducción} % Usar chapter* para no numerar
+\addcontentsline{toc}{chapter}{Introducción} % Agregar al índice
+
+El procesamiento de datos ha evolucionado significativamente... (ver \cite{autor3}).
+
+% Incluir otro capítulo
+\chapter{Marco Teórico}
+
+En este capítulo, analizaremos la importancia de los anuarios estadísticos en la toma de decisiones. Según el artículo de \cite{autor3}, los anuarios estadísticos son cruciales para comprender las dinámicas económicas.
+
+% Imprimir la bibliografía
+\printbibliography
+
+\end{document}
