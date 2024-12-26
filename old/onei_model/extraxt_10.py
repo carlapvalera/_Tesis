@@ -50,14 +50,14 @@ def to_actual_characters(text: str, lang: Dict[int, str]) -> str:
     return ret
 
 # Ruta al archivo PDF
-pdf_path = 'C:\\blabla\\_Tesis\\01-territorio.pdf'
+pdf_path = 'C:\\blabla\\_Tesis\\old\\01-territorio.pdf'
 
-"""# Extraer texto usando PDFMiner
+# Extraer texto usando PDFMiner
 print("Texto extraído del PDF:")
 for page_layout in extract_pages(pdf_path):
     for element in page_layout:
         if isinstance(element, LTTextContainer):
-            print(to_actual_characters(element.get_text(), default_cid_map()))"""
+            print(to_actual_characters(element.get_text(), default_cid_map()))
 
 # Extraer tablas usando Camelot
 print("\nTablas extraídas del PDF:")

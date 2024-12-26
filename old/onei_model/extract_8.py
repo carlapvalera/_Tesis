@@ -42,7 +42,7 @@ if __name__ == "__main__":
     cid_map = default_cid_map()
     
     # Ruta al archivo PDF
-    pdf_path = 'C:\\blabla\\_Tesis\\01-territorio.pdf'
+    pdf_path = 'C:\\blabla\\_Tesis\\old\\01-territorio.pdf'
 
     # Leer todas las tablas del PDF
     tables = camelot.read_pdf(pdf_path, pages='1-10', flavor='stream')
