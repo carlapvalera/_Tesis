@@ -4,7 +4,7 @@ from typing import Dict, Tuple, List
 import json
 import pdfplumber
 
-class PDFExtractor:
+class PDFExtractor_withCid:
     def __init__(self):
         load_dotenv()  # Cargar las variables de entorno desde el archivo .env
         lang_file = os.getenv("PDF_FILENAME")  # Obtener el nombre del archivo desde las variables de entorno
@@ -61,5 +61,5 @@ class PDFExtractor:
         return text_content, tables_content
 
 #Ejemplo de uso
-extractor = PDFExtractor()
+extractor = PDFExtractor_withCid()
 text, tables = extractor.extract_text_and_tables("ruta/al/archivo.pdf")
