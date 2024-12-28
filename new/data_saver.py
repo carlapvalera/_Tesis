@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from dotenv import load_dotenv
-from new.pdf_extractor import PDFExtractor_withCid
+from pdf_extractor import PDFExtractor_withCid
 
 class DataSaver:
     def __init__(self):

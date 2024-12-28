@@ -43,9 +43,8 @@ class PDFExtractor_withCid:
                 for page in pdf.pages:
                     # Extraer texto plano y convertir CID a caracteres reales
                     text = page.extract_text()
-                    if text:
-                        converted_text = self.to_actual_characters(text)
-                        text_content.append(converted_text)
+                    if text:        
+                        text_content.append(text)
 
                     # Extraer tablas
                     tables = page.extract_tables()
@@ -62,4 +61,5 @@ class PDFExtractor_withCid:
 
 #Ejemplo de uso
 extractor = PDFExtractor_withCid()
-text, tables = extractor.extract_text_and_tables("ruta/al/archivo.pdf")
+text, tables = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\old\\01-territorio.pdf")
+print ("hola")
