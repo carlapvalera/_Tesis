@@ -3,6 +3,10 @@ import pandas as pd
 import re
 from typing import Dict
 
+class Cid_Map:
+    def __init__(self):
+        pass
+
 def default_cid_map() -> Dict[int, str]:
     lang = {
         3: " ",
@@ -54,23 +58,33 @@ def to_actual_characters(text: str, lang: Dict[int, str]) -> str:
         
     return ret
 
+import pdfplumber
+
 def extract_text_and_tables(pdf_path):
     text_content = []
     tables_content = []
 
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            # Extraer texto plano
-            text = page.extract_text()
-            if text:
-                text_content.append(text)
+    try:
+        with pdfplumber.open(pdf_path) as pdf:
+            for page in pdf.pages:
+                # Extraer texto plano
+                text = page.extract_text()
+                if text:
+                    text_content.append(text)
 
-            # Extraer tablas
-            tables = page.extract_tables()
-            for table in tables:
-                tables_content.append(table)
+                # Extraer tablas
+                tables = page.extract_tables()
+                for table in tables:
+                    tables_content.append(table)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"El archivo no se encontró: {pdf_path}")
+    except pdfplumber.exceptions.PDFSyntaxError:
+        raise ValueError(f"El archivo no es un PDF válido: {pdf_path}")
+    except Exception as e:
+        raise Exception(f"Ocurrió un error al procesar el archivo: {str(e)}")
 
     return text_content, tables_content
+
 
 def main():
     pdf_path = "C:\\blabla\\_Tesis\\old\\01-territorio.pdf" # Cambia esto por la ruta de tu PDF
