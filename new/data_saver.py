@@ -18,9 +18,10 @@ class DataSaver:
 
     def save_text(self, text_content: list) -> None:
         """Guarda el texto extraído en un archivo .txt."""
-        with open("texto_extraido.txt", "w", encoding="utf-8") as f:
+        text_file_path = os.path.join(self.output_dir, "texto_extraido.txt")
+        with open(text_file_path, "w", encoding="utf-8") as f:
             for page_text in text_content:
-                processed_text = to_actual_characters(page_text, self.cid.lang)
+                processed_text = self.cid.to_actual_characters(page_text)
                 f.write(processed_text + "\n\n")
 
     
