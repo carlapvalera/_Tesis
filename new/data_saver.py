@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from dotenv import load_dotenv
-from pdf_extractor import PDFExtractor_withCid
+from new.pdf_extractor_update import PDFExtractor_withCid
 from extraction import  to_actual_characters
 
 class DataSaver:
