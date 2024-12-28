@@ -85,4 +85,3 @@ class PDFExtractor_withCid:
 # Ejemplo de uso
 extractor = PDFExtractor_withCid()
 text_content, tables_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\old\\01-territorio.pdf")
-

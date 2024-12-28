@@ -1,1 +1,0 @@
-# The Hackerbot {#sec-cli}
