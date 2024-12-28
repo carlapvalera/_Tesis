@@ -14,11 +14,27 @@ class PDFExtractor_withCid:
         """Carga el mapa CID desde un archivo JSON."""
         try:
             with open(filename, 'r', encoding='utf-8') as file:
-                return json.load(file)
+                lang = json.load(file)
+                # Convertir las claves de string a int
+                self.lang =  {int(key): value for key, value in lang.items()}
         except FileNotFoundError:
             raise FileNotFoundError(f"El archivo no se encontró: {filename}")
         except json.JSONDecodeError:
             raise ValueError(f"Error al decodificar el archivo JSON: {filename}")
+        ind = 68
+        for cha in "abcdefghijklmnopqrstuvwxyz":
+            self.lang[ind] = cha
+            ind += 1
+        ind = 36
+        for cha in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            self.lang[ind] = cha
+            ind += 1
+        ind = 3
+        for cha in " !\"#$%&'()*+,-./0123456789:":
+            self.lang[ind] = cha
+            ind += 1
+        return self.lang
+
 
     def to_actual_characters(self, text: str) -> str:
         ret = ""
@@ -27,8 +43,12 @@ class PDFExtractor_withCid:
                 continue
             
             cid_value = int(number.replace("\n", ""))
+            
             if cid_value in self.lang:
+                if cid_value == 207:
+                    pass
                 ret += self.lang[cid_value]
+                print (self.lang[cid_value])
             else:
                 ret += "(cid:" + number.replace("\n", "") + ")"
         
@@ -61,5 +81,7 @@ class PDFExtractor_withCid:
 
 #Ejemplo de uso
 extractor = PDFExtractor_withCid()
+dic = extractor.lang
 text, tables = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\old\\01-territorio.pdf")
-print ("hola")
+aaaaaaaaaaaaaaaa= extractor.to_actual_characters("(cid:36)(cid:49)(cid:56)(cid:36)(cid:53)(cid:44)(cid:50)(cid:3)\n(cid:40)(cid:54)(cid:55)(cid:36)(cid:39)(cid:203)(cid:54)(cid:55)(cid:44)(cid:38)(cid:50)(cid:3)\n(cid:39)(cid:40)(cid:3)(cid:38)(cid:56)(cid:37)(cid:36)(cid:3)(cid:21)(cid:19)(cid:21)(cid:22)\n(cid:38)(cid:36)(cid:51)(cid:203)(cid:55)(cid:56)(cid:47)(cid:50)(cid:3)(cid:20)(cid:29)(cid:3)(cid:55)(cid:40)(cid:53)(cid:53)(cid:44)(cid:55)(cid:50)(cid:53)(cid:44)(cid:50)(cid:3)\n(cid:40)(cid:39)(cid:44)(cid:38)(cid:44)(cid:207)(cid:49)(cid:3)(cid:21)(cid:19)(cid:21)(cid:23)")
+print (aaaaaaaaaaaaaaaa)   
