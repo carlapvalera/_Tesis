@@ -2,7 +2,6 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 from pdf_extractor_textocompleto import PDFExtractor_withCid
-from extraction import  to_actual_characters
 
 class DataSaver:
     def __init__(self):
