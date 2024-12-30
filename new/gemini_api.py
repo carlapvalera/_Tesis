@@ -25,7 +25,7 @@ class Gemini_API:
 
         # 1 input > 1 vector output
         print(str(result['embedding'])[:50], '... TRIMMED]')
-        return result
+        return result['embedding']
 
     def get_embeddings_list(self,lista:list[str]):
         "RETRIEVAL_QUERY"
@@ -39,39 +39,9 @@ class Gemini_API:
         # A list of inputs > A list of vectors output
         for v in result['embedding']:
             print(str(v)[:50], '... TRIMMED ...')
-        return result
+        results = []
+        for v in result['embedding']:
+            results.append(v)
+        return results
                 
 
-
-
-# Ejemplo de uso
-if __name__ == "__main__":
-    # Inicializar la clase Gemini_API
-    gemini_api = Gemini_API()
-
-    # Leer el contenido del archivo
-    file_path = 'C:\\blabla\\_Tesis\\temporal\\texto_extraido.txt'  # Cambia esto por la ruta a tu archivo
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            text = file.read()
-
-        # Contar los tokens en el texto
-        num_tokens = gemini_api.count_tokens(text)
-        print(f"Número total de tokens en el archivo: {num_tokens}")
-
-        # Obtener embeddings para una consulta específica
-        query = "¿Cuáles son los beneficios de usar IA generativa?"
-        embeddings_query = gemini_api.get_embeddings_query(query)
-
-        # Obtener embeddings para una lista de consultas
-        queries_list = [
-            "¿Qué es la inteligencia artificial?",
-            "¿Cómo funciona el aprendizaje automático?",
-            "Ejemplos de aplicaciones de IA."
-        ]
-        embeddings_list = gemini_api.get_embeddings_list(queries_list)
-
-    except FileNotFoundError:
-        print(f"Error: El archivo '{file_path}' no se encuentra.")
-    except Exception as e:
-        print(f"Error al procesar el archivo: {e}")
