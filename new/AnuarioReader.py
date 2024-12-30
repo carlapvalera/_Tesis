@@ -4,7 +4,8 @@ class AnuarioReader:
         self.name = None
         self.year = None
         self.text_anuario = None
-        self.tablas_anuario = []
+        self.tables_anuario = []
+        self.index = None
         self.load_data()
 
     def load_data(self):
@@ -28,6 +29,8 @@ class AnuarioReader:
                 #print(text[capitulo_segundo_indice])
 
                 contenido_ind = text.find("CONTENIDO")
+                contenido_anuario = text[contenido_ind:capitulo_segundo_indice]
+                self.index = contenido_anuario
                 #print(contenido_ind)
                 #print(text[contenido_ind])
 
@@ -56,7 +59,7 @@ class AnuarioReader:
                 self.text_anuario = text_anuario
                 #TABLAS DEL ANUARIO
                 tablas_anuario = text[tablas_indice:]
-                self.tablas_anuario = tablas_anuario
+                self.tables_anuario = tablas_anuario
                 #print(año)
                 #print(name)
 
@@ -69,9 +72,10 @@ class AnuarioReader:
         """Muestra la información cargada."""
         print(f"Nombre: {self.name}")
         print(f"Año: {self.year}")
+        print(f"Índice del Anuario:{self.index}")
         print(f"Texto del Anuario: {self.text_anuario}")
         print("Tablas del Anuario:")
-        for tabla in self.tablas_anuario:
+        for tabla in self.tables_anuario:
             print(f"- {tabla}")
 
 # Ejemplo de uso

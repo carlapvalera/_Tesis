@@ -1,9 +1,0 @@
-**Texto:**
-
-**1.4 - Extensión superficial, población efectiva y densidad de población, año 2021**
-
-**Tabla:**
-
-| **Cayo/Área** | **Extensión superficial (km2)** | **Población efectiva (U)** | **Densidad de población (hab/km2)** |
-|---|---|---|---|
-| Archipiélago cubano | 109 884,03 | 126,4106 | 757,610 |
