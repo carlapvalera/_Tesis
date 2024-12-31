@@ -45,3 +45,10 @@ class Gemini_API:
         return results
                 
 
+a = Gemini_API()
+
+file_path = 'C:\\blabla\\_Tesis\\temporal\\text.txt'  # Cambia esto por la ruta a tu archivo
+with open(file_path, 'r', encoding='utf-8') as file:
+    text = file.read()
+
+print( a.get_embeddings_query(text))
