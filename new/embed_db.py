@@ -1,78 +1,110 @@
 import faiss
 import numpy as np
 from gemini_api import Gemini_API
+import os
+import json
+from document import Document
 
-# Inicializar la API Gemini
-gemini_API = Gemini_API()
+class DB_Embed:
+    def __init__(self,mapping_filename = 'document_mapping.json',index_filename = 'mi_indice.faiss',dimension = 768):
+        # Inicializar la API Gemini
+        self.mapping_filename = mapping_filename
+        self.index_filename =index_filename
+        self.gemini_API = Gemini_API()
+        self.unique_embeddings = set()
+        self.index = None
+        self.document_mapping = None
+        self.initial_db(index_filename,dimension,mapping_filename)
+        
+        
+    def initial_db(self,index_filename,d,mapping_filename):
+       # Crear o cargar un índice FAISS
+        
+        self.index = self.load_index(index_filename)
 
-def embed_text(text: str):
-    """Convierte texto a un vector utilizando un modelo preentrenado."""
-    return gemini_API.get_embeddings_query(text)  # Devuelve como lista de float
+        if self.index is None:
+              # Ajusta según tu modelo (por ejemplo, si Gemini usa 768 dimensiones)
+            self.index = faiss.IndexFlatIP(d)  # Usar producto interno como métrica para similaridad del coseno
 
-def embed_list_text(texts: list[str]):
-    """Convierte una lista de textos a un vector utilizando un modelo preentrenado."""
-    return gemini_API.get_embeddings_list(text)
+        # Cargar o inicializar el mapeo de documentos
+        
+        self.document_mapping = self.load_mapping(mapping_filename)
+        # Conjunto para rastrear embeddings únicos
+        for doc in self.document_mapping:
+            self.unique_embeddings.add(doc)
 
-def chunk_text(text: str, max_length=200):
-    """Divide el texto en chunks de longitud máxima especificada."""
-    sentences = text.split('. ')
-    chunks = []
-    current_chunk = ""
+    def embed_text(self,text: str):
+        """Convierte texto a un vector utilizando un modelo preentrenado."""
+        return self.gemini_API.get_embeddings_query(text)  # Devuelve como lista de float
 
-    for sentence in sentences:
-        if len(current_chunk) + len(sentence) + 1 > max_length:
+    def embed_list_text(self,texts: list[str]):
+        """Convierte una lista de textos a un vector utilizando un modelo preentrenado."""
+        return self.gemini_API.get_embeddings_list(texts)
+
+    def chunk_text(self,text: str, max_length=200):
+        """Divide el texto en chunks de longitud máxima especificada."""
+        sentences = text.split('. ')
+        chunks = []
+        current_chunk = ""
+
+        for sentence in sentences:
+            if len(current_chunk) + len(sentence) + 1 > max_length:
+                chunks.append(current_chunk.strip())
+                current_chunk = sentence  # Comenzar un nuevo chunk
+            else:
+                current_chunk += " " + sentence
+
+        if current_chunk:
             chunks.append(current_chunk.strip())
-            current_chunk = sentence  # Comenzar un nuevo chunk
+
+        return chunks
+
+    def save_index(self):
+        """Guarda el índice FAISS en un archivo."""
+        faiss.write_index(self.index, self.index_filename)
+
+    def load_index(self,filename):
+        """Carga el índice FAISS desde un archivo, si existe."""
+        if os.path.exists(filename):
+            return faiss.read_index(filename)
         else:
-            current_chunk += " " + sentence
+            return None
 
-    if current_chunk:
-        chunks.append(current_chunk.strip())
+    def save_mapping(self):
+        """Guarda el mapeo de documentos en un archivo JSON."""
+        with open(self.mapping_filename, 'w', encoding='utf-8') as f:
+            json.dump(self.document_mapping, f)
 
-    return chunks
-
-def cosine_similarity(a, b):
-    """Calcula la similaridad del coseno entre dos vectores."""
-    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
-
-# Ejemplo de uso
-if __name__ == "__main__":
-    # Cargar el contenido del archivo (ejemplo)
-    file_path = 'C:\\blabla\\_Tesis\\temporal\\texto_extraido.txt'  # Cambia esto por la ruta a tu archivo
-    with open(file_path, 'r', encoding='utf-8') as file:
-        text = file.read()
-
-    # Dividir el texto en chunks
-    chunks = chunk_text(text, max_length=200)
-
-    #  Crear o cargar un índice FAISS
-    index_filename = 'mi_indice.faiss'
-    index = load_index(index_filename)
-
-    if index is None:
-        d = 768  # Ajusta según tu modelo (por ejemplo, si Gemini usa 768 dimensiones)
-        index = faiss.IndexFlatIP(d)  # Usar producto interno como métrica para similaridad del coseno
-
-    # Almacenar los embeddings en FAISS
-    for chunk in chunks:
-        if chunk:  # Verificar que el chunk no esté vacío
-            vector = embed_text(chunk)
+    def load_mapping(self,filename):
+        """Carga el mapeo de documentos desde un archivo JSON, si existe."""
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        else:
+            return []
+        
+    def set_text(self,doc:Document ):
+        # Almacenar los embeddings en FAISS
+        if doc.textEmbed:  # Verificar que el chunk no esté vacío
+            vector = self.gemini_API.embed_text(doc.text)
             normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
-            index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
+            
+            
 
-    print("Embeddings guardados en FAISS.")
+            if doc.direction not in self.unique_embeddings:  # Verificar si ya existe
+                self.index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
+                self.unique_embeddings.add(doc.direction)  # Añadir al conjunto
+                
+                # Guardar el texto asociado al embedding
+                self.document_mapping.append(doc.direction)
 
-    # Guardar el índice al finalizar
-    save_index(index, index_filename)
+        # Guardar el índice y el mapeo al finalizar
+        self.save_index()
+        self.save_mapping()
 
-    # Realizar una consulta para buscar el chunk más similar
-    query_text = "¿Qué es la inteligencia artificial?"  # Ejemplo de consulta
-    query_vector = embed_text(query_text)
-    normalized_query_vector = query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
+    def most_relevant(self,normalized_query_vector, k = 2):
+        # Buscar los k vecinos más cercanos
+        D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
+        return (D,I)
 
-    # Buscar los k vecinos más cercanos
-    k = 5
-    D, I = index.search(np.array([normalized_query_vector], dtype=np.float32), k)
 
-    print("Indices de los vecinos más cercanos:\n", I)
-    print("Distancias (producto interno):\n", D)
