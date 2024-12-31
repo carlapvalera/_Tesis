@@ -57,19 +57,22 @@ if __name__ == "__main__":
         d = 768  # Ajusta según tu modelo (por ejemplo, si Gemini usa 768 dimensiones)
         index = faiss.IndexFlatIP(d)  # Usar producto interno como métrica para similaridad del coseno
 
+    # Lista para almacenar textos originales correspondientes a cada embedding
+    document_mapping = []
+
     a = 0
     # Almacenar los embeddings en FAISS
     for chunk in chunks:
-        
-        if a ==10:
+        if a==10:
             break
-
         if chunk:  # Verificar que el chunk no esté vacío
             vector = embed_text(chunk)
             normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
             index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
-
-        a = a+1
+            
+            # Guardar el texto asociado al embedding
+            document_mapping.append(chunk)
+        a= a+1
 
     print("Embeddings guardados en FAISS.")
 
@@ -87,3 +90,7 @@ if __name__ == "__main__":
 
     print("Indices de los vecinos más cercanos:\n", I)
     print("Distancias (producto interno):\n", D)
+
+    # Recuperar y mostrar los textos correspondientes a los índices encontrados
+    for idx in I[1]:
+        print(f"Texto correspondiente al índice {idx}:\n{document_mapping[idx]}\n")
