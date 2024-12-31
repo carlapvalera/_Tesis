@@ -85,8 +85,8 @@ class DB_Embed:
         
     def set_text(self,doc:Document ):
         # Almacenar los embeddings en FAISS
-        if doc.textEmbed:  # Verificar que el chunk no esté vacío
-            vector = self.gemini_API.embed_text(doc.text)
+        if doc.text:  # Verificar que el chunk no esté vacío
+            vector = self.gemini_API.get_embeddings_query(doc.text)
             normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
             
             
@@ -107,4 +107,44 @@ class DB_Embed:
         D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
         return (D,I)
 
+    def normalized_query(self,query_vector):
+        return query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
 
+    def get_doc_by_direction(self, idx):
+        return db.document_mapping[idx]
+
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear una instancia de la base de datos
+    db = DB_Embed()
+
+    # Cargar un archivo o crear documentos manualmente
+    # Aquí se puede cargar desde un archivo o definir textos directamente
+    example_texts = [
+        "Este es un ejemplo de texto para embebido 1.",
+        "Este es otro texto que se almacenará en la base de datos.",
+        "Este texto es diferente y también debe ser almacenado."
+    ]
+
+    # Insertar documentos en la base de datos
+    for text in example_texts:
+        doc = Document("C:\\blabla\\_Tesis\\temporal\\text_2.txt")
+        doc.text = "kljkgjkldjgkd,mgjhdkfh,mk"
+        db.set_text(doc)
+
+    # Realizar una consulta para buscar el chunk más similar
+    query_text = "¿Qué es un ejemplo de texto?"  # Ejemplo de consulta
+    query_vector = db.embed_text(query_text)
+    normalized_query_vector = db.normalized_query(query_vector)
+
+    # Obtener los k vecinos más cercanos
+    k = 2  # Número de resultados deseados
+    distances, indices = db.most_relevant(normalized_query_vector, k)
+
+    print("Indices de los vecinos más cercanos:\n", indices)
+    print("Distancias (producto interno):\n", distances)
+
+    # Recuperar y mostrar los textos correspondientes a los índices encontrados
+    for idx in indices[0]:
+        print(f"Texto correspondiente al índice {idx}:\n{db.document_mapping[idx]}\n")
