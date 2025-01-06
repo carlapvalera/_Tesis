@@ -3,6 +3,7 @@ class Tables:
         self.tables_in_text = tables_in_text 
         self.cap = cap
         self.tables = []
+        self.get_tables()
 
     def subcap(self, cap, index):
         for i in range(1, 100):  # Cambié el rango para que funcione correctamente
