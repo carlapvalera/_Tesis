@@ -44,3 +44,14 @@ class Gemini_API:
             results.append(v)
         return results
                 
+
+    def give_table(self,text:str):
+        "devuelve la tabla correspondiente"
+        
+        response =self.model.generate_content(f"Este es el string correspondiente a leer un PDF. Dame el texto y las tablas que se encuentran en el: {input_string}")
+    
+        # Comprobar si la respuesta es válida y estructurada
+        if not response or not hasattr(response, 'text'):
+            raise ValueError("No se recibió una respuesta válida de la API.")
+
+        return response.text 
