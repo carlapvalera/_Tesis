@@ -6,31 +6,26 @@ class Tables:
 
     def subcap(self, cap, index):
         for i in range(1, 100):  # Cambié el rango para que funcione correctamente
-            try :
-                index = self.tables_in_text.find(index, cap + "." + str(i))
-            except:
-                index= -1
-            
-            next_index = self.subcap(self.cap + "." + str(i), index)
-            if next_index == -1:
-                a = i + 1
-                next_index = self.tables_in_text.find(cap + "." + str(a))
-                if next_index == -1:
-                    return self.tables_in_text.find(cap + "." + str(index + 1))
-
-            # Asegúrate de que el índice esté dentro del rango
-            if index != -1 and next_index != -1:
-                self.tables.append(self.tables_in_text[index:next_index])
+            index = self.tables_in_text.find( cap + "." + str(i),index)
+            if index != -1:
+                next_index = self.tables_in_text.find(cap + "." + str(i + 1),index)
+                if next_index == 1:
+                    return index
+                else:
+                    self.tables.append(self.tables_in_text[index:next_index])
+            else:
+                break
+              
+        return -1
 
     def get_tables(self):
         finish = False
         for i in range(1, 100):  # Cambié el rango para que funcione correctamente
-            try :
-                temp = self.cap + "." + str(i)
-                index = self.tables_in_text.find(index, temp)
-            except:
-                index= -1
+            # Busca el índice del subtítulo
+            index = self.tables_in_text.find(self.cap + "." + str(i))
             next_index = self.subcap(self.cap + "." + str(i), index)
+            if next_index == -1:
+                next_index = self.tables_in_text.find(self.cap + "." + str(i+1), index)
             if next_index == -1:
                 finish = True
                 next_index = self.tables_in_text.find("Teléfono")  # Cambia esto según tu contexto
