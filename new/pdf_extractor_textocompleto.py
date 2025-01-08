@@ -79,6 +79,6 @@ class PDFExtractor_withCid:
 
         return text_content
 
-# Ejemplo de uso
-#extractor = PDFExtractor_withCid()
-#text_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")
+#Ejemplo de uso
+extractor = PDFExtractor_withCid()
+text_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")
