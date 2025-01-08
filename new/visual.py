@@ -40,6 +40,8 @@ if files_in_temp:
     if st.button("Eliminar archivo"):
         if delete_file(selected_file):
             st.success(f"Archivo {selected_file} eliminado.")
+            # Actualizar la lista de archivos después de eliminar
+            files_in_temp.remove(selected_file)  # Remover el archivo eliminado de la lista
         else:
             st.error(f"No se pudo eliminar el archivo {selected_file}.")
 else:
