@@ -58,21 +58,18 @@ class PDFExtractor_withCid:
 
     def extract_text_and_tables(self, pdf_path: str) -> Tuple[List[str], List[List]]:
         text_content = []
-        tables_content = []
 
         try:
             with pdfplumber.open(pdf_path) as pdf:
+                count = 0
                 for page in pdf.pages:
+                    count += 1
                     # Extraer texto plano y convertir CID a caracteres reales
                     text = page.extract_text()
                     if text:
                         converted_text = self.to_actual_characters(text)
                         text_content.append(converted_text)
 
-                    # Extraer tablas
-                    tables = page.extract_tables()
-                    for table in tables:
-                        tables_content.append(table)
         except FileNotFoundError:
             raise FileNotFoundError(f"El archivo no se encontró: {pdf_path}")
         except pdfplumber.exceptions.PDFSyntaxError:
@@ -80,8 +77,8 @@ class PDFExtractor_withCid:
         except Exception as e:
             raise Exception(f"Ocurrió un error al procesar el archivo: {str(e)}")
 
-        return text_content, tables_content
+        return text_content
 
 # Ejemplo de uso
-extractor = PDFExtractor_withCid()
-text_content, tables_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\old\\01-territorio.pdf")
+#extractor = PDFExtractor_withCid()
+#text_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")
