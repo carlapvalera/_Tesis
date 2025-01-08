@@ -1,3 +1,4 @@
+import re
 class AnuarioReader:
     def __init__(self, file_path):
         self.file_path = file_path
@@ -6,8 +7,26 @@ class AnuarioReader:
         self.text_anuario = None
         self.tables_anuario = []
         self.index = None
+        self.chapters = None
+        self.introduccion = None
+        self.fuentes_info = None
+        self.abreviaturas = None
+        self.signos = None
+        self.text_tablas = []
+        self.local = None
+
         self.load_data()
 
+
+    def extract_chapters(self,text):
+        # Expresión regular para encontrar capítulos en el formato "número. nombre"
+        pattern = r'(\d+)\.\s+(.*?)(?=\n\d+\.\s+|$)'  # Busca "número. nombre" hasta el siguiente número o el final del texto
+        matches = re.findall(pattern, text, re.DOTALL)  # Usar re.DOTALL para que . incluya saltos de línea
+
+        # Convertir los resultados a una lista de tuplas (número, nombre)
+        chapters = [(int(num), name.strip()) for num, name in matches]
+        
+        return chapters
     def load_data(self):
         """Carga los datos desde el archivo de texto."""
         try:
@@ -16,52 +35,74 @@ class AnuarioReader:
                 
                 
                 capitulo = "CAPÍTULO"
-                capitulo_primer_indice = text.find(capitulo)
-                num_cap_indice =capitulo_primer_indice + len(capitulo)
-                num_cap_indice +=1
-                cap = text[num_cap_indice]
-                #print(text[num_cap_indice])# tengo el cnumero del capitulo q representa al anuario
-
-
-                # Buscar la segunda ocurrencia comenzando justo después de la primera
-                capitulo_segundo_indice = text.find("CAPÍTULO", num_cap_indice )
-                #print(capitulo_segundo_indice)
-                #print(text[capitulo_segundo_indice])
-
-                contenido_ind = text.find("CONTENIDO")
-                contenido_anuario = text[contenido_ind:capitulo_segundo_indice]
-                self.index = contenido_anuario
-                #print(contenido_ind)
-                #print(text[contenido_ind])
-
-                #NOMBRE DEL ANUARIO
+                contenido = "CONTENIDO"
                 edicion = "EDICIÓN"
+                capitulos = "Capítulos:"
+                introduc = "INTRODUCCIÓN"
+                fuentes = "FUENTES DE INFORMACIÓN "
+                abrev = "ABREVIATURAS "
+                signos = "SIGNOS  CONVENCIONALES "
+                indice = "ÍNDICE"
+                telefono = "Teléfono"
+                cuba = "Cuba"
+                
+
+                #AÑO DEL ANUARIO
                 edicion_indice =text.find(edicion)
-                name = text[num_cap_indice +2: edicion_indice]
-                self.name = name
-                #AÑO 
                 año = text[edicion_indice +len(edicion)+1: edicion_indice +len(edicion)+1+4]
                 self.year = año
-                #INDICE DEL ANUARIO
-                # Extraer el texto desde la primera hasta la segunda ocurrencia
-                contenido_indice_anuerio = text[num_cap_indice:capitulo_segundo_indice]
-                #print(f'Texto entre la primera y segunda ocurrencia: "{contenido_indice_anuerio}"')
 
+                #INDICE DEL ANUARIO/ capitulos
+                contenido_indice = text.find(contenido)
+                capitulos_indice = text.find(capitulos,contenido_indice)
+                introduc_indice = text.find(introduc,capitulos_indice)
+                chapters = self.extract_chapters(text[capitulos_indice:introduc_indice])
+                self.chapters = chapters
 
-                # TEXTO DEL ANUARIO
-                subcap = str(cap)+".1"
-                tablas_indice = text.find(subcap,capitulo_segundo_indice)
-                #print(tablas_indice)
-                #print(text[tablas_indice:tablas_indice+20])
+                #INTRODUCCION
+                fuentes_indice = text.find(fuentes,introduc_indice)
+                self.introduccion = text[introduc_indice:fuentes_indice]
 
-                text_anuario = text[capitulo_segundo_indice:tablas_indice]
-                #print(text_anuario)
-                self.text_anuario = text_anuario
-                #TABLAS DEL ANUARIO
-                tablas_anuario = text[tablas_indice:]
-                self.tables_anuario = tablas_anuario
-                #print(año)
-                #print(name)
+                #Fuente de informacion
+                abrev_indice = text.find(abrev,fuentes_indice)
+                self.fuentes_info = text[fuentes_indice:abrev_indice]
+                
+                #abreviaturas
+                signos_indice = text.find(signos,abrev_indice)
+                self.abreviaturas = text[abrev_indice:signos_indice]
+
+                #signos convencionales
+                indice_indice = text.find(indice,signos_indice)
+                self.signos = text[signos_indice:indice_indice]
+
+                last = text.find(capitulo,indice_indice)
+                telefono_indice = None
+                #capitulos
+                for number, name in chapters:
+                    capitulo_indice = text.find(capitulo,last)
+                    capitulo_numero = text.find(str(number),capitulo_indice)
+                    capitulo_nombre = text.find(name,capitulo_numero)
+
+                    subcap = str(number)+".1"
+
+                    text_capitulo = text[capitulo_indice:subcap]
+
+                    capitulo_indice = text.find(capitulo,subcap)
+                    if(capitulo_indice == -1):
+                        capitulo_indice = text.find(telefono,subcap)
+                        telefono_indice = capitulo_indice
+
+                    tablas_capitulo = text[subcap:capitulo_indice]
+
+                    self.text_tablas.append(text_capitulo,tablas_capitulo)
+
+                    last = capitulo_indice
+
+                    print(f"{number}. {name}")  
+                
+                #telefono correo
+                if(telefono_indice!=None):
+                    self.local = text[telefono_indice:]
 
         except FileNotFoundError:
             print(f"Error: El archivo '{self.file_path}' no se encuentra.")
@@ -80,5 +121,5 @@ class AnuarioReader:
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    anuario = AnuarioReader("C:\\blabla\\_Tesis\\temporal\\texto_extraido.txt")
+    anuario = AnuarioReader("C:\\blabla\\_Tesis\\new\\temporal\\texto_extraido.txt")
     anuario.display_info()

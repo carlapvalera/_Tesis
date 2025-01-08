@@ -1,37 +1,44 @@
-import os
-from dotenv import load_dotenv
-from data_saver import DataSaver
-from pdf_extractor_textocompleto import PDFExtractor_withCid
+import re
 
-# Crear un directorio temporal si no existe
-temp_dir = "temporal"
-if not os.path.exists(temp_dir):
-    os.makedirs(temp_dir)
-load_dotenv()  # Cargar las variables de entorno desde el archivo .env
-dir_temporal = os.getenv("PDF_ANUARIOS")
-"""extractor = DataSaver()
-ex = PDFExtractor_withCid()
+def extract_chapters(text):
+    # Expresión regular para encontrar capítulos en el formato "número. nombre"
+    pattern = r'(\d+)\.\s+(.*?)(?=\n\d+\.\s+|$)'  # Busca "número. nombre" hasta el siguiente número o el final del texto
+    matches = re.findall(pattern, text, re.DOTALL)  # Usar re.DOTALL para que . incluya saltos de línea
+
+    # Convertir los resultados a una lista de tuplas (número, nombre)
+    chapters = [(int(num), name.strip()) for num, name in matches]
+    
+    return chapters
+
+# Ejemplo de uso
+input_string = """
+1. Territorio    
+2. Medio Ambiente 
+3. Población 
+4. Organización Institucional 
+5. Cuentas Nacionales 
+6. Finanzas 
+7. Empleo y Salarios 
+8. Sector Externo 
+9. Agricultura, Ganadería, Silvicultura y Pesca 
+10. Minería y Energía 
+11. Industria Manufacturera 
+12. Construcción e Inversiones 
+13. Transporte y Seguridad Vial  
+14. Comercio Interno   
+15. Turismo 
+16. Ciencia y Tecnología 
+17. Tecnologías de la Información y las Comunicaciones 
+18. Educación 
+19. Salud Pública y Asistencia Social 
+20. Cultura 
+21. Deporte y Cultura Física 
+22. Proceso Electoral en Cuba
 """
 
-# Mostrar archivos en el directorio temporal
+# Extraer capítulos
+chapters = extract_chapters(input_string)
 
-files_in_temp = os.listdir(temp_dir)
-
-if files_in_temp:
-    # Crear una lista de direcciones completas de los archivos
-    file_paths = [os.path.join(temp_dir, file) for file in files_in_temp]
-    
-#crear la lista de directorios completa
-files_full_paths = []
-if files_in_temp :
-    # Crear una lista de direcciones completas de los archivos
-    for dir in file_paths:
-        temp_index = dir.find("temporal")
-        temp_index += len("temporal")+1
-        file_path = os.path.join("C:", "blabla", "_Tesis", "new", "temporal", dir[temp_index:])
-
-        """files_full_paths.append(dir_temporal+dir[temp_index:])
-        text= ex.extract_text_and_tables(dir_temporal+dir[temp_index:])
-        extractor.save_text(text)"""
-        print(file_path)
-C:\blabla\_Tesis\new\pylineejemplo.py
+# Imprimir resultados
+for number, name in chapters:
+    print(f"{number}. {name}")
