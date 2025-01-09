@@ -4,7 +4,7 @@ class AnuarioReader:
         self.file_path = file_path
         self.name = None
         self.year = None
-        self.text_anuario = None
+        self.text_anuario = []
         self.tables_anuario = []
         self.index = None
         self.chapters = None
@@ -31,6 +31,7 @@ class AnuarioReader:
         """Carga los datos desde el archivo de texto."""
         try:
             with open(self.file_path, 'r', encoding='utf-8') as file:
+                
                 text = file.read()
                 
                 
@@ -45,6 +46,7 @@ class AnuarioReader:
                 indice = "ÍNDICE"
                 telefono = "Teléfono"
                 cuba = "Cuba"
+                
                 
 
                 #AÑO DEL ANUARIO
@@ -75,28 +77,45 @@ class AnuarioReader:
                 indice_indice = text.find(indice,signos_indice)
                 self.signos = text[signos_indice:indice_indice]
 
+
+
+                text_sin_saltos = text.replace('\n', ' ')
+                text = text_sin_saltos
+                indice_indice = text.find(indice)
+
+
+
                 last = text.find(capitulo,indice_indice)
                 telefono_indice = None
                 #capitulos
                 for number, name in chapters:
                     capitulo_indice = text.find(capitulo,last)
+                    if (text[capitulo_indice:capitulo_indice+10]=="CAPÍTULOCO"):
+                        capitulo_indice = text.find( "CAPÍTULO 9",capitulo_indice+10)
+
+                    print(text[capitulo_indice:capitulo_indice+10])
                     capitulo_numero = text.find(str(number),capitulo_indice)
+                    print(text[capitulo_numero:capitulo_numero+10])
                     capitulo_nombre = text.find(name,capitulo_numero)
+                    print(text[capitulo_nombre:capitulo_nombre+10])
 
                     subcap = str(number)+".1"
 
-                    text_capitulo = text[capitulo_indice:subcap]
+                    subcap_indice = text.find(subcap,capitulo_indice)
+                    print( text[subcap_indice:subcap_indice+10])
 
-                    capitulo_indice = text.find(capitulo,subcap)
+                    text_capitulo = text[capitulo_indice:subcap_indice]
+                    self.text_anuario.append(text_capitulo)
+                    capitulo_indice = text.find(capitulo,subcap_indice)
                     if(capitulo_indice == -1):
-                        capitulo_indice = text.find(telefono,subcap)
+                        capitulo_indice = text.find(telefono,subcap_indice)
                         telefono_indice = capitulo_indice
 
-                    tablas_capitulo = text[subcap:capitulo_indice]
+                    tablas_capitulo = text[subcap_indice:capitulo_indice]
 
-                    self.text_tablas.append(text_capitulo,tablas_capitulo)
+                    self.tables_anuario.append(tablas_capitulo)
 
-                    last = capitulo_indice
+                    last = capitulo_indice 
 
                     print(f"{number}. {name}")  
                 

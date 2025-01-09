@@ -3,6 +3,8 @@ import streamlit as st
 from dotenv import load_dotenv
 from data_saver import DataSaver
 from pdf_extractor_textocompleto import PDFExtractor_withCid
+from AnuarioReader import AnuarioReader
+from tables import Tables
 
 st.title("Hi I am CLAUSS")
 
@@ -27,6 +29,7 @@ if files_in_temp:
     
 #crear la lista de directorios completa
 files_full_paths = []
+list_anuarios = []
 if files_in_temp :
     # Crear una lista de direcciones completas de los archivos
     for dir in file_paths:
@@ -38,5 +41,23 @@ if files_in_temp :
         text= ex.extract_text_and_tables(dir_temporal+dir[temp_index:])
         extractor.save_text(text)
         print(file_path)
-        st.write(dir_temporal+dir[temp_index:])
+        #st.write(dir_temporal+dir[temp_index:])
+
+        anuarioreader = AnuarioReader(dir_temporal+dir[temp_index:])
+        list_anuarios.append(anuarioreader)
+        
+list_anuario_tablas = []
+if list_anuarios:
+    for anuario in list_anuarios:
+        for i in range(0, len(anuario.chapters)):
+
+            try:
+                
+                tablas = Tables(anuario.tables_anuario[i],anuario.chapters[i][0]) 
+                list_anuario_tablas.append(anuario,tablas)   
+            except Exception as e:
+                list_anuario_tablas.append(None,None) 
+                raise Exception(f"Ocurrió un error al procesar las tablas: {str(e)}")
+            
+            
 
