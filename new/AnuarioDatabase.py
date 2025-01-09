@@ -11,10 +11,15 @@ class AnuarioDatabase:
         with self.conn:
             self.conn.execute('''
                 CREATE TABLE IF NOT EXISTS anuarios (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    year TEXT,
-                    introduccion TEXT,
-                    chapter_count INTEGER
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                year TEXT,
+                introduccion TEXT,
+                chapter_count INTEGER,
+                fuentes_info TEXT,  
+                abreviaturas TEXT,  
+                signos TEXT,         
+                local TEXT           
+            )
                 )
             ''')
             self.conn.execute('''
@@ -37,14 +42,15 @@ class AnuarioDatabase:
                 )
             ''')
 
-    def insert_anuario(self, year, introduccion):
+    def insert_anuario(self, year, introduccion, fuentes_info, abreviaturas, signos, local):
         """Inserta un nuevo anuario en la base de datos."""
         with self.conn:
             cursor = self.conn.execute('''
-                INSERT INTO anuarios (year, introduccion, chapter_count)
-                VALUES (?, ?, ?)
-            ''', (year, introduccion, 0))
+                INSERT INTO anuarios (year, introduccion, chapter_count, fuentes_info, abreviaturas, signos, local)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (year, introduccion, 0, fuentes_info, abreviaturas, signos, local))
             return cursor.lastrowid  # Retorna el ID del nuevo anuario
+
 
     def insert_capitulo(self, anuario_id, chapter_number, chapter_name, chapter_text):
         """Inserta un nuevo capítulo en la base de datos y actualiza el contador del anuario."""
@@ -186,7 +192,7 @@ class AnuarioDatabase:
         """Cierra la conexión a la base de datos."""
         self.conn.close()
 
-# Ejemplo de uso
+"""# Ejemplo de uso
 if __name__ == "__main__":
     db = AnuarioDatabase()
     
@@ -212,4 +218,4 @@ if __name__ == "__main__":
     print(db.get_anuarios())  # Muestra los anuarios para verificar el contador
 
     # Cerrar conexión
-    db.close()
+    db.close()"""

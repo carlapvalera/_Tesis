@@ -2,11 +2,9 @@ import re
 class AnuarioReader:
     def __init__(self, file_path):
         self.file_path = file_path
-        self.name = None
         self.year = None
         self.text_anuario = []
         self.tables_anuario = []
-        self.index = None
         self.chapters = None
         self.introduccion = None
         self.fuentes_info = None

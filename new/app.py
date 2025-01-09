@@ -5,7 +5,7 @@ from data_saver import DataSaver
 from pdf_extractor_textocompleto import PDFExtractor_withCid
 from AnuarioReader import AnuarioReader
 from tables import Tables
-
+from AnuarioDatabase import AnuarioDatabase
 
 st.title("Hi I am CLAUSS")
 
@@ -18,6 +18,7 @@ load_dotenv()  # Cargar las variables de entorno desde el archivo .env
 dir_temporal = os.getenv("PDF_ANUARIOS")
 extractor = DataSaver()
 ex = PDFExtractor_withCid()
+databade = AnuarioDatabase()    
 
 
 # Mostrar archivos en el directorio temporal
@@ -62,3 +63,9 @@ if list_anuarios:
             
             
 
+if list_anuario_tablas:
+    for anuario,tablas in list_anuario_tablas:
+        databade.insert_anuario(anuario.year,anuario.introduction,anuario.chapters,anuario.local,anuario.index,anuario.name,anuario.text_anuario,tablas.tables)
+        print("hola")
+        print(anuario)
+        print(tablas)
