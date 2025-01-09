@@ -127,42 +127,42 @@ Central del Estado, los mismos tienen como base la contabilidad y registros prim
 presupuestadas (unidades de servicio de las administraciones públicas), unidades básicas, cooperativas, de los 
 Sectores Estatal y no Estatal y la población. A continuación se relacionan los principales Organismos y entidades que 
 tributan información: 
-(cid:135) Ministerio de la Agricultura. 
-(cid:135) Ministerio de Ciencia, Tecnología y Medio Ambiente. 
-(cid:135) Ministerio del Comercio Exterior y la Inversión Extranjera. 
-(cid:135) Ministerio de Comercio Interior. 
-(cid:135) Ministerio de Comunicaciones. 
-(cid:135) Ministerio de Cultura. 
-(cid:135) Ministerio de Economía y Planificación. 
-(cid:135) Ministerio de Educación. 
-(cid:135) Ministerio de Educación Superior. 
-(cid:135) Ministerio de Energía y Minas 
-(cid:135) Ministerio de Finanzas y Precios. 
-(cid:135) Ministerio de la Industria Alimentaria. 
-(cid:135) Ministerio del Interior. 
-(cid:135) Ministerio de Justicia. 
-(cid:135) Ministerio de Salud Pública. 
-(cid:135) Ministerio de Trabajo y Seguridad Social. 
-(cid:135) Ministerio del Transporte. 
-(cid:135) Ministerio de Turismo. 
-(cid:135) Instituto Cubano del Arte e Industria Cinematográficos.  
-(cid:135) Instituto Cubano del Libro. 
-(cid:135) Instituto Cubano de Radio y Televisión. 
-(cid:135) Instituto de Geografía. 
-(cid:135) Instituto de Meteorología. 
-(cid:135) Instituto Nacional de Deportes, Educación Física y Recreación. 
-(cid:135) Instituto Nacional de Seguridad Social. 
-(cid:135) Instituto Nacional de Recursos Hidráulicos. 
-(cid:135) Instituto Nacional de la Vivienda. 
-(cid:135) Instituto de Suelos. 
-(cid:135) Aduana General de la República. 
-(cid:135) Asamblea Nacional del Poder Popular. 
-(cid:135) Banco Central de Cuba. 
-(cid:135) Centro Nacional de Control Pecuario. 
-(cid:135) Oficina Cubana de la Propiedad Industrial.
-(cid:135) Oficina para la Informatización. 
-(cid:135) Tribunal Supremo Popular. 
-(cid:135) Unión de Jóvenes Comunistas. 
+- Ministerio de la Agricultura. 
+- Ministerio de Ciencia, Tecnología y Medio Ambiente. 
+- Ministerio del Comercio Exterior y la Inversión Extranjera. 
+- Ministerio de Comercio Interior. 
+- Ministerio de Comunicaciones. 
+- Ministerio de Cultura. 
+- Ministerio de Economía y Planificación. 
+- Ministerio de Educación. 
+- Ministerio de Educación Superior. 
+- Ministerio de Energía y Minas 
+- Ministerio de Finanzas y Precios. 
+- Ministerio de la Industria Alimentaria. 
+- Ministerio del Interior. 
+- Ministerio de Justicia. 
+- Ministerio de Salud Pública. 
+- Ministerio de Trabajo y Seguridad Social. 
+- Ministerio del Transporte. 
+- Ministerio de Turismo. 
+- Instituto Cubano del Arte e Industria Cinematográficos.  
+- Instituto Cubano del Libro. 
+- Instituto Cubano de Radio y Televisión. 
+- Instituto de Geografía. 
+- Instituto de Meteorología. 
+- Instituto Nacional de Deportes, Educación Física y Recreación. 
+- Instituto Nacional de Seguridad Social. 
+- Instituto Nacional de Recursos Hidráulicos. 
+- Instituto Nacional de la Vivienda. 
+- Instituto de Suelos. 
+- Aduana General de la República. 
+- Asamblea Nacional del Poder Popular. 
+- Banco Central de Cuba. 
+- Centro Nacional de Control Pecuario. 
+- Oficina Cubana de la Propiedad Industrial.
+- Oficina para la Informatización. 
+- Tribunal Supremo Popular. 
+- Unión de Jóvenes Comunistas. 
 Al pie de cada cuadro además se brinda información en detalles de las fuentes. 
 5
 
@@ -1790,12 +1790,12 @@ acompañado de una amplia área de nublados, con lluvias, chubascos y tormentas 
 asociada una circulación superficial de los vientos en sentido contrario a las manecillas del reloj en el 
 hemisferio norte y en el mismo sentido en el hemisferio sur. Los ciclones tropicales se clasifican según 
 lavelocidad de los vientos máximos sostenidos promediados en 1 minuto, pudiendo ser: 
-(cid:135)Depresión tropical:  Sistema  organizado  de  nubes  y  tormentas  eléctricas  con  circulación 
+-Depresión tropical:  Sistema  organizado  de  nubes  y  tormentas  eléctricas  con  circulación 
 superficialdefinida y vientos máximos sostenidos inferiores a 63 kilómetros por hora. 
-(cid:135)Tormenta tropical:  Vientos  máximos  sostenidos  entre  63-117  kilómetros  por  hora.  Cuando  un 
+-Tormenta tropical:  Vientos  máximos  sostenidos  entre  63-117  kilómetros  por  hora.  Cuando  un 
 sistematropicalalcanza esta intensidad se le asigna unnombre según las listas aprobadas por todas las 
 naciones del área en el Plan Operacional de Huracanes, por eso el término de tormentas con nombre. 
-(cid:135)Huracán: Vientos máximos sostenidos (1minuto) superiores a los 117 kilómetros por hora.  
+-Huracán: Vientos máximos sostenidos (1minuto) superiores a los 117 kilómetros por hora.  
 Categorías de manejo de áreas protegidas: Formas en quese clasifican las áreas protegidas sometidas a 
 determinados tipos de manejo, según sus características y valores naturales e histórico culturales. Cada 
 categoría posee una definición y objetivos propios y su administración y manejo se realiza de acuerdo a 
@@ -1959,32 +1959,32 @@ Incinerados:(desechos) Combustión controlada de desechos con o sin energía rec
 Intensidad: Es una medida de los efectos causados por un sismo en un lugar determinado de las 
 uperficieterrestre. Se clasifican según la Escala Macrosísmica Europea 1998 (EMS-98) que contempla las 
 siguientes categorías: 
-(cid:135)I (No sensible): No sensible. 
-(cid:135)II (Sensible levemente): Sensible solamente para poca gente personas en reposo en vivienda. 
-(cid:135)III (Débil): Sensible adentro para poca gente. La gente en reposo siente una oscilación o temblor leve. 
-(cid:135)IV (Observadoampliamente): Sensible por muchos adentro y pocos afuera de edificios. Pocas personas 
+-I (No sensible): No sensible. 
+-II (Sensible levemente): Sensible solamente para poca gente personas en reposo en vivienda. 
+-III (Débil): Sensible adentro para poca gente. La gente en reposo siente una oscilación o temblor leve. 
+-IV (Observadoampliamente): Sensible por muchos adentro y pocos afuera de edificios. Pocas personas 
 se despiertan. Las ventanas, puertas y platos se estremecen. 
-(cid:135)V (Fuerte): Sensible por casi todos adentro y pocos afuera de edificios. Muchas personas se despiertan. 
+-V (Fuerte): Sensible por casi todos adentro y pocos afuera de edificios. Muchas personas se despiertan. 
 Algunos  se  asustan.  Los  edificios  tiemblan  por  doquier.  Los  objetos  colgantes  se  mecen 
 considerablemente. Pequeños objetos se desplazan. Las puertasy ventanas se abren y se cierran. 
-(cid:135) VI (Causa Daños leves): Mucha gente se asusta y corre hacia fuera. Algunos objetos se caen.Muchas 
+- VI (Causa Daños leves): Mucha gente se asusta y corre hacia fuera. Algunos objetos se caen.Muchas 
 viviendas sufren daños leves no estructurales, como grietas muy delgadas y la caída de piezasde 
 repello. 
-(cid:135)VII (Causa Daños): Mucha gente se asusta y corre hacia fuera. Los muebles son desplazados y se caen 
+-VII (Causa Daños): Mucha gente se asusta y corre hacia fuera. Los muebles son desplazados y se caen 
 muchos objetos de repisas. Muchos edificios ordinarios bien construidos sufren daños moderados; 
 pequeñas grietas en los muros, caída de repello, se caen partes de chimeneas; edificios antiguos 
 pueden mostrar grandes grietas en los muros y fallas en las paredes y tabiques. 
-(cid:135)VIII (Causa Dañosseveros): A mucha gente le cuesta mantenerse de pie. Muchas viviendas muestran 
+-VIII (Causa Dañosseveros): A mucha gente le cuesta mantenerse de pie. Muchas viviendas muestran 
 grietas grandes en los muros. Pocos edificios bien construidos muestran daños serios en los muros, 
 mientras que las estructuras antiguas pueden colapsar. 
 45
 
-(cid:135) IX  (Destructivo):  Pánico  general.  Muchas  construcciones  endebles  colapsan.  Aun  los  edificios 
+- IX  (Destructivo):  Pánico  general.  Muchas  construcciones  endebles  colapsan.  Aun  los  edificios 
 ordinarios bien construidos muestran daños serios: fallas graves en los muros y falla estructural parcial. 
-(cid:135)X (Muy Destructivo): Muchos edificios ordinarios bien construidos colapsan. 
-(cid:135) XI (Devastador): Casi todos los edificios ordinarios bien construidos colapsan, aun se destruyenalgunos 
+-X (Muy Destructivo): Muchos edificios ordinarios bien construidos colapsan. 
+- XI (Devastador): Casi todos los edificios ordinarios bien construidos colapsan, aun se destruyenalgunos 
 que tienen buen diseño sismorresistente. 
-(cid:135)XII (Completamente devastador): Casi todos los edificios están destruidos. 
+-XII (Completamente devastador): Casi todos los edificios están destruidos. 
 Lluvia total media anual: Es la suma de la cantidad de lluvia caída en cada estación meteorológica, 
 dividida entre la cantidad de ellas, durante todo el año. 
 Magnitud: Según C. Richter (1935) es un parámetro que describe la energía sísmica liberada por un 
@@ -8141,8 +8141,8 @@ reclutas del Servicio Militar General (SMG), de los centros de entrenamiento soc
 a combatientes, internacionalistas y familiares de mártires. También comprende otros gastos realizados a partir 
 de las autorizaciones emitidas por la Dirección Municipal del Programa de los Trabajadores Sociales, que 
 pueden ser del tipo de prestaciones que se ofrecen gratuitamente:  
-(cid:135) En especie:Medicamentos, alimentación, útiles del hogar, entre otros. 
-(cid:135) Monetarias:Se conceden en forma eventual o continua a las personas o núcleos familiares protegidos por las 
+- En especie:Medicamentos, alimentación, útiles del hogar, entre otros. 
+- Monetarias:Se conceden en forma eventual o continua a las personas o núcleos familiares protegidos por las 
 distintas disposiciones vigentes o beneficiados del régimen de asistencia social.
 Beneficiarios de la asistencia social:  Son las personas miembros de núcleos familiares que reciben 
 protección a través de prestaciones económicas, especies y/o servicios, porque sus necesidades esenciales 
@@ -12769,9 +12769,9 @@ la longitud total de la ruta.
  
 Para clasificar este servicio se toman en consideración los aspectos siguientes: 
  
-(cid:135)    La distancia máxima de la ruta es de 20 km. 
+-    La distancia máxima de la ruta es de 20 km. 
  
-(cid:135)    La distancia mínima de la ruta es de 3 km. 
+-    La distancia mínima de la ruta es de 3 km. 
  
 Servicio suburbano: Este servicio es de uso público y se emplea para vincular por vía pavimentada a 
 ciudades con pueblos, poblados y otros puntos de interés socio-económicos, sujeto a un horario e itinerario 
@@ -12781,10 +12781,10 @@ distancia que recorra el pasajero. Para su clasificación se toman en cuenta los
  
 335
 
-(cid:135)   El radio de acción del servicio para la metrópoli, a partir del límite del área continua edificada, es de 
+-   El radio de acción del servicio para la metrópoli, a partir del límite del área continua edificada, es de 
 hasta 40 km. 
  
-(cid:135)   El radio de acción del servicio para las ciudades a partir del límite del área urbana continua edificada, es 
+-   El radio de acción del servicio para las ciudades a partir del límite del área urbana continua edificada, es 
 de hasta 20 km. 
  
 Servicio interurbano: Este servicio es de uso público y se emplea para vincular por vías pavimentadas, 
@@ -14131,10 +14131,10 @@ excepción de medicina que consta de 6 años.
 Investigadores: Son los profesionales que se dedican a la investigación o aquellos que investigan 
 de manera colateral a su actividad principal. 
  
-(cid:135)   Investigadores categorizados, quienes cuentan con alguna de las siguientes categorías: 
+-   Investigadores categorizados, quienes cuentan con alguna de las siguientes categorías: 
 Investigador Agregado, Investigador Auxiliar, Investigador Titular. 
  
-(cid:135)   Investigadores en equivalencia a jornada completa (EJC) Quienes tienen otra actividad 
+-   Investigadores en equivalencia a jornada completa (EJC) Quienes tienen otra actividad 
 principal y dedican  parte de  su jornada  laboral a la investigación. Se calcula considerando 
 para cada persona únicamente la proporción de su tiempo, su jornada, que dedica a I+D. Un 
 EJC  puede  entenderse  como  el  equivalente  a  una  persona/año.  Para  los  profesores 
@@ -17745,11 +17745,11 @@ Organización de los órganos locales del poder popular
  
 El Sistema del Poder Popular y el Sistema Electoral  se fundamentan en cinco pilares básicos: 
  
-(cid:135) El pueblo propone y nomina libre y democráticamente a sus candidatos.  
-(cid:135) Los elige mediante voto libre, directo y secreto de los electores.  
-(cid:135) Los revoca en cualquier momento del mandato.  
-(cid:135) Los controla sistemáticamente, mediante la Rendición de Cuentas ante quienes lo eligen. 
-(cid:135) Los órganos del Poder Popular participan con ellos en la toma de las más importantes decisiones.  
+- El pueblo propone y nomina libre y democráticamente a sus candidatos.  
+- Los elige mediante voto libre, directo y secreto de los electores.  
+- Los revoca en cualquier momento del mandato.  
+- Los controla sistemáticamente, mediante la Rendición de Cuentas ante quienes lo eligen. 
+- Los órganos del Poder Popular participan con ellos en la toma de las más importantes decisiones.  
  
  
  

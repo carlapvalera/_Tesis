@@ -6,6 +6,7 @@ from pdf_extractor_textocompleto import PDFExtractor_withCid
 from AnuarioReader import AnuarioReader
 from tables import Tables
 
+
 st.title("Hi I am CLAUSS")
 
 
@@ -49,10 +50,10 @@ if files_in_temp :
 list_anuario_tablas = []
 if list_anuarios:
     for anuario in list_anuarios:
-        for i in range(0, len(anuario.chapters)):
+        for i in range(0, len(anuario.chapters)-1):
 
             try:
-                
+
                 tablas = Tables(anuario.tables_anuario[i],anuario.chapters[i][0]) 
                 list_anuario_tablas.append(anuario,tablas)   
             except Exception as e:
