@@ -4,12 +4,14 @@ from typing import Dict, Tuple, List
 import json
 import pdfplumber
 import re
-
+# venv\Scripts\activate
 class PDFExtractor_withCid:
     def __init__(self):
+        print("Iniciando el PDFEXtractor")
         load_dotenv()  # Cargar las variables de entorno desde el archivo .env
         lang_file = os.getenv("PDF_FILENAME")  # Obtener el nombre del archivo desde las variables de entorno
         self.lang = self.load_lang_from_file(lang_file)
+        print("Listo para crear el archivo")
 
     def load_lang_from_file(self, filename: str) -> Dict[int, str]:
         """Carga el mapa CID desde un archivo JSON."""
@@ -56,7 +58,7 @@ class PDFExtractor_withCid:
         # Usar una expresión regular para encontrar todos los CIDs en el texto
         return re.sub(r'\(cid:(\d+)\)', replace_cid, text)
 
-    def extract_text_and_tables(self, pdf_path: str) -> Tuple[List[str], List[List]]:
+    def extract_text_and_tables(self, pdf_path: str) -> List[str]:
         text_content = []
 
         try:
@@ -79,6 +81,6 @@ class PDFExtractor_withCid:
 
         return text_content
 
-#Ejemplo de uso
+"""#Ejemplo de uso
 extractor = PDFExtractor_withCid()
-text_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")
+text_content = extractor.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")"""

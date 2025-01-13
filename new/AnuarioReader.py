@@ -10,7 +10,6 @@ class AnuarioReader:
         self.fuentes_info = None
         self.abreviaturas = None
         self.signos = None
-        self.text_tablas = []
         self.local = None
 
         self.load_data()

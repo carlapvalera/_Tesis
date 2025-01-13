@@ -1,7 +1,7 @@
 class Tables:
     def __init__(self, tables_in_text: str, cap: str):
         self.tables_in_text = tables_in_text 
-        self.cap = cap
+        self.cap = str(cap)
         self.tables = []
         self.get_tables()
 
@@ -34,3 +34,4 @@ class Tables:
                 self.tables.append(self.tables_in_text[index:next_index])
             if finish:
                 break
+

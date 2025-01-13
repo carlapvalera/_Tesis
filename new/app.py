@@ -18,7 +18,7 @@ load_dotenv()  # Cargar las variables de entorno desde el archivo .env
 dir_temporal = os.getenv("PDF_ANUARIOS")
 extractor = DataSaver()
 ex = PDFExtractor_withCid()
-databade = AnuarioDatabase()    
+database = AnuarioDatabase()    
 
 
 # Mostrar archivos en el directorio temporal
@@ -65,7 +65,12 @@ if list_anuarios:
 
 if list_anuario_tablas:
     for anuario,tablas in list_anuario_tablas:
-        databade.insert_anuario(anuario.year,anuario.introduction,anuario.chapters,anuario.local,anuario.index,anuario.name,anuario.text_anuario,tablas.tables)
-        print("hola")
-        print(anuario)
-        print(tablas)
+        id_anuario =database.insert_anuario(anuario.year,anuario.introduction,anuario.fuentes_info,anuario.abreviaturas,anuario.signos,anuario.local)
+        for i in range (0,len(anuario.chapters)-1):
+            id_chapter = database.insert_capitulo(id_anuario,anuario.chapters[i][0],anuario.chapters[i][1],anuario.text_anuario[i])
+
+            
+            database.insert_tabla(id_chapter,tablas.tables[i],anuario.chapters[i][0])
+        
+
+

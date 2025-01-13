@@ -19,7 +19,7 @@ class AnuarioDatabase:
                 abreviaturas TEXT,  
                 signos TEXT,         
                 local TEXT           
-            )
+            
                 )
             ''')
             self.conn.execute('''
@@ -191,31 +191,3 @@ class AnuarioDatabase:
     def close(self):
         """Cierra la conexión a la base de datos."""
         self.conn.close()
-
-"""# Ejemplo de uso
-if __name__ == "__main__":
-    db = AnuarioDatabase()
-    
-    # Insertar un nuevo anuario
-    anuario_id = db.insert_anuario(year="2023", introduccion="Introducción del anuario.")
-    
-    # Insertar capítulos
-    capitulo1_id = db.insert_capitulo(anuario_id=anuario_id, chapter_number=1,
-                                        chapter_name="Introducción", 
-                                        chapter_text="Texto del capítulo 1.")
-    
-    capitulo2_id = db.insert_capitulo(anuario_id=anuario_id, chapter_number=2,
-                                        chapter_name="Capítulo 1", 
-                                        chapter_text="Texto del capítulo 2.")
-    
-    print("Contador de capítulos después de inserciones:")
-    print(db.get_anuarios())  # Muestra los anuarios para verificar el contador
-
-    # Eliminar un capítulo
-    db.delete_capitulo(capitulo1_id)  # Eliminar primer capítulo
-    
-    print("Contador de capítulos después de eliminación:")
-    print(db.get_anuarios())  # Muestra los anuarios para verificar el contador
-
-    # Cerrar conexión
-    db.close()"""

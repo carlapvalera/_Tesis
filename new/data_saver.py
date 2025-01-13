@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from dotenv import load_dotenv
+from dotenv import load_dotenv 
 from pdf_extractor_textocompleto import PDFExtractor_withCid
 
 class DataSaver:
@@ -28,7 +28,9 @@ class DataSaver:
 """# Ejemplo de uso
 extractor = DataSaver()
 ex = PDFExtractor_withCid()
-text= ex.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")
+text= ex.extract_text_and_tables("C:\\blabla\\_Tesis\\new\\temporal\\00-aec-2023-edic-2024_0.pdf")"""
 
+"""text =["República de Cuba","ANUARIO ESTADÍSTICO","ANUARIO ESTADÍSTICO"]
+extractor = DataSaver()
 extractor.save_text(text)
 print ( "hola")"""
