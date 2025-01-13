@@ -51,8 +51,12 @@ class Gemini_API:
         response =self.model.generate_content(f"""
     a partir de un string que representa una tabla.{text}
 
-    Returns:
-        el nombre de la tabla, los encabezados y el DataFrame.
+        dame los siguientes apartados:
+
+        **Nombre de la tabla:**
+        **Encabezados:**
+        **DataFrame:**separado por |
+        el nombre de la tabla, los encabezados y el DataFrame .
     """
 )
     
@@ -62,4 +66,7 @@ class Gemini_API:
 
         return response.text 
     
+
+
+
 

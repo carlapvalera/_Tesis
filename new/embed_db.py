@@ -91,12 +91,12 @@ class DB_Embed:
             
             
 
-            if doc.direction not in self.unique_embeddings:  # Verificar si ya existe
+            if doc.id not in self.unique_embeddings:  # Verificar si ya existe
                 self.index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
-                self.unique_embeddings.add(doc.direction)  # Añadir al conjunto
+                self.unique_embeddings.add(doc.id)  # Añadir al conjunto
                 
                 # Guardar el texto asociado al embedding
-                self.document_mapping.append(doc.direction)
+                self.document_mapping.append(doc.id)
 
         # Guardar el índice y el mapeo al finalizar
         self.save_index()
@@ -110,6 +110,6 @@ class DB_Embed:
     def normalized_query(self,query_vector):
         return query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
 
-    def get_doc_by_direction(self, idx):
+    def get_doc_by_id(self, idx):
         return self.document_mapping[idx]
 

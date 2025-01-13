@@ -10,6 +10,9 @@ print ("hola")
 from tables import Tables
 print ("hola")
 from AnuarioDatabase import AnuarioDatabase
+from dataframetables import DataFrameCreator
+from embed_db import DB_Embed
+from document import Document
 
 # Crear un directorio temporal si no existe
 temp_dir = "C:\\blabla\\_Tesis\\new\\temporal"
@@ -20,7 +23,8 @@ dir_temporal = os.getenv("PDF_ANUARIOS")
 extractor = DataSaver()
 ex = PDFExtractor_withCid()
 database = AnuarioDatabase()    
-
+dataframecreator = DataFrameCreator()
+embeddb = DB_Embed()
 
 # Mostrar archivos en el directorio temporal
 files_in_temp = os.listdir(temp_dir)
@@ -75,9 +79,17 @@ if list_anuario_tablas:
         id_anuario =database.insert_anuario(anuario.year,anuario.introduction,anuario.fuentes_info,anuario.abreviaturas,anuario.signos,anuario.local)
         for i in range (0,len(anuario.chapters)-1):
             id_chapter = database.insert_capitulo(id_anuario,anuario.chapters[i][0],anuario.chapters[i][1],anuario.text_anuario[i])
+            chapter = Document("chapter:" +str(id_chapter),anuario.text_anuario[i])
+            embeddb.set_text(chapter)
+            name, headers, table = dataframecreator.get_table(tablas.tables[i])
+            print(table)
+            id_table =database.insert_tabla(id_chapter,name + headers ,table)
+            tableembed = Document("table:"+str(id_table),name + headers+table)
+            embeddb.set_text(tableembed)
 
-            
-            database.insert_tabla(id_chapter,tablas.tables[i],anuario.chapters[i][0])
-        
+
+
+
+       
 
 

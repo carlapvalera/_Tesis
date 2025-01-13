@@ -48,7 +48,9 @@ def get_table(self, text: str):
         data = parts[data_index + len("**DataFrame:**"):]
 
         # Convertir el string de datos a DataFrame
-        data_table = self.string_to_dataframe(data)
+        #data_table = self.string_to_dataframe(data)
 
-        return name, headers, data_table
+        return name, headers, data
+
+
 
