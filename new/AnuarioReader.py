@@ -6,7 +6,7 @@ class AnuarioReader:
         self.text_anuario = []
         self.tables_anuario = []
         self.chapters = None
-        self.introduccion = None
+        self.introduction = None
         self.fuentes_info = None
         self.abreviaturas = None
         self.signos = None
