@@ -114,17 +114,13 @@ class DB_Embed:
         normalized_query_vector = self.normalized_query(vector)
         # Buscar los k vecinos más cercanos
         D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
-        
-        # Obtener los documentos correspondientes a los índices encontrados
-        relevant_docs = [self.get_doc_by_id(idx) for idx in I[0]]  # I[0] contiene los índices de la primera consulta
-
-        return relevant_docs  # Devolver la lista de documentos relevantes
+        return D,I
             
 
 
     def get_doc_by_id(self, idx):
         return self.document_mapping[idx]
-
+"""
 # Crear una instancia de DB_Embed
 db_embed = DB_Embed()
 
@@ -132,8 +128,9 @@ db_embed = DB_Embed()
 query_text = "Texto para buscar"
 
 # Obtener los documentos más relevantes
-relevant_documents = db_embed.most_relevant(query_text, k=5)
+D,I = db_embed.most_relevant(query_text, k=5)
 
-# Imprimir los documentos encontrados
-for doc in relevant_documents:
-    print(doc)  # Aquí puedes ajustar lo que deseas mostrar del documento
+k = 5
+
+print("Indices de los vecinos más cercanos:\n", I)
+print("Distancias (producto interno):\n", D)"""

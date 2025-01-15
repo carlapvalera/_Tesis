@@ -29,12 +29,13 @@ embeddb = DB_Embed()
 
 
 query = "¿Cuáles son las características geográficas y climáticas más importantes de Cuba según el texto proporcionado?"
-llm_response = embeddb.most_relevant(query)
+# Obtenqueryer los documentos más relevantes
+D,I = embeddb.most_relevant(query, k=5)
 
-text = llm_response[0] + llm_response[1]
+k = 5
 
-
-
+print("Indices de los vecinos más cercanos:\n", I)
+print("Distancias (producto interno):\n", D)
 
 
 
