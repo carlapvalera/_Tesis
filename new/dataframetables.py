@@ -29,7 +29,10 @@ class DataFrameCreator:
         name = parts[name_index+len("**Nombre de la tabla:**"):encabezado_index]
         encabezados = parts[encabezado_index+len("**Encabezados:**"):data_index]
         data = parts[data_index+len("**DataFrame:**"):]
-        data_table = self.string_to_dataframe(data)
+        try : 
+            data_table = self.string_to_dataframe(data)
+        except:
+             data_table = data
 
         return name, encabezados, data_table
 

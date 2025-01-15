@@ -86,6 +86,7 @@ class DB_Embed:
     def set_text(self,doc:Document ):
         # Almacenar los embeddings en FAISS
         if doc.text:  # Verificar que el chunk no esté vacío
+            #text_to_embed = self.chunk_text(doc.text, 1000)
             vector = self.gemini_API.get_embeddings_query(doc.text)
             normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
             
@@ -102,13 +103,16 @@ class DB_Embed:
         self.save_index()
         self.save_mapping()
 
-    def most_relevant(self,normalized_query_vector, k = 2):
+    
+    def normalized_query(self,query_vector):
+        return query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
+
+    def most_relevant(self,query_vector, k = 2):
+
+        normalized_query_vector = normalized_query_vector(query_vector)
         # Buscar los k vecinos más cercanos
         D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
         return (D,I)
-
-    def normalized_query(self,query_vector):
-        return query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
 
     def get_doc_by_id(self, idx):
         return self.document_mapping[idx]

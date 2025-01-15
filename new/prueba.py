@@ -35,7 +35,7 @@ if files_in_temp:
 #crear la lista de directorios completa
 files_full_paths = []
 list_anuarios = []
-if files_in_temp :
+"""if files_in_temp :
     # Crear una lista de direcciones completas de los archivos
     for dir in file_paths:
         temp_index = dir.find("temporal")
@@ -43,17 +43,18 @@ if files_in_temp :
         file_path = os.path.join("C:", "blabla", "_Tesis", "new", "temporal", dir[temp_index:])
 
         files_full_paths.append(dir_temporal+dir[temp_index:])
-        #text= ex.extract_text_and_tables(dir_temporal+dir[temp_index:])
-        #extractor.save_text(text)
-        #print(file_path)
-        #st.write(dir_temporal+dir[temp_index:])
+        text= ex.extract_text_and_tables(dir_temporal+dir[temp_index:])
+        extractor.save_text(text)
+        print(file_path)
+        
+       #st.write(dir_temporal+dir[temp_index:])"""
 
 
-
+#for i in range(0,3):
 files = os.listdir("C:\\blabla\\_Tesis\\temporal")
 
 for fil in files:
-    anuarioreader = AnuarioReader(dir_temporal+dir[temp_index:])
+    anuarioreader = AnuarioReader(dir_temporal+fil)
     list_anuarios.append(anuarioreader)
 
 
@@ -88,6 +89,8 @@ if list_anuario_tablas:
             embeddb.set_text(tableembed)
 
 
+
+ 
 
 
        
