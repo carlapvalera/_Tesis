@@ -63,7 +63,7 @@ for fil in files:
 list_anuario_tablas = []
 if list_anuarios:
     for anuario in list_anuarios:
-        for i in range(0, len(anuario.chapters)-1):
+        for i in range(0, len(anuario.chapters)):
 
             try:
 
@@ -76,17 +76,45 @@ if list_anuarios:
             
 
 if list_anuario_tablas:
+    ya = True
+    chapter_id = []
+    count = 0
     for anuario,tablas in list_anuario_tablas:
         id_anuario =database.insert_anuario(anuario.year,anuario.introduction,anuario.fuentes_info,anuario.abreviaturas,anuario.signos,anuario.local)
-        for i in range (0,len(anuario.chapters)-1):
-            id_chapter = database.insert_capitulo(id_anuario,anuario.chapters[i][0],anuario.chapters[i][1],anuario.text_anuario[i])
-            chapter = Document("chapter:" +str(id_chapter),anuario.text_anuario[i])
-            embeddb.set_text(chapter)
-            name, headers, table = dataframecreator.get_table(tablas.tables[i])
-            print(table)
-            id_table =database.insert_tabla(id_chapter,name + headers ,table)
+        if ya :
+            for i in range (0,len(anuario.chapters)):
+                print(anuario.chapters[i][0])
+                
+                id_chapter = database.insert_capitulo(id_anuario,anuario.chapters[i][0],anuario.chapters[i][1],anuario.text_anuario[i])
+                chapter_id.append(id_chapter)
+                chapter = Document("chapter:" +str(id_chapter),anuario.text_anuario[i])
+                try:
+                    embeddb.set_text(chapter)
+                except:
+                    pass
+            ya = False
+        for tabla in tablas.tables :
+
+            name = "fallo"
+            try:
+                name, headers, table = dataframecreator.get_table(tabla)
+            except:
+                id_table =database.insert_tabla(chapter_id[count],tabla)
+                tableembed = Document("table:"+str(id_table),tabla)
+                try:
+                    embeddb.set_text(tableembed)
+                except:
+                    continue
+                continue
+
+            print(name)
+            id_table =database.insert_tabla(chapter_id[count],name + headers ,table)
             tableembed = Document("table:"+str(id_table),name + headers+table)
-            embeddb.set_text(tableembed)
+            try:
+             embeddb.set_text(tableembed)
+            except:
+                pass
+            count = count +1
 
 
 

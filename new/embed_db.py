@@ -85,14 +85,15 @@ class DB_Embed:
         
     def set_text(self,doc:Document ):
         # Almacenar los embeddings en FAISS
-        if doc.text:  # Verificar que el chunk no esté vacío
-            #text_to_embed = self.chunk_text(doc.text, 1000)
-            vector = self.gemini_API.get_embeddings_query(doc.text)
-            normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
-            
-            
-
-            if doc.id not in self.unique_embeddings:  # Verificar si ya existe
+        if doc.text: 
+             # Verificar que el chunk no esté vacío
+            if doc.id not in self.unique_embeddings:
+                    
+                text_to_embed = self.chunk_text(doc.text, 5000)
+                vector = self.gemini_API.get_embeddings_query(text_to_embed)
+                #vector = self.gemini_API.get_embeddings_query(doc.text)
+                normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
+                
                 self.index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
                 self.unique_embeddings.add(doc.id)  # Añadir al conjunto
                 

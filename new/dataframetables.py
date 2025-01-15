@@ -29,12 +29,13 @@ class DataFrameCreator:
         name = parts[name_index+len("**Nombre de la tabla:**"):encabezado_index]
         encabezados = parts[encabezado_index+len("**Encabezados:**"):data_index]
         data = parts[data_index+len("**DataFrame:**"):]
-        try : 
+        """try : 
             data_table = self.string_to_dataframe(data)
         except:
-             data_table = data
+             data_table = data"""
 
-        return name, encabezados, data_table
+        #return name, encabezados, data_table
+        return name, encabezados, data
 
 
 def get_table(self, text: str):
