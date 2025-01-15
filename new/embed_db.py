@@ -93,7 +93,7 @@ class DB_Embed:
                 vector = self.gemini_API.get_embeddings_query(text_to_embed)
                 #vector = self.gemini_API.get_embeddings_query(doc.text)
                 normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
-                
+
                 self.index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
                 self.unique_embeddings.add(doc.id)  # Añadir al conjunto
                 
@@ -109,12 +109,31 @@ class DB_Embed:
         return query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
 
     def most_relevant(self,query_vector, k = 2):
-
-        normalized_query_vector = normalized_query_vector(query_vector)
+        
+        vector = self.gemini_API.get_embeddings_query(query_vector)
+        normalized_query_vector = self.normalized_query(vector)
         # Buscar los k vecinos más cercanos
         D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
-        return (D,I)
+        
+        # Obtener los documentos correspondientes a los índices encontrados
+        relevant_docs = [self.get_doc_by_id(idx) for idx in I[0]]  # I[0] contiene los índices de la primera consulta
+
+        return relevant_docs  # Devolver la lista de documentos relevantes
+            
+
 
     def get_doc_by_id(self, idx):
         return self.document_mapping[idx]
 
+# Crear una instancia de DB_Embed
+db_embed = DB_Embed()
+
+# Definir el texto de consulta
+query_text = "Texto para buscar"
+
+# Obtener los documentos más relevantes
+relevant_documents = db_embed.most_relevant(query_text, k=5)
+
+# Imprimir los documentos encontrados
+for doc in relevant_documents:
+    print(doc)  # Aquí puedes ajustar lo que deseas mostrar del documento
