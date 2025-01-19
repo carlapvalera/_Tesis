@@ -90,10 +90,11 @@ class DB_Embed:
             if doc.id not in self.unique_embeddings:
                     
                 text_to_embed = self.chunk_text(doc.text, 5000)
-                vector = self.gemini_API.get_embeddings_query(text_to_embed)
+                normalized_vector = self.gemini_API.get_embeddings_query(text_to_embed)
+                
                 #vector = self.gemini_API.get_embeddings_query(doc.text)
-                normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
-
+                #normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
+                
                 self.index.add(np.array([normalized_vector], dtype=np.float32))  # Añadir el vector normalizado al índice
                 self.unique_embeddings.add(doc.id)  # Añadir al conjunto
                 
@@ -120,17 +121,40 @@ class DB_Embed:
 
     def get_doc_by_id(self, idx):
         return self.document_mapping[idx]
-"""
-# Crear una instancia de DB_Embed
-db_embed = DB_Embed()
 
-# Definir el texto de consulta
-query_text = "Texto para buscar"
 
-# Obtener los documentos más relevantes
-D,I = db_embed.most_relevant(query_text, k=5)
 
-k = 5
 
-print("Indices de los vecinos más cercanos:\n", I)
-print("Distancias (producto interno):\n", D)"""
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear una instancia de la base de datos
+    db = DB_Embed()
+
+    # Cargar un archivo o crear documentos manualmente
+    # Aquí se puede cargar desde un archivo o definir textos directamente
+    example_texts = [
+        "Este es un ejemplo de texto para embebido 1.",
+        "Este es otro texto que se almacenará en la base de datos.",
+        "Este texto es diferente y también debe ser almacenado."
+    ]
+
+    # Insertar documentos en la base de datos
+    for text in example_texts:
+        doc = Document( text +"1",text)
+        db.set_text(doc)
+
+    # Realizar una consulta para buscar el chunk más similar
+    query_text = "¿Qué es un ejemplo de texto?"  # Ejemplo de consulta
+    query_vector = db.embed_text(query_text)
+    normalized_query_vector = db.normalized_query(query_vector)
+
+    # Obtener los k vecinos más cercanos
+    k = 2  # Número de resultados deseados
+    distances, indices = db.most_relevant(normalized_query_vector, k)
+
+    print("Indices de los vecinos más cercanos:\n", indices)
+    print("Distancias (producto interno):\n", distances)
+
+    # Recuperar y mostrar los textos correspondientes a los índices encontrados
+    for idx in indices[0]:
+        print(f"Texto correspondiente al índice {idx}:\n{db.document_mapping[idx]}\n")
