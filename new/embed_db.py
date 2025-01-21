@@ -15,6 +15,7 @@ class DB_Embed:
         self.index = None
         self.document_mapping = None
         self.initial_db(index_filename,dimension,mapping_filename)
+        self.set = set()
         
         
     def initial_db(self,index_filename,d,mapping_filename):
@@ -83,7 +84,7 @@ class DB_Embed:
         else:
             return []
         
-    def set_text(self,doc:Document ):
+    """ def set_text(self,doc:Document ):
         # Almacenar los embeddings en FAISS
         if doc.text: 
              # Verificar que el chunk no esté vacío
@@ -103,19 +104,43 @@ class DB_Embed:
 
         # Guardar el índice y el mapeo al finalizar
         self.save_index()
-        self.save_mapping()
+        self.save_mapping()"""
 
+    def set_text(self,doc:Document ):
+         # Almacenar los embeddings en FAISS
+        if doc.text: 
+             # Verificar que el chunk no esté vacío
+            if not any(tupla[0] == doc for tupla in self.set):
+                    
+                text_to_embed = self.chunk_text(doc.text, 5000)
+                for vect in text_to_embed:
+                    normalized_vector = self.gemini_API.get_embeddings_query(text_to_embed)
+                
+                #vector = self.gemini_API.get_embeddings_query(doc.text)
+                #normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
+                
+                    self.set.add((doc,normalized_vector))  # Añadir el vector normalizado al índice
+       
     
+
     def normalized_query(self,query_vector):
         return query_vector / np.linalg.norm(query_vector)  # Normalizar el vector de consulta
 
-    def most_relevant(self,query_vector, k = 2):
+    """def most_relevant(self,query_vector, k = 2):
         
         vector = self.gemini_API.get_embeddings_query(query_vector)
         normalized_query_vector = self.normalized_query(vector)
         # Buscar los k vecinos más cercanos
         D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
-        return D,I
+        return D,I"""
+    def most_relevant(self,query_vector, k = 2):
+        vector = self.gemini_API.get_embeddings_query(query_vector)
+        relevant_docs = []
+       # Buscar los k vecinos más cercanos
+
+        for doc, embed in self.set:
+            if np.array_equal(vect, self.index.reconstruct(idx)):  # Compara el vector
+                relevant_docs.append(doc)
             
 
 

@@ -27,74 +27,16 @@ dataframecreator = DataFrameCreator()
 embeddb = DB_Embed()
 
 
-
-query = "¿Cuáles son las características geográficas y climáticas más importantes de Cuba según el texto proporcionado?"
-# Obtenqueryer los documentos más relevantes
-D,I = embeddb.most_relevant(query, k=5)
-
-k = 5
-
-print("Indices de los vecinos más cercanos:\n", I)
-print("Distancias (producto interno):\n", D)
-
-
-
-
-
-
-
-
-import pandas as pd
-import pandasql as psql
-from fireworks.client import Fireworks
-
-client = Fireworks(
-    api_key="fw_3Zf7HrTqgxNgJFhWovNoxZcZ",
-)
-
-
-# Mensajes para el modelo LLM
-messages = [
-    {
-        "role": "user",
-        "content": (
-            "Eres un asistente q se encarga de proporcionar informacion exacta al usuario. "
-            f"Tienes esta informacion q t puede ser util:\n{text}\n"
-            f"la pregunda del usurio es esta {query}"
-        )
-    },
-]
-
-# Crear una solicitud de completación
-try:
-    chat_completion = client.chat.completions.create(
-        model="accounts/fireworks/models/llama-v3p1-405b-instruct",
-        messages=messages,
-    )
-
-    # Obtener la respuesta del modelo
-    response = chat_completion.choices[0].message.content.strip()
-    print("Respuesta del LLM:", response)
-except Exception as e:
-    print(f"Ocurrió un error: {str(e)}")
-
-
-
-
-
-
-
-
 # Mostrar archivos en el directorio temporal
-"""files_in_temp = os.listdir(temp_dir)
+files_in_temp = os.listdir(temp_dir)
 if files_in_temp:
     # Crear una lista de direcciones completas de los archivos
-    file_paths = [os.path.join(temp_dir, file) for file in files_in_temp]"""
+    file_paths = [os.path.join(temp_dir, file) for file in files_in_temp]
     
 #crear la lista de directorios completa
 files_full_paths = []
 list_anuarios = []
-"""if files_in_temp :
+if files_in_temp :
     # Crear una lista de direcciones completas de los archivos
     for dir in file_paths:
         temp_index = dir.find("temporal")
@@ -109,7 +51,7 @@ list_anuarios = []
        #st.write(dir_temporal+dir[temp_index:])"""
 
 
-"""#for i in range(0,3):
+#for i in range(0,3):
 files = os.listdir("C:\\blabla\\_Tesis\\temporal")
 
 for fil in files:
@@ -131,7 +73,6 @@ if list_anuarios:
             except Exception as e:
                 list_anuario_tablas.append((None,None)) 
                 raise Exception(f"Ocurrió un error al procesar las tablas: {str(e)}")
-            
             
 
 if list_anuario_tablas:
@@ -179,7 +120,6 @@ if list_anuario_tablas:
 
 
 
-"""
 
 
        
