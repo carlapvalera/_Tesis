@@ -121,14 +121,24 @@ class DB_Embed:
              # Verificar que el chunk no esté vacío
             if not any(embed.doc.id == doc.id and embed.doc.text == doc.text for embed in self.set):
                     
-                text_to_embed = self.chunk_text(doc.text, 5000)
-                for vect in text_to_embed:
-                    normalized_vector = self.gemini_API.get_embeddings_query(vect)
+                
+                try:
+                    
+                    normalized_vector = self.gemini_API.get_embeddings_query(text_to_embed)
+                    self.set.add(Embed(doc, normalized_vector))
+                except:
+                    try:
+                        text_to_embed = self.chunk_text(doc.text, max(len(doc.text)//2,5000))
+                        for vect in text_to_embed:
+                            normalized_vector = self.gemini_API.get_embeddings_query(vect)
+
                 
                 #vector = self.gemini_API.get_embeddings_query(doc.text)
                 #normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
                 
-                    self.set.add(Embed(doc, normalized_vector))  # Convertir a tupla
+                            self.set.add(Embed(doc, normalized_vector))  # Convertir a tupla
+                    except:
+                        pass
 
                 # Guardar los embeddings después de añadir uno nuevo
                 self.save_embeddings()
@@ -189,7 +199,7 @@ class DB_Embed:
             print("No se encontró el archivo de embeddings. Se iniciará un nuevo conjunto.")
 
 
-# Ejemplo de uso
+"""# Ejemplo de uso
 if __name__ == "__main__":
     store = DB_Embed()
 
@@ -219,4 +229,4 @@ if __name__ == "__main__":
 
     # Imprimir resultados
     for doc, score in top_k_results:
-        print(f"Documento: {doc.text}, Similitud: {score}")
+        print(f"Documento: {doc.text}, Similitud: {score}")"""

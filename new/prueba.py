@@ -13,6 +13,7 @@ from AnuarioDatabase import AnuarioDatabase
 from dataframetables import DataFrameCreator
 from embed_db import DB_Embed
 from document import Document
+import json
 
 # Crear un directorio temporal si no existe
 temp_dir = "C:\\blabla\\_Tesis\\new\\temporal"
@@ -55,7 +56,7 @@ if files_in_temp :
 files = os.listdir("C:\\blabla\\_Tesis\\temporal")
 
 for fil in files:
-    anuarioreader = AnuarioReader(dir_temporal+fil)
+    anuarioreader = AnuarioReader("C:\\blabla\\_Tesis\\temporal\\"+fil)
     list_anuarios.append(anuarioreader)
 
 
@@ -80,8 +81,6 @@ if list_anuario_tablas:
     chapter_id = []
     count = 0
     for anuario,tablas in list_anuario_tablas:
-        for i in range(0,2):
-            continue
         id_anuario =database.insert_anuario(anuario.year,anuario.introduction,anuario.fuentes_info,anuario.abreviaturas,anuario.signos,anuario.local)
         if ya :
             for i in range (0,len(anuario.chapters)):
@@ -124,25 +123,40 @@ def process_query(query):
     # Aquí puedes implementar la lógica para generar una respuesta
     return f"Has preguntado: {query}"
 
+interactions = []
 while True:
         # Recibir la consulta del usuario
-        query = input("Introduce tu consulta (o escribe 'salir' para terminar): ")
-        
-        # Salir del bucle si el usuario escribe 'salir'
-        if query.lower() == 'salir':
-            print("Saliendo del programa.")
-            break
+    query = input("Introduce tu consulta (o escribe 'salir' para terminar): ")
+    
+    # Salir del bucle si el usuario escribe 'salir'
+    if query.lower() == 'salir':
+        print("Saliendo del programa.")
+        break
         
         # Procesar la consulta (aquí puedes agregar tu lógica)
-        response = process_query(query)
+    response = process_query(query)
         
         # Imprimir la respuesta
-        print(f"Respuesta: {response}")
+    print(f"Respuesta: {response}")
+    context = ""
 
-        Gemini_API.embeddb.most_relevant(query)
-        Gemini_API
+    for i in embeddb.most_relevant(query):
+        context +=i
 
+    response = Gemini_API.generate_response(query,context)
 
+         # Guardar la interacción en el registro
+    interactions.append({
+        "query": query,
+        "context": context,
+        "response": response
+    })
+
+# Guardar todas las interacciones en un archivo JSON al final
+with open('interactions.json', 'w') as json_file:
+    json.dump(interactions, json_file, indent=4)
+
+print("Todas las interacciones han sido guardadas en 'interactions.json'.")
     
 
        
