@@ -82,17 +82,4 @@ class Gemini_API:
         
         return response.text
 
-# Ejemplo de uso
-if __name__ == "__main__":
-
-    Gemini = Gemini_API()
-    query = "¿Cuáles son las ventajas del uso de RAG en comparación con los LLM de contexto largo?"
-    context = (
-        "RAG combina el poder de los LLM con fuentes de conocimiento externas para producir "
-        "respuestas más informadas y precisas."
-    )
-
-    response = Gemini.generate_response(query, context)
-    print(response)
-
 
