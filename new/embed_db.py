@@ -4,9 +4,16 @@ from gemini_api import Gemini_API
 import os
 import json
 from document import Document
+from typing import List, Tuple
+import pickle
 
+class Embed:
+    def __init__(self, doc :Document, embed):
+        self.doc = doc
+        self.embed = embed
+        
 class DB_Embed:
-    def __init__(self,mapping_filename = 'document_mapping.json',index_filename = 'mi_indice.faiss',dimension = 768):
+    def __init__(self,mapping_filename = 'document_mapping.json',index_filename = 'mi_indice.faiss',dimension = 768, filename='embeddings.pkl'):
         # Inicializar la API Gemini
         self.mapping_filename = mapping_filename
         self.index_filename =index_filename
@@ -16,6 +23,8 @@ class DB_Embed:
         self.document_mapping = None
         self.initial_db(index_filename,dimension,mapping_filename)
         self.set = set()
+        self.filename = filename
+        self.load_embeddings()  # Cargar embeddings al instanciar la clase
         
         
     def initial_db(self,index_filename,d,mapping_filename):
@@ -110,17 +119,19 @@ class DB_Embed:
          # Almacenar los embeddings en FAISS
         if doc.text: 
              # Verificar que el chunk no esté vacío
-            if not any(tupla[0] == doc for tupla in self.set):
+            if not any(embed.doc.id == doc.id and embed.doc.text == doc.text for embed in self.set):
                     
                 text_to_embed = self.chunk_text(doc.text, 5000)
                 for vect in text_to_embed:
-                    normalized_vector = self.gemini_API.get_embeddings_query(text_to_embed)
+                    normalized_vector = self.gemini_API.get_embeddings_query(vect)
                 
                 #vector = self.gemini_API.get_embeddings_query(doc.text)
                 #normalized_vector = vector / np.linalg.norm(vector)  # Normalizar el vector
                 
-                    self.set.add((doc,normalized_vector))  # Añadir el vector normalizado al índice
-       
+                    self.set.add(Embed(doc, normalized_vector))  # Convertir a tupla
+
+                # Guardar los embeddings después de añadir uno nuevo
+                self.save_embeddings()
     
 
     def normalized_query(self,query_vector):
@@ -133,53 +144,79 @@ class DB_Embed:
         # Buscar los k vecinos más cercanos
         D, I = self.index.search(np.array([normalized_query_vector], dtype=np.float32), k)
         return D,I"""
-    def most_relevant(self,query_vector, k = 2):
-        vector = self.gemini_API.get_embeddings_query(query_vector)
-        relevant_docs = []
-       # Buscar los k vecinos más cercanos
+    def cosine_similarity(self, a: np.ndarray, b: np.ndarray) -> float:
+        """Calcula la similitud del coseno entre dos vectores."""
+        return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
-        for doc, embed in self.set:
-            if np.array_equal(vect, self.index.reconstruct(idx)):  # Compara el vector
-                relevant_docs.append(doc)
-            
+    def most_relevant(self, queryvector:str, k=2) -> List[Tuple[Document, float]]:
+        """
+        Encuentra los k documentos más relevantes para un vector de consulta.
+        
+        :param query_vector: El embedding de consulta.
+        :param k: Número de resultados más relevantes a devolver.
+        :return: Lista de tuplas (documento, similitud), ordenadas por relevancia.
+        """
+        query_vector = self.gemini_API.get_embeddings_query(queryvector)
+        similarities = []
+
+        # Calcular la similitud del coseno entre el query_vector y cada embedding almacenado
+        for doc_embed  in self.set:
+            similarity = self.cosine_similarity(query_vector, doc_embed.embed)
+            similarities.append((doc_embed.doc, similarity))
+
+        # Ordenar los documentos por similitud en orden descendente
+        similarities = sorted(similarities, key=lambda x: x[1], reverse=True)
+
+        # Devolver los k más relevantes
+        return similarities[:k]
+
 
 
     def get_doc_by_id(self, idx):
         return self.document_mapping[idx]
 
+    def save_embeddings(self):
+        """Guardar el conjunto de embeddings en un archivo."""
+        with open(self.filename, 'wb') as f:
+            pickle.dump(self.set, f)
 
+    def load_embeddings(self):
+        """Cargar el conjunto de embeddings desde un archivo."""
+        try:
+            with open(self.filename, 'rb') as f:
+                self.set = pickle.load(f)
+        except FileNotFoundError:
+            print("No se encontró el archivo de embeddings. Se iniciará un nuevo conjunto.")
 
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    # Crear una instancia de la base de datos
-    db = DB_Embed()
+    store = DB_Embed()
 
-    # Cargar un archivo o crear documentos manualmente
-    # Aquí se puede cargar desde un archivo o definir textos directamente
-    example_texts = [
-        "Este es un ejemplo de texto para embebido 1.",
-        "Este es otro texto que se almacenará en la base de datos.",
-        "Este texto es diferente y también debe ser almacenado."
-    ]
+    # Crear algunos documentos de ejemplo
+    doc1 = "Este es el primer documento."
+    doc2 = "Este es el segundo documento."
+    
+    # Simular la API que devuelve embeddings (reemplazar con tu implementación real)
+    api = Gemini_API()
+    doc = Document(2,doc1)
+    doccc = Document(3,doc2)
 
-    # Insertar documentos en la base de datos
-    for text in example_texts:
-        doc = Document( text +"1",text)
-        db.set_text(doc)
+    for embed in store.set:
+        comparison_result = embed.doc.id == doc.id and embed.doc.text == doc.text  # Comparar el documento en la tupla  
 
-    # Realizar una consulta para buscar el chunk más similar
-    query_text = "¿Qué es un ejemplo de texto?"  # Ejemplo de consulta
-    query_vector = db.embed_text(query_text)
-    normalized_query_vector = db.normalized_query(query_vector)
+        print(f"Comparando con: {embed}, Resultado: {comparison_result}")
 
-    # Obtener los k vecinos más cercanos
-    k = 2  # Número de resultados deseados
-    distances, indices = db.most_relevant(normalized_query_vector, k)
+    # Almacenar los documentos
+    store.set_text(doc)
+    store.set_text(doccc)
 
-    print("Indices de los vecinos más cercanos:\n", indices)
-    print("Distancias (producto interno):\n", distances)
+    # Crear un vector de consulta aleatorio
+    query_embedding = "segundo"
+    
+    # Encontrar los dos documentos más relevantes
+    top_k_results = store.most_relevant(query_embedding, k=2)
 
-    # Recuperar y mostrar los textos correspondientes a los índices encontrados
-    for idx in indices[0]:
-        print(f"Texto correspondiente al índice {idx}:\n{db.document_mapping[idx]}\n")
+    # Imprimir resultados
+    for doc, score in top_k_results:
+        print(f"Documento: {doc.text}, Similitud: {score}")
