@@ -90,10 +90,10 @@ if list_anuario_tablas:
                 id_chapter = database.insert_capitulo(id_anuario,anuario.chapters[i][0],anuario.chapters[i][1],anuario.text_anuario[i])
                 chapter_id.append(id_chapter)
                 chapter = Document("chapter:" +str(id_chapter),anuario.text_anuario[i])
-                #try:
-                #    embeddb.set_text(chapter)
-                #except:
-                #    pass
+                try:
+                    embeddb.set_text(chapter)
+                except:
+                   pass
             ya = False
         for tabla in tablas.tables :
 
@@ -113,14 +113,37 @@ if list_anuario_tablas:
             id_table =database.insert_tabla(chapter_id[count],name + headers ,table)
             tableembed = Document("table:"+str(id_table),name + headers+table)
             try:
-             embeddb.set_text(tableembed)
+                embeddb.set_text(tableembed)
             except:
                 pass
         count = count +1
 
 
+def process_query(query):
+    """Función para procesar la consulta y generar una respuesta."""
+    # Aquí puedes implementar la lógica para generar una respuesta
+    return f"Has preguntado: {query}"
+
+while True:
+        # Recibir la consulta del usuario
+        query = input("Introduce tu consulta (o escribe 'salir' para terminar): ")
+        
+        # Salir del bucle si el usuario escribe 'salir'
+        if query.lower() == 'salir':
+            print("Saliendo del programa.")
+            break
+        
+        # Procesar la consulta (aquí puedes agregar tu lógica)
+        response = process_query(query)
+        
+        # Imprimir la respuesta
+        print(f"Respuesta: {response}")
+
+        Gemini_API.embeddb.most_relevant(query)
+        Gemini_API
 
 
+    
 
        
 

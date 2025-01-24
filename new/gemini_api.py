@@ -66,7 +66,33 @@ class Gemini_API:
 
         return response.text 
     
+    def generate_response(self, query: str, context: str) -> str:
+        """Genera una respuesta utilizando la Gemini API."""
+        
+        # Construir el mensaje que se enviará al modelo
+        message = (
+            f"Contexto: {context}\n"
+            f"Consulta: {query}\n"
+            "Por favor, responde la query puedes apoyyarte en el contexto proporcionado para darla lo mas detallada posible ."
+        )
 
+        # Iniciar un chat con el modelo
+        chat = genai.GenerativeModel('gemini-pro').start_chat(history=[])
+        response = chat.send_message(message)
+        
+        return response.text
 
+# Ejemplo de uso
+if __name__ == "__main__":
+
+    Gemini = Gemini_API()
+    query = "¿Cuáles son las ventajas del uso de RAG en comparación con los LLM de contexto largo?"
+    context = (
+        "RAG combina el poder de los LLM con fuentes de conocimiento externas para producir "
+        "respuestas más informadas y precisas."
+    )
+
+    response = Gemini.generate_response(query, context)
+    print(response)
 
 
