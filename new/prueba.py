@@ -27,7 +27,7 @@ database = AnuarioDatabase()
 dataframecreator = DataFrameCreator()
 embeddb = DB_Embed()
 
-
+"""
 # Mostrar archivos en el directorio temporal
 files_in_temp = os.listdir(temp_dir)
 if files_in_temp:
@@ -52,6 +52,12 @@ if files_in_temp :
        #st.write(dir_temporal+dir[temp_index:])"""
 
 
+
+
+
+
+
+"""
 #for i in range(0,3):
 files = os.listdir("C:\\blabla\\_Tesis\\temporal")
 
@@ -100,7 +106,7 @@ if list_anuario_tablas:
             try:
                 name, headers, table = dataframecreator.get_table(tabla)
             except:
-                id_table =database.insert_tabla(chapter_id[count],tabla)
+                id_table =database.insert_tabla(chapter_id[count],tabla[:50],tabla)
                 tableembed = Document("table:"+str(id_table),tabla)
                 try:
                     embeddb.set_text(tableembed)
@@ -116,6 +122,13 @@ if list_anuario_tablas:
             except:
                 pass
         count = count +1
+
+"""
+
+
+
+
+
 
 
 def process_query(query):
@@ -141,9 +154,9 @@ while True:
     context = ""
 
     for i in embeddb.most_relevant(query):
-        context +=i
-
-    response = Gemini_API.generate_response(query,context)
+        context +=i[0].text
+    gem = Gemini_API()
+    response = gem.generate_response(query,context)
 
          # Guardar la interacción en el registro
     interactions.append({

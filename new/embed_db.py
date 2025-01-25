@@ -171,8 +171,12 @@ class DB_Embed:
 
         # Calcular la similitud del coseno entre el query_vector y cada embedding almacenado
         for doc_embed  in self.set:
-            similarity = self.cosine_similarity(query_vector, doc_embed.embed)
-            similarities.append((doc_embed.doc, similarity))
+            try:
+
+                similarity = self.cosine_similarity(query_vector, doc_embed.embed)
+                similarities.append((doc_embed.doc, similarity))
+            except:
+                pass
 
         # Ordenar los documentos por similitud en orden descendente
         similarities = sorted(similarities, key=lambda x: x[1], reverse=True)

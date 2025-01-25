@@ -170,6 +170,12 @@ poetry.toml
 # ruff
 .ruff_cache/
 
+
+#pikle
+.pkl
+
+
+
 # LSP config files
 pyrightconfig.json
 
@@ -177,3 +183,6 @@ pyrightconfig.json
 .venv
 .streamlit/secrets.toml
 source.zip
+
+#pikle
+.pkl
