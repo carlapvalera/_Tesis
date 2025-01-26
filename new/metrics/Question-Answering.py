@@ -13,17 +13,6 @@ def compute_qa_metrics(correct_answers, predicted_answers):
         'MRR': mrr
     }
 
-def compute_qa_metrics(correct_answers, predicted_answers):
-    """Calcula métricas para preguntas y respuestas."""
-    saCC = np.mean(np.array(correct_answers) == np.array(predicted_answers))
-    laCC = np.mean(np.array(correct_answers) <= 5)  # Suponiendo que hay un rango hasta 5
-    mrr = np.mean(1 / (np.array(predicted_answers) + 1e-10))  # Evitar división por cero
-
-    return {
-        'SaCC': saCC,
-        'LaCC': laCC,
-        'MRR': mrr
-    }
 
 
 
