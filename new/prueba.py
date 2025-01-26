@@ -166,12 +166,17 @@ while True:
     })
 
 # Guardar todas las interacciones en un archivo JSON al final
-with open('interactions.json', 'w') as json_file:
-    json.dump(interactions, json_file, indent=4)
+#with open('interactions.json', 'w') as json_file:
+#    json.dump(interactions, json_file, indent=4)
 
-print("Todas las interacciones han sido guardadas en 'interactions.json'.")
+#print("Todas las interacciones han sido guardadas en 'interactions.json'.")
     
 
-       
+# Supongamos que el JSON está guardado en un archivo llamado 'data.json'
+with open('expected_responses.json', 'r', encoding='utf-8') as json_file:
+    comparations = json.load(json_file)
+
+# Ahora 'comparations' contiene los datos del JSON
+print(comparations)
 
 
