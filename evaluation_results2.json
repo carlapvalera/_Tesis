@@ -1,0 +1,47 @@
+[
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5200910511259943
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5096420126574093
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 0.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5063618463620796
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5562174288886041
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5132443845169543
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5416790556063563
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 0.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.500000000231534
+    }
+]
