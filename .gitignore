@@ -172,7 +172,8 @@ poetry.toml
 
 
 #pikle
-.pkl
+embeddings.pkl
+
 
 
 
