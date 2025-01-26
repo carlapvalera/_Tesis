@@ -83,3 +83,53 @@ class Gemini_API:
         return response.text
 
 
+    def evaluate_response(self, expected_response: str, generated_response: str) -> str:
+        """
+        Evalúa qué tan buena es una respuesta generada en comparación con una respuesta esperada.
+        
+        Args:
+            expected_response (str): La respuesta esperada.
+            generated_response (str): La respuesta generada por el modelo.
+        
+        Returns:
+            str: Una evaluación detallada sobre qué tan buena fue la respuesta generada.
+        """
+        
+        prompt = f"""
+            Evalúa qué tan buena es esta respuesta generada respecto a la esperada. Proporciona un análisis detallado y una calificación del 0 al 10.
+
+            Respuesta esperada:
+            {expected_response}
+
+            Respuesta generada:
+            {generated_response}
+
+            Incluye las siguientes secciones en tu evaluación:
+            1. Similitud semántica (del 0 al 10) : ( la calificacion con un número del 0 al 10).
+            """ 
+        
+        response = self.model.generate_content(prompt)
+        
+        if not response or not hasattr(response, 'text'):
+            raise ValueError("No se recibió una respuesta válida de la API.")
+        
+
+        number_index = response.text.find(":")+len(":")
+        last = response.text.find("**",number_index)
+        last1 = response.text.find("/",number_index)
+        if last !=-1 and last1!=-1:
+            last = min(last,last1)
+        elif last ==-1:
+            last = last1
+        else:
+            last = last
+        
+        number = response.text[number_index:last]
+
+        return int(number)
+    
+    
+    
+
+gem = Gemini_API()
+print(gem.evaluate_response("El coche azul está estacionado frente a la casa.","El coche rojo está estacionado frente a la casa."))

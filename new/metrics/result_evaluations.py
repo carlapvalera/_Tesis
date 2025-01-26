@@ -1,57 +1,48 @@
-import json
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import openai
 
-# Cargar resultados desde el archivo JSON
-with open('evaluation_results.json', 'r', encoding='utf-8') as result_file:
-    results = json.load(result_file)
+# Configurar tu clave API
+openai.api_key = 'AIzaSyB1Jzqer_Ldwrn94YmxbKboyRk5f0UCtws'
 
-# Convertir resultados a DataFrame para análisis y visualización
-results_df = pd.DataFrame(results)
+# Datos de ejemplo
+y_true = [
+    "El gato está en el tejado.",
+    "Hoy es un día soleado.",
+    "El coche rojo está estacionado frente a la casa."
+]
 
-# Imprimir el DataFrame para ver los resultados
-print("Resultados de la Evaluación:")
-print(results_df)
+y_pred = [
+    "El gato está sobre el tejado.",
+    "Hoy es un día lluvioso.",
+    "El coche azul está estacionado frente a la casa."
+]
 
-# Análisis básico
-print("\nAnálisis Descriptivo:")
-print(results_df.describe())
+# Función para evaluar similitud semántica usando Gemini
+def evaluate_with_gemini(y_true, y_pred):
+    results = []
+    
+    for true, pred in zip(y_true, y_pred):
+        prompt = f"Evalúa qué tan similar es esta respuesta generada respecto a la esperada en una escala del 0 al 10:\n\nRespuesta esperada: {true}\nRespuesta generada: {pred}\n\nProporciona solo un número del 0 al 10."
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=prompt,
+            max_tokens=10,
+            temperature=0
+        )
+        similarity_score = response['choices'][0]['text'].strip()
+        results.append({
+            "expected": true,
+            "generated": pred,
+            "similarity_score": similarity_score
+        })
+    
+    return results
 
-# Visualización de resultados
+# Evaluar las respuestas
+results = evaluate_with_gemini(y_true, y_pred)
 
-# Configurar estilo de Seaborn
-sns.set(style="whitegrid")
-
-
-
-# Gráfico de barras para las métricas (BLEU, ROUGE, METEOR y BERTScore)
-metrics_to_plot = ['reference', 'candidate', 'BLEU', 'ROUGE']
-plt.figure(figsize=(12, 6))
-results_df[metrics_to_plot].plot(kind='bar', figsize=(10, 6))
-plt.title('Comparación de Métricas')
-plt.ylabel('Puntuación')
-plt.xticks(ticks=range(len(results_df)), labels=results_df['reference'], rotation=45)
-plt.legend(title='Métricas')
-plt.tight_layout()
-plt.show()
-
-# Gráfico de dispersión para comparar BLEU vs METEOR
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=results_df, x='BLEU', y='ROUGE', hue='reference', style='reference', s=100)
-plt.title('Comparación entre BLEU y METEOR')
-plt.xlabel('BLEU Score')
-plt.ylabel('METEOR Score')
-plt.grid(True)
-plt.legend(title='Referencia')
-plt.show()
-
-# Gráfico de dispersión para comparar BERTScore vs ROUGE
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=results_df, x='BLEU', y='ROUGE', hue='reference', style='reference', s=100)
-plt.title('Comparación entre BLEU y ROUGE')
-plt.xlabel('BLEU')
-plt.ylabel('ROUGE Score')
-plt.grid(True)
-plt.legend(title='Referencia')
-plt.show()
+# Mostrar resultados
+for result in results:
+    print(f"Esperada: {result['expected']}")
+    print(f"Generada: {result['generated']}")
+    print(f"Puntuación de Similitud: {result['similarity_score']}")
+    print("-" * 50)
