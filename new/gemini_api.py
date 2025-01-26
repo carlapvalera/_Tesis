@@ -130,6 +130,104 @@ class Gemini_API:
     
     
     
+    def evaluate_query_relevance(self, query: str, response: str, context: str = None) -> str:
+        """
+        Evalúa qué tan relevante y efectiva es una respuesta para una query específica.
+        
+        Args:
+            query (str): La pregunta o consulta original.
+            response (str): La respuesta generada.
+            context (str, optional): Contexto adicional si está disponible.
+        
+        Returns:
+            str: Evaluación detallada de la relevancia de la respuesta.
+        """
+        # Construir un prompt detallado para la evaluación
+        prompt = f"""
+            Evalúa exhaustivamente qué tan bien responde la siguiente respuesta a la query original:
 
-gem = Gemini_API()
-print(gem.evaluate_response("El coche azul está estacionado frente a la casa.","El coche rojo está estacionado frente a la casa."))
+            Query Original: {query}
+            Respuesta Generada: {response}
+
+            Analiza los siguientes aspectos:
+
+            1. **Relevancia de la Respuesta**:
+            - ¿Aborda directamente la pregunta original?
+            - ¿Contiene información directamente relacionada con la query?
+
+            2. **Completitud**:
+            - ¿Cubre todos los aspectos principales de la pregunta?
+            - ¿Deja algún punto sin responder?
+
+            3. **Precisión**:
+            - ¿La información proporcionada es precisa y correcta?
+            - ¿Hay información inexacta o errónea?
+
+            4. **Profundidad**:
+            - ¿La respuesta es superficial o profundiza en el tema?
+            - ¿Proporciona detalles o contexto adicional útil?
+
+            5. **Claridad**:
+            - ¿La respuesta es clara y comprensible?
+            - ¿Usa un lenguaje adecuado para el contexto?
+
+            6. **Puntuación de Relevancia**:
+            - Asigna una puntuación del 0 al 10 para cada aspecto mencionado.
+            - Proporciona una puntuación global de relevancia.
+
+            {f"Contexto Adicional: {context}" if context else ""}
+
+            Incluye las siguientes secciones en tu evaluación al inicio de esta :
+            ** Similitud semántica (del 0 al 10) : ( la calificacion con un número del 0 al 10)**.
+            """
+
+        # Generar la evaluación usando el modelo
+        try:
+            response_evaluation = self.model.generate_content(prompt)
+            
+            if not response_evaluation or not hasattr(response_evaluation, 'text'):
+                raise ValueError("No se recibió una respuesta válida de la API.")
+                    
+        except Exception as e:
+            return f"Error en la evaluación: {str(e)}"
+        
+        
+        number_index = response_evaluation.text.find(":**")+len(":**")
+        last = response_evaluation.text.find("**",number_index)
+        last1 = response_evaluation.text.find("/",number_index) 
+
+        if last !=-1 and last1!=-1:
+            last = min(last,last1)
+        elif last ==-1:
+            last = last1
+        else:
+            last = last
+        
+        number = response_evaluation.text[number_index:last]
+
+        return int(number)
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    gemini_api = Gemini_API()
+
+    # Ejemplo de query, respuesta y contexto
+    query = "¿Cuáles son los principales efectos del cambio climático en América Latina?"
+    response = """
+    El cambio climático afecta significativamente a América Latina. 
+    Algunos de los principales impactos incluyen:
+    1. Aumento de temperaturas
+    2. Cambios en los patrones de precipitación
+    3. Mayor frecuencia de eventos climáticos extremos
+    """
+    context = "Informe del IPCC sobre impactos regionales del cambio climático"
+
+    # Evaluar la relevancia de la respuesta
+    relevance_evaluation = gemini_api.evaluate_query_relevance(
+        query=query, 
+        response=response, 
+        context=context
+    )
+
+    print("Evaluación de Relevancia:")
+    print(relevance_evaluation)
