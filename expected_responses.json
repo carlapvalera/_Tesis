@@ -10,9 +10,9 @@
         "response": "Las fuentes de energía renovable son alternativas a los combustibles fósiles y otras fuentes de energía no convencionales. Se caracterizan por su capacidad de renovarse de manera permanente o periódica. Entre las principales fuentes renovables se incluyen: dendrocombustibles (como la leña y el aserrín), agrocombustibles (residuos agrícolas como la paja de arroz y desechos del café), residuos urbanos (utilizados para generar energía), hidroenergía (energía generada a partir del agua), energía eólica (aprovechando la fuerza del viento) y energía solar (captando la radiación solar). En Cuba, el desarrollo de estas fuentes es crucial para diversificar la matriz energética y reducir la dependencia de combustibles fósiles, con un objetivo de alcanzar un 24% de generación eléctrica a partir de fuentes renovables para 2030. Por otro lado, los gases de efecto invernadero (GEI) son componentes gaseosos en la atmósfera que afectan el intercambio natural de radiaciones entre el Sol y la Tierra. Los principales GEI incluyen: dióxido de carbono (CO2), el más abundante, generado tanto por procesos naturales como por actividades humanas; metano (CH4), producido principalmente por la agricultura, la ganadería y la descomposición de residuos; óxido nitroso (N2O), liberado por prácticas agrícolas y procesos industriales; hidrofluorocarbonos (HFCs) y perfluorocarbonos (PFCs), gases industriales que tienen un potencial de calentamiento global mucho mayor que el CO2. El aumento en las concentraciones de estos gases contribuye al calentamiento global al atrapar el calor en la atmósfera."
     },
     {
-        "query": "Indicadores del Sistema de Cuentas Nacionales",
+        "query": "En el sericio de transporte urbano cual es la distancia máxima y la mínima recorrida en km",
         "context": "",
-        "response": "Los indicadores del Sistema de Cuentas Nacionales (SCN) se calculan desde dos enfoques: los recursos disponibles y la utilización de bienes y servicios, así como la formación del ingreso. Este sistema busca asegurar coherencia estadística y equilibrio en las cifras resultantes, siguiendo los criterios metodológicos del SCN de 1993, adaptados a la realidad de la economía cubana. Uno de los principales indicadores es el Producto Interno Bruto (PIB), que representa el resultado final de la actividad productiva de las unidades residentes. El PIB incluye la producción de bienes y servicios, así como los impuestos netos sobre la producción y la importación, después de deducir el consumo intermedio necesario para la producción. El cálculo del PIB se puede realizar mediante varios métodos: 1. Método de la Producción: PIB = Valor de la Producción − Consumo Intermedio + Impuestos sobre la Producción e Importación deducidos los subsidios. 2. Método de la Utilización: PIB = Consumo Final + Formación Bruta de Capital Fijo + Variación de Existencias + Exportaciones − Importaciones. 3. Método de los Ingresos: PIB = Remuneración de Trabajadores + Impuestos sobre la Producción e Importación deducidos los subsidios + Consumo de Capital Fijo + Excedente Neto de Operación. Cada uno de estos métodos proporciona una perspectiva diferente sobre cómo se genera y utiliza el valor en la economía, permitiendo un análisis más completo del desempeño económico del país. El PIB es considerado un indicador clave para evaluar la evolución económica y su tasa de crecimiento es fundamental para entender el desarrollo económico en Cuba."
+        "response": "Servicio urbano: Este servicio es de uso público y se presta en las áreas urbanas de las ciudades  y pueblos, sujeto a un horario e itinerario fijos, recogiendo y dejando pasajeros en las paradas establecidas, con una tarifa única independientemente de la distancia que recorre el pasajero. Se incluyen las rutas que prestando servicio dentro de la ciudad, prolongan su recorrido hacia las áreas suburbanas hasta un 15% de  longitud total de la ruta. Para clasificar este servicio se toman en consideración los aspectos siguientes: -    La distancia máxima de la ruta es de 20 km. -    La distancia mínima de la ruta es de 3 km. "
     },
     {
         "query": "¿Qué es la asistencia social y quiénes son sus beneficiarios?",
@@ -42,7 +42,7 @@
     {
         "query": "¿Quién dirige metodológicamente las manifestaciones artístico-culturales en Cuba?",
         "context": "",
-        "response": "El Ministerio de Cultura (MINCULT) dirige metodológicamente las manifestaciones artístico-culturales en Cuba, a través de sus Institutos y Consejos Nacionales. Este ministerio es responsable de regular las políticas culturales del país y garantizar la promoción y difusión del arte y la cultura cubanos, asegurando que se preserven y enriquezcan los valores culturales de la nación. Recientemente, el MINCULT ha aprobado la Resolución 41 del 2021, que establece las bases para la programación cultural, buscando diversificar y elevar la calidad de las actividades artísticas en todo el país. Además, el ministerio promueve la participación de la población en procesos culturales y socioculturales, contribuyendo así al desarrollo integral de las comunidades."
+        "response": "El Ministerio de Cultura (MINCULT) dirige metodológicamente las manifestaciones artístico-culturales en Cuba, a través de sus Institutos y Consejos Nacionales."
     },
 
 
@@ -130,14 +130,14 @@
         "response": "La extensión territorial de Cuba es de 109,884.01 km², siendo la mayor de las Antillas. Según los datos de densidad poblacional, provincias como La Habana tienen una mayor densidad debido a su alta población en relación con su pequeña superficie, mientras que provincias como Camagüey, con una gran extensión territorial, tienen una densidad menor."
     },
     {
-        "query": "¿Qué relación existe entre las características físico-geográficas descritas en el primer documento y los movimientos migratorios internos presentados en el segundo documento?",
+        "query": "Cuales son características físico-geográficas de Cuba  y sus Fuentes  de  energía  renovable?",
         "context": "",
-        "response": "Las características físico-geográficas como montañas o terrenos costeros influyen directamente en los movimientos migratorios internos hacia áreas más accesibles o económicamente activas, como La Habana o Matanzas."
+        "response": "Las características físico-geográficas de Cuba incluyen una geología compleja con rocas antiguas del jurásico y cretácico en las zonas montañosas, y un relieve que se destaca por su diversidad, con montañas como la Sierra Maestra, donde se encuentra el pico Turquino (1,974 m). Cuba presenta un 75% de su territorio como llanuras, y su hidrografía está marcada por ríos como el Cauto y Sagua la Grande. En cuanto a las fuentes de energía renovable, estas son alternativas no convencionales que se utilizan para sustituir portadores tradicionales. Incluyen dendrocombustibles (leña, aserrín), agrocombustibles (paja de arroz, desechos del café), residuos urbanos, hidroenergía, energía eólica y energía solar. Estas fuentes son esenciales para reducir la dependencia de combustibles fósiles y mitigar el impacto ambiental."
     },
     {
-        "query": "¿cómo se relacionan las condiciones climáticas extremas con los cambios demográficos observados entre 2021 y 2022?",
+        "query": "¿ que es una área protegida de recursos manejados y que son Unidades Básicas de Producción Cooperativa (UBPC):?",
         "context": "",
-        "response": "Las condiciones climáticas extremas, como huracanes o sequías severas, pueden causar desplazamientos temporales o permanentes de población debido a daños a viviendas e infraestructura. Esto se refleja en los cambios demográficos observados entre 2021 y 2022, donde ciertos municipios pueden mostrar fluctuaciones significativas en sus poblaciones debido a estos eventos."
+        "response": "Un área protegida de recursos manejados es una zona terrestre, marina o una combinación de ambas, que contiene sistemas naturales o seminaturales. Su manejo se realiza para garantizar la protección y el mantenimiento de la diversidad biológica, así como para proporcionar un uso sostenible de productos naturales y servicios que satisfagan las necesidades locales o nacionales. En Cuba, estas áreas deben tener al menos dos terceras partes de su superficie en condiciones naturales o seminaturales. Por otro lado, las Unidades Básicas de Producción Cooperativa (UBPC) son formas de organización agrícola en Cuba que permiten a los trabajadores gestionar colectivamente la producción en tierras estatales, promoviendo la eficiencia y sostenibilidad en la agricultura."
     },
 
 
@@ -148,20 +148,20 @@
 
 
     {
-        "query": "¿Cuáles son los puntos extremos de Cuba y qlos límites geográficos y países más próximos a Cuba?",
+        "query": "Temperaturas máximas y mínimas absolutas registradas, ademáss de sus principales ríos y la longitud de estos",
         "context": "",
-        "response": "Los puntos extremos de Cuba son: Extremo septentrional: Cayo Cruz del Padre en Matanzas (23º16' N). El país más próximo es las Bahamas (Cayo Guinchos) a 29 km. Extremo meridional: Punta del Inglés en Granma (19º49' N). El país más próximo es Jamaica a 148 km. Extremo oriental: Punta de Maisí en Guantánamo (20º13' N). El país más próximo es Haití a 78 km. Extremo occidental: Cabo de San Antonio en Pinar del Río (21º52' N). El país más próximo es México a 210 km."
+        "response": "Las temperaturas máximas y mínimas absolutas registradas, además de los principales ríos y su longitud, son las siguientes: En Pinar del Río, la temperatura máxima fue de 38,1 ºC en Paso Real de San Diego (12/04/1999) y la mínima fue de 9,0 ºC en Cabo de San Antonio (28/01/1966). En La Habana, la máxima fue de 38,5 ºC en Casablanca (12/04/2020) y la mínima fue de 8,5 ºC también en Casablanca (11/01/1970). En Cienfuegos, la máxima alcanzó 37,0 ºC (06/07/2015) y la mínima fue de 4,5 ºC (15/12/2010). En Santiago de Cuba, la máxima fue de 38,2 ºC en Contramaestre (29/07/2015) y la mínima fue de 6,4 ºC (05/02/1980). En Guantánamo, la máxima registrada fue de 38,6 ºC (07/08/1969) y la mínima fue de 9,9 ºC (16/01/2023). Los principales ríos y su longitud son: el río Sagua la Grande en Villa Clara con 163 km; el río Zaza en Sancti Spíritus con 155 km; el río Caonao en Camagüey con 154,9 km; el río Nipe en Holguín con 55,5 km; y el río Toa en Guantánamo con 116,2 km."
     },
     {
-        "query": "ahora t pasare mas d una tabla para q m genere preguntas q necesite informacion d ambas tablas para responderlas y la respuesta q debe dar el llm",
+        "query": "¿Cuántos frentes fríos han azotado a Cuba entre 1916/1917 y 2022/2023 y cómo se distribuyen estos frentes por región en el mismo período?",
         "context": "",
         "response": "Entre 1916/1917 y 2022/2023, se registraron un total de 2,072 frentes fríos. En la Región Occidental se reportaron 933, en la Región Central 748, y en la Región Oriental 604."
     },
     {
-        "query": "¿Cuáles son las diferencias en las tasas de mortalidad materna entre regiones occidentales y orientales según los datos?",
+        "query": "¿Cuáles son los Indicadores seleccionados del transporte estatal de pasajeros y del transporte automotor de carga.?",
         "context": "",
-        "response": "La Región Occidental tiende a tener tasas más altas como se observa en La Habana y Artemisa comparado con la Región Oriental donde provincias como Holguín tienen tasas más bajas (44,9)."
-    },
+        "response": "Los indicadores seleccionados del transporte estatal de pasajeros y del transporte automotor de carga son los siguientes: En el transporte estatal de pasajeros, para los ómnibus, el coeficiente de aprovechamiento del parque fue de 71,9% en 2019, descendiendo a 38,8% en 2023. Los viajes realizados pasaron de 18,153.9 millones en 2019 a 6,688.4 millones en 2023. Para los taxis, el coeficiente de aprovechamiento del parque aumentó de 83,9% en 2019 a 87,7% en 2023, mientras que la distancia recorrida pasó de 136,7 millones de km en 2019 a 365,4 millones de km en 2023. En el transporte automotor de carga, el coeficiente de aprovechamiento del parque fue de 66,3% en 2019 y se mantuvo estable en torno al 63% hasta 2023. La distancia recorrida total fue de 337,4 millones de km en 2019 y alcanzó los 328 millones de km en 2023."
+  },
 
 
 
