@@ -136,6 +136,7 @@ def process_query(query):
     # Aquí puedes implementar la lógica para generar una respuesta
     return f"Has preguntado: {query}"
 
+
 interactions = []
 while True:
         # Recibir la consulta del usuario

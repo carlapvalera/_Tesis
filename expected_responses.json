@@ -74,9 +74,9 @@
 
     },
     {
-        "query": " dime la distribución de la tierra del país y su utilización en el año 2017",
+        "query": " Hazme un resumen d las instalaciones culturales en servicio por provincias en el Año 2023 ",
         "context": "",
-        "response": "En 2017, la distribución de la tierra en Cuba fue la siguiente: la superficie total del país es de 10,988.4 miles de hectáreas, de las cuales 6,300.2 miles son agrícolas. La superficie estatal abarca 6,168.8 miles de hectáreas y la no estatal 4,819.6 miles. Dentro de la superficie agrícola, 2,765.2 miles de hectáreas están cultivadas y 3,534.8 miles son no cultivadas. La utilización de la tierra se divide en varias formas de tenencia: las Unidades Básicas de Producción Cooperativa (UBPC) ocupan 1,722.8 miles de hectáreas, las Cooperativas de Producción Agropecuaria (CPA) 513.2 miles y los terrenos privados abarcan 2,583.6 miles de hectáreas."
+        "response": "En 2023, Cuba cuenta con un total de 2,187 instalaciones culturales en servicio. La distribución por provincias es la siguiente: Pinar del Río tiene 57 instalaciones, Artemisa 55, La Habana 136, Mayabeque 27, Matanzas 36, Villa Clara 56, Cienfuegos 39, Sancti Spíritus 34, Ciego de Ávila 20, Camagüey 43, Las Tunas 16, Holguín 61, Granma 40, Santiago de Cuba 34, Guantánamo 64 e Isla de la Juventud con 5. Las categorías incluyen cines (213), teatros (212), museos (217), bibliotecas (378), librerías (281), casas de cultura (340), carpas de teatro (15) y otras instalaciones culturales. Este panorama refleja un esfuerzo continuo por mantener y promover la cultura en el país a pesar de los desafíos económicos."
     },
     {
         "query": "¿cuál es el nivel educacional de la población económicamente activa por sexo.",
@@ -133,7 +133,7 @@
         "response": "Las características físico-geográficas de Cuba incluyen una geología compleja con rocas antiguas del jurásico y cretácico en las zonas montañosas, y un relieve que se destaca por su diversidad, con montañas como la Sierra Maestra, donde se encuentra el pico Turquino (1,974 m). Cuba presenta un 75% de su territorio como llanuras, y su hidrografía está marcada por ríos como el Cauto y Sagua la Grande. En cuanto a las fuentes de energía renovable, estas son alternativas no convencionales que se utilizan para sustituir portadores tradicionales. Incluyen dendrocombustibles (leña, aserrín), agrocombustibles (paja de arroz, desechos del café), residuos urbanos, hidroenergía, energía eólica y energía solar. Estas fuentes son esenciales para reducir la dependencia de combustibles fósiles y mitigar el impacto ambiental."
     },
     {
-        "query": "¿ que es una área protegida de recursos manejados y que son Unidades Básicas de Producción Cooperativa (UBPC):?",
+        "query": "¿ que es una área protegida de recursos manejados y que son Unidades Básicas de Producción Cooperativa (UBPC)?",
         "context": "",
         "response": "Un área protegida de recursos manejados es una zona terrestre, marina o una combinación de ambas, que contiene sistemas naturales o seminaturales. Su manejo se realiza para garantizar la protección y el mantenimiento de la diversidad biológica, así como para proporcionar un uso sostenible de productos naturales y servicios que satisfagan las necesidades locales o nacionales. En Cuba, estas áreas deben tener al menos dos terceras partes de su superficie en condiciones naturales o seminaturales. Por otro lado, las Unidades Básicas de Producción Cooperativa (UBPC) son formas de organización agrícola en Cuba que permiten a los trabajadores gestionar colectivamente la producción en tierras estatales, promoviendo la eficiencia y sostenibilidad en la agricultura."
     },
@@ -156,10 +156,10 @@
         "response": "Entre 1916/1917 y 2022/2023, se registraron un total de 2,072 frentes fríos. En la Región Occidental se reportaron 933, en la Región Central 748, y en la Región Oriental 604."
     },
     {
-        "query": "¿Cuáles son los Indicadores seleccionados del transporte estatal de pasajeros y del transporte automotor de carga.?",
+        "query": "dime el número de canales de televisión por provincias en elño 2023 y  las horas totales de emisión por televisión.",
         "context": "",
-        "response": "Los indicadores seleccionados del transporte estatal de pasajeros y del transporte automotor de carga son los siguientes: En el transporte estatal de pasajeros, para los ómnibus, el coeficiente de aprovechamiento del parque fue de 71,9% en 2019, descendiendo a 38,8% en 2023. Los viajes realizados pasaron de 18,153.9 millones en 2019 a 6,688.4 millones en 2023. Para los taxis, el coeficiente de aprovechamiento del parque aumentó de 83,9% en 2019 a 87,7% en 2023, mientras que la distancia recorrida pasó de 136,7 millones de km en 2019 a 365,4 millones de km en 2023. En el transporte automotor de carga, el coeficiente de aprovechamiento del parque fue de 66,3% en 2019 y se mantuvo estable en torno al 63% hasta 2023. La distancia recorrida total fue de 337,4 millones de km en 2019 y alcanzó los 328 millones de km en 2023."
-  },
+        "response": "En 2023, Cuba cuenta con un total de 45 canales de televisión. La distribución por provincias es la siguiente: Pinar del Río tiene 2 canales, Artemisa 1, La Habana 13, Mayabeque 3, Matanzas 2, Villa Clara 3, Cienfuegos 1, Sancti Spíritus 1, Ciego de Ávila 2, Camagüey 2, Las Tunas 2, Holguín 3, Granma 3, Santiago de Cuba 2, Guantánamo 3 e Isla de la Juventud con 2. En cuanto a las horas totales de emisión por televisión, en 2023 se registraron 99,504 horas en total. De estas, 54,139 horas fueron de programación nacional y 45,365 horas de programación extranjera. Esto refleja un aumento en las horas de emisión en comparación con años anteriores."
+    },
 
 
 
