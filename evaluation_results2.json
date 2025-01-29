@@ -2,12 +2,12 @@
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.5200910511259943
+        "Mean Reciprocal Rank (MRR)": 0.5
     },
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.5096420126574093
+        "Mean Reciprocal Rank (MRR)": 0.506015835783319
     },
     {
         "Semantic Accuracy (SaCC)": 0.0,
@@ -17,22 +17,57 @@
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.5063618463620796
+        "Mean Reciprocal Rank (MRR)": 0.5017154906517873
     },
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.5562174288886041
+        "Mean Reciprocal Rank (MRR)": 0.5345246969705055
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 0.0,
+        "Mean Reciprocal Rank (MRR)": 0.5000028239851643
     },
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.5132443845169543
+        "Mean Reciprocal Rank (MRR)": 0.5489678859731598
     },
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.5416790556063563
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5046212301131708
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.544999384535168
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5094893919070277
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5209360730135437
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
     },
     {
         "Semantic Accuracy (SaCC)": 0.0,
@@ -42,6 +77,56 @@
     {
         "Semantic Accuracy (SaCC)": 0.0,
         "Logical Accuracy (LaCC)": 1.0,
-        "Mean Reciprocal Rank (MRR)": 0.500000000231534
+        "Mean Reciprocal Rank (MRR)": 0.5026286688920527
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5090882426168475
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5143293203156029
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5752494778096165
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5007473099954838
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5
+    },
+    {
+        "Semantic Accuracy (SaCC)": 0.0,
+        "Logical Accuracy (LaCC)": 1.0,
+        "Mean Reciprocal Rank (MRR)": 0.5258430840896147
     }
 ]
