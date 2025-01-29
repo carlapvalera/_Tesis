@@ -43,6 +43,159 @@
         "query": "¿Quién dirige metodológicamente las manifestaciones artístico-culturales en Cuba?",
         "context": "",
         "response": "El Ministerio de Cultura (MINCULT) dirige metodológicamente las manifestaciones artístico-culturales en Cuba, a través de sus Institutos y Consejos Nacionales. Este ministerio es responsable de regular las políticas culturales del país y garantizar la promoción y difusión del arte y la cultura cubanos, asegurando que se preserven y enriquezcan los valores culturales de la nación. Recientemente, el MINCULT ha aprobado la Resolución 41 del 2021, que establece las bases para la programación cultural, buscando diversificar y elevar la calidad de las actividades artísticas en todo el país. Además, el ministerio promueve la participación de la población en procesos culturales y socioculturales, contribuyendo así al desarrollo integral de las comunidades."
+    },
+
+
+
+
+
+
+    {
+        "query": "¿Cuál es la superficie total de Cuba y cómo se distribuye entre sus principales componentes, incluyendo la Isla de Cuba, la Isla de la Juventud y los cayos adyacentes?",
+        "context": "",
+        "response": "La superficie total de Cuba es de aproximadamente 109,884.01 kilómetros cuadrados. Esta superficie se distribuye de la siguiente manera: Isla de Cuba: 104,338.33 km², Isla de la Juventud: 2,419.27 km², Cayos adyacentes: 3,126.41 km². Estos datos reflejan la extensión del archipiélago cubano y son fundamentales para entender su geografía y recursos."
+    },
+
+    {
+        "query": "¿Cuáles son los principales indicadores climáticos de Cuba para el año 2023, incluyendo la precipitación, temperatura, viento y humedad?",
+        "context": "",
+        "response": "En el año 2023, los principales indicadores climáticos de Cuba son los siguientes: Precipitación Total: La media nacional de lluvia fue de 1,369.7 mm. Temperatura: Temperatura Máxima Media: 31.3 °C, Temperatura Mínima Media: 21.4 °C. Viento: Dirección Predominante: Varía entre las estaciones, pero se reporta principalmente de dirección Este (E) y Noreste (NE). Rapidez Relativa Media: Aproximadamente entre 4.2 km/h y 19.3 km/h, dependiendo de la localidad. Humedad: La humedad relativa media fue de alrededor del 78%, con variaciones según la región. Nubosidad: La nubosidad se reportó en octavos, con un promedio de 3 a 4 octavos, indicando días parcialmente nublados. Estos datos reflejan las condiciones climáticas generales en Cuba y son importantes para entender la variabilidad del clima en la región. Además, se deben considerar fenómenos como el evento El Niño-Oscilación del Sur (ENOS), que puede influir en estos indicadores."
+
+    },
+    {
+        "query": "¿Cuál ha sido la tendencia de la tasa media anual de crecimiento de la población en Cuba desde 1960 hasta 2023, y cuáles son los factores que han influido en esta tendencia?",
+        "context": "",
+        "response": " Desde 1960 hasta 2023, la tasa media anual de crecimiento de la población en Cuba ha mostrado una tendencia decreciente. En las décadas iniciales, especialmente durante los años 60 y 70, Cuba experimentó un crecimiento significativo debido a mejoras en la salud pública, reducción de la mortalidad infantil y un aumento en la fecundidad. Sin embargo, a partir de los años 80, esta tendencia comenzó a cambiar. Los factores que han influido en esta disminución incluyen: 1. Baja Tasa de Fecundidad: La tasa de fecundidad total ha caído por debajo del nivel de reemplazo (2.1 hijos por mujer), alcanzando aproximadamente 1.45 hijos por mujer en años recientes. 2. Aumento de la Mortalidad: En 2021, Cuba registró el número más bajo de nacimientos (99,096) y el mayor número de muertes (167,645) en seis décadas, exacerbado por la pandemia de COVID-19. 3. Emigración: La emigración sostenida, especialmente entre jóvenes y personas en edad fértil, ha contribuido a la disminución de la población. 4. Envejecimiento Poblacional: La pirámide demográfica se asemeja más a la de un país desarrollado, con un aumento significativo en el porcentaje de personas mayores. 5. Crisis Económica: La crisis económica prolongada ha llevado a cambios en los patrones reproductivos y una menor estabilidad social. Como resultado, se prevé que la población cubana podría descender por debajo de los 11 millones en los próximos años si las tendencias actuales continúan."
+    },
+    {
+        "query": "¿Cómo se ha distribuido el nivel educacional de la población económicamente activa en Cuba entre 2019 y 2023, y cuáles son las tendencias observadas en la educación por sexo?",
+        "context": "",
+        "response": "Entre 2019 y 2023, la distribución del nivel educacional de la población económicamente activa en Cuba ha mostrado algunas tendencias significativas: 1. Total de Ambos Sexos: • En 2019, había 4,642.3 mil trabajadores, que aumentó a 4,710.0 mil en 2020, pero luego disminuyó a 4,590.6 mil en 2021 y continuó cayendo a 4,389.2 mil en 2023. • La educación superior ha experimentado una disminución notable, pasando de 1,026.1 mil en 2019 a 962.0 mil en 2023. 2. Mujeres: • La población femenina económicamente activa se redujo de 1,812.1 mil en 2019 a 1,664.3 mil en 2023. • La educación secundaria ha mostrado un aumento significativo, con un incremento de 201.9 mil en 2019 a 216.4 mil en 2023. • Sin embargo, la educación superior también ha disminuido, pasando de 612.4 mil en 2019 a 535.8 mil en 2023. 3. Hombres: • La población masculina pasó de 2,830.2 mil en 2019 a 2,724.9 mil en 2023. • A pesar de la caída general en el número total de hombres, el nivel medio superior se mantuvo relativamente estable con una ligera disminución. • La educación superior también mostró una caída, de 413.7 mil en 2019 a 426.2 mil en 2023. Tendencias Observadas • Hay una tendencia general de disminución en el número total de trabajadores tanto hombres como mujeres entre 2019 y 2023. • A pesar de la disminución general, las mujeres han mostrado un incremento en la educación secundaria. • La reducción en el número de trabajadores con educación superior sugiere un posible desafío para el desarrollo económico y social del país."
+
+    },
+    {
+        "query": "¿Cuáles han sido los campeonatos mundiales más destacados celebrados en Cuba entre 1939 y 2023, y qué logros ha obtenido el país en esos eventos?",
+        "context": "",
+        "response": "Entre 1939 y 2023, Cuba ha sido sede de varios campeonatos mundiales en diferentes deportes, destacándose principalmente en béisbol y boxeo. A continuación se presentan algunos de los eventos más significativos: 1. Béisbol: • 1939: Primer campeonato mundial de béisbol, donde Cuba ocupó el primer lugar con 54 participantes. • 1940: Cuba repitió el primer lugar, esta vez con 126 participantes. • 1952: Nuevamente, Cuba se destacó al obtener el primer lugar con 234 participantes. 2. Boxeo: • 1974: Cuba organizó el primer campeonato mundial de boxeo, donde ocupó el primer lugar con 265 participantes. Este evento marcó el inicio de una larga tradición de éxito en este deporte. 3. Ajedrez: • 1966: En la Olimpiada de Ajedrez, Cuba tuvo una participación significativa con 334 participantes, aunque ocupó el 14° lugar. 4. Caza Submarina: • 1967: Cuba fue sede del campeonato mundial de caza submarina y logró el primer lugar con 85 participantes. 5. Gimnasia Moderna y Otros Deportes: • En eventos como la gimnasia moderna (1971) y el levantamiento de pesas (1973), Cuba también mostró un rendimiento notable, ocupando posiciones destacadas. 6. Pelota Vasca y Karate Do: • En campeonatos posteriores, como los de pelota vasca (1990, 2003) y karate do (1994), Cuba continuó obteniendo buenos resultados, incluyendo un quinto lugar en pelota vasca en 1990."
+
+    },
+    {
+        "query": "¿Cuáles son los resultados de Cuba en campeonatos mundiales de diferentes deportes entre 2021 y 2023, y qué deportes han destacado en esos años?",
+        "context": "",
+        "response": "Entre 2021 y 2023, Cuba ha tenido una participación notable en varios campeonatos mundiales en diferentes disciplinas deportivas. A continuación, se presentan algunos de los resultados destacados: 1. Karate Do: • En 2023, Cuba logró 1 medalla de oro en el campeonato mundial. 2. Levantamiento de Pesas: • En 2023, Cuba obtuvo 3 medallas, incluyendo 1 de oro. 3. Lucha Greco-Romana: • En 2023, Cuba tuvo una destacada actuación con 16 medallas, de las cuales 8 fueron de oro. 4. Lucha Libre: • En 2023, el país participó con un total de 10 medallas, incluyendo 6 de oro. 5. Pelota Vasca: • En 2023, Cuba destacó con 6 medallas, de las cuales 5 fueron de oro. 6. Remo: • En 2023, los remeros cubanos lograron un total de 10 medallas, con varias de ellas obteniendo el primer lugar. 7. Taekwondo: • En 2023, Cuba ganó un total de 3 medallas, incluyendo 2 oros. 8. Tenis de Mesa: • En 2023, se registró una participación con un total de 1 medalla, que fue una plata. 9. Tiro: • En 2023, Cuba alcanzó un total de 7 medallas, con varias posiciones destacadas. 10. Voleibol y Voleibol de Playa: • Aunque el voleibol no obtuvo medallas en este período, se destacó la participación en eventos internacionales."
+
+    },
+    {
+        "query": "¿Cuáles son los participantes en las Olimpiadas del Deporte Cubano por deportes y sexo entre 2004 y 2010?",
+        "context": "",
+        "response": "Entre 2004 y 2010, Cuba ha tenido una participación notable en las Olimpiadas del Deporte Cubano, con un total de participantes que varía por deporte y sexo. A continuación se presentan algunos de los datos destacados: En 2004, participaron 2,841 atletas, de los cuales 776 eran mujeres. En 2006, el total fue de 3,689 participantes, con 890 mujeres. En 2008, Cuba tuvo 3,062 atletas, con 868 mujeres. Finalmente, en 2010, el total fue de 3,040 participantes, incluyendo a 1,078 mujeres. Los deportes con mayor participación incluyen ajedrez, atletismo, baloncesto y béisbol, entre otros. Estos datos reflejan la diversidad y el compromiso de Cuba en el ámbito deportivo."
+    },
+    {
+        "query": "¿Cuáles son las instalaciones culturales en servicio por provincias en Cuba durante el año 2023?",
+        "context": "",
+        "response": "En el año 2023, las instalaciones culturales en servicio por provincias en Cuba se distribuyen de la siguiente manera: En total, Cuba cuenta con 213 cines, 212 teatros, 217 museos, 378 casas de cultura, 281 bibliotecas, 85 librerías, 340 salas de teatro, 15 galerías de arte, 115 carpas de circo y 2 instalaciones culturales adicionales. En Pinar del Río hay 20 cines y 14 teatros; Artemisa cuenta con 12 cines y 9 teatros; La Habana tiene 12 cines y 7 teatros; Mayabeque presenta 12 cines y 2 teatros; Matanzas tiene 20 cines y 18 teatros; Villa Clara cuenta con 19 cines y 18 teatros. Cienfuegos tiene 20 cines y 18 teatros, mientras que Sancti Spíritus cuenta con 16 cines y 12 teatros. Ciego de Ávila presenta 12 cines y 7 teatros; Camagüey tiene 13 cines y 4 teatros; Las Tunas cuenta con 7 cines y 4 teatros. Holguín tiene 8 cines y 12 teatros; Granma presenta 15 cines y 23 teatros; Santiago de Cuba cuenta con 15 cines y 28 teatros. Guantánamo tiene 11 cines y 35 teatros; finalmente, la Isla de la Juventud cuenta con una instalación cultural en servicio. Estos datos reflejan la infraestructura cultural disponible en el país."
+    },
+    
+    
+    
+
+
+
+    {
+        "query": "¿Cuáles son las principales entidades que actúan en la economía cubana y cuántas de ellas estaban registradas en total en 2023?",
+        "context": "",
+        "response": "En 2023, había 18,366 entidades registradas en Cuba. Las principales formas jurídicas incluyen empresas estatales, uniones de empresas, grupos empresariales, organizaciones económicas estatales, bancos estatales, unidades presupuestadas, cooperativas y sociedades mercantiles de capital ciento por ciento cubano."
+    },
+    {
+        "query": "¿Qué características tienen las MIPYMES y cuántas estaban registradas en 2023?",
+        "context": "",
+        "response": " Las MIPYMES son unidades económicas con personalidad jurídica que desarrollan la producción de bienes y la prestación de servicios para satisfacer necesidades sociales. En 2023, había 8,066 MIPYMES registradas"
+    },
+    {
+        "query": "¿Cuáles son las características de las Cooperativas de Producción Agropecuaria (CPA) y cuántas estaban registradas en Villa Clara en 2023?",
+        "context": "",
+        "response": "Las CPA son entidades económicas avanzadas que integran agricultores pequeños para lograr una producción sostenible. En Villa Clara había 68 CPA registradas en 2023."
+    },
+
+
+
+
+
+
+
+
+    {
+        "query": "¿Cuál es la extensión territorial de Cuba y cómo se relaciona esto con la densidad poblacional por provincias según los datos de 2021 y 2022?",
+        "context": "",
+        "response": "La extensión territorial de Cuba es de 109,884.01 km², siendo la mayor de las Antillas. Según los datos de densidad poblacional, provincias como La Habana tienen una mayor densidad debido a su alta población en relación con su pequeña superficie, mientras que provincias como Camagüey, con una gran extensión territorial, tienen una densidad menor."
+    },
+    {
+        "query": "¿Qué relación existe entre las características físico-geográficas descritas en el primer documento y los movimientos migratorios internos presentados en el segundo documento?",
+        "context": "",
+        "response": "Las características físico-geográficas como montañas o terrenos costeros influyen directamente en los movimientos migratorios internos hacia áreas más accesibles o económicamente activas, como La Habana o Matanzas."
+    },
+    {
+        "query": "¿cómo se relacionan las condiciones climáticas extremas con los cambios demográficos observados entre 2021 y 2022?",
+        "context": "",
+        "response": "Las condiciones climáticas extremas, como huracanes o sequías severas, pueden causar desplazamientos temporales o permanentes de población debido a daños a viviendas e infraestructura. Esto se refleja en los cambios demográficos observados entre 2021 y 2022, donde ciertos municipios pueden mostrar fluctuaciones significativas en sus poblaciones debido a estos eventos."
+    },
+
+
+
+
+
+
+
+
+    {
+        "query": "¿Cuáles son los puntos extremos de Cuba y qlos límites geográficos y países más próximos a Cuba?",
+        "context": "",
+        "response": "Los puntos extremos de Cuba son: Extremo septentrional: Cayo Cruz del Padre en Matanzas (23º16' N). El país más próximo es las Bahamas (Cayo Guinchos) a 29 km. Extremo meridional: Punta del Inglés en Granma (19º49' N). El país más próximo es Jamaica a 148 km. Extremo oriental: Punta de Maisí en Guantánamo (20º13' N). El país más próximo es Haití a 78 km. Extremo occidental: Cabo de San Antonio en Pinar del Río (21º52' N). El país más próximo es México a 210 km."
+    },
+    {
+        "query": "ahora t pasare mas d una tabla para q m genere preguntas q necesite informacion d ambas tablas para responderlas y la respuesta q debe dar el llm",
+        "context": "",
+        "response": "Entre 1916/1917 y 2022/2023, se registraron un total de 2,072 frentes fríos. En la Región Occidental se reportaron 933, en la Región Central 748, y en la Región Oriental 604."
+    },
+    {
+        "query": "¿Cuáles son las diferencias en las tasas de mortalidad materna entre regiones occidentales y orientales según los datos?",
+        "context": "",
+        "response": "La Región Occidental tiende a tener tasas más altas como se observa en La Habana y Artemisa comparado con la Región Oriental donde provincias como Holguín tienen tasas más bajas (44,9)."
+    },
+
+
+
+
+
+
+
+
+    {
+        "query": "",
+        "context": "",
+        "response": ""
+    },
+    {
+        "query": "",
+        "context": "",
+        "response": ""
+    },
+    {
+        "query": "",
+        "context": "",
+        "response": ""
+    },
+     {
+        "query": "",
+        "context": "",
+        "response": ""
+    },
+    {
+        "query": "",
+        "context": "",
+        "response": ""
     }
+    
+
  
 ]
